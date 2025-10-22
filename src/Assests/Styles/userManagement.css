@@ -1,0 +1,46 @@
+.user-management {
+  background-color: #fafafa;
+  height: 100vh;
+}
+
+.user-management .table {
+  padding-top: 25px;
+  margin-right: 2%;
+  margin-left: 2%;
+}
+
+.user-management .ant-table-thead .ant-table-cell {
+  background-color: #68379e;
+  color: white;
+}
+
+.user-management .action-col {
+  text-align: center;
+}
+
+.user-management .action-col .action {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-management .edit-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.user-management .del-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.user-management .edit-btn:hover {
+  color: blue;
+  cursor: pointer;
+}
+
+.user-management .del-btn:hover {
+  color: blue;
+  cursor: pointer;
+}

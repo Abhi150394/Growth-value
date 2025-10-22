@@ -1,0 +1,82 @@
+.payment {
+  background-color: #fafafa;
+  height: 100vh;
+}
+
+.payment h1 {
+  font-size: 32px;
+  font-weight: 800;
+  text-decoration: underline;
+  margin-left: 20px;
+}
+
+.payment .outer-body {
+  margin: 40px 3%;
+}
+
+.payment .radio-button-options {
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.payment .radio-option {
+  height: 80px;
+  align-items: center;
+  border: 1px solid rgb(0, 0, 0, 0.4);
+  border-radius: 12px;
+  padding: 12px;
+  width: 100%;
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.payment .option-div {
+  font-size: 18px;
+  padding-left: 20px;
+}
+
+.payment .logos svg {
+  height: 40px;
+  width: 40px;
+  margin-right: 20px;
+}
+
+.payment .radio-option .option-label {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.payment .radio-option input[type="radio"] {
+  margin-right: 8px;
+}
+
+.payment .radio-option input[type="radio"]:checked+span {
+  font-weight: bold;
+}
+
+.payment .radio-option input[type="radio"]:checked+span::before {
+  content: "✓";
+  margin-right: 5px;
+}
+
+.payment .radio-option input[type="radio"]:checked+span::after {
+  content: "Selected";
+  color: green;
+}
+
+.payment .table {
+  margin-top: 25px;
+  margin-right: 2%;
+  margin-left: 2%;
+}
+
+.payment .ant-table-thead .ant-table-cell {
+  background-color: #68379e;
+  color: white;
+}
+
+.payment .link-col {
+  text-align: center;
+}

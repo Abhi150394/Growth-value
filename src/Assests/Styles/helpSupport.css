@@ -1,0 +1,141 @@
+.help-support {
+  min-height: 100vh;
+  background-color: #fafafa;
+}
+
+.help-support .page-header {
+  width: 100%;
+  padding: 30px;
+}
+
+.help-support .title-header {
+  font-size: 28px;
+  color:  #221F1F;
+  font-weight: 700;
+}
+
+.help-support .subtitle-header {
+  font-family: "Inter";
+  color: black;
+  font-size: 16px;
+  opacity: 0.5;
+  padding-top: 10px;
+}
+
+.help-support .body-content {
+  padding: 20px;
+  width: 100%;
+}
+
+@media screen and (max-width: 1140px) {
+  .help-support .body-content {
+    flex-direction: column-reverse;
+  }
+}
+
+@media screen and (max-width:425px){
+  .help-support .right-div{
+    margin-top: 20px;
+  }
+}
+
+@media screen and (min-width:1140px){
+  .help-support .body-content .left-div .contact-box{
+    border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+}
+
+@media screen and (min-width: 320px){
+  .help-support .left-div .contact-box .box{
+    gap: 15px;
+  }
+
+  .help-support .left-div .contact-box .box .icon-container{
+    height: 35px;
+    width: 35px;
+    padding: 8px;
+  }
+
+  .help-support .left-div .contact-box .box .icon-container svg{
+    width: 15px;
+    height: 18px;
+  }
+}
+
+.help-support .left-div {
+  display: flex;
+  justify-content: center;
+}
+
+.help-support .contact-box {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 20px;
+  width: fit-content;
+  height: fit-content;
+ 
+}
+
+.help-support .box {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+
+.help-support .icon-container {
+  height: fit-content;
+  width: fit-content;
+  padding: 10px;
+  border: 2px solid #B88634;
+  border-radius: 100%;
+}
+
+.help-support svg {
+  width: 30px;
+  height: 30px;
+}
+
+.help-support .info {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+}
+
+.help-support .box-title {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.help-support .right-div {
+  display: flex;
+  justify-content: center;
+}
+
+.help-support .message-box {
+  width: 100%;
+  max-width: 600px;
+  padding: 30px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.help-support .message-box h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+  text-align: center;
+}
+
+.help-support .center {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+

@@ -1,0 +1,128 @@
+.plans {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.plan-cards-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  /* gap: 8px; */
+  padding: 20px;
+  width: 100%;
+  /* max-width: 1000px; */
+}
+
+.plan-card {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+  background-color: #f4f4f4;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+  flex: 1;
+  text-align: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.plan-card:hover {
+  background: linear-gradient(-35deg, #b18cfe 0%, #9460ff 100%);
+
+  color: white;
+}
+
+.plan-card h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.plan-price {
+  background: linear-gradient(-35deg, #b18cfe 0%, #9460ff 100%);
+  border: none;
+  color: white;
+  border-radius: 24px;
+  padding: 14px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: color 0.3s ease, color 0.3s ease;
+}
+
+.plan-card:hover .plan-price {
+  background: white;
+  color: black;
+}
+
+.plan-price span {
+  margin-right: 5px;
+}
+
+.plan-card .desc {
+  font-size: 14px;
+  font-weight: 300;
+  color: #565656;
+}
+
+.plan-card:hover .desc {
+  color: white;
+}
+
+.plan-card Button {
+  background-color: white;
+  color: #000;
+  border: none;
+  border-radius: 24px;
+  padding: 10px 30px;
+  font-size: 16px;
+  cursor: pointer;
+  height: fit-content;
+  transition: background-color 0.3s ease;
+}
+
+.plan-card Button:hover {
+  scale: 1.02;
+  color: purple;
+}
+
+@media screen and (max-width: 900px) {
+  .plan-cards-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .plan-card {
+    width: 90%;
+    max-width: 500px;
+  }
+}
+
+.plans .selected-plan-icon {
+  margin-left: auto;
+  margin-bottom: -40px;
+}
+
+.cancel-btn {
+  background-color: transparent;
+  border: 1px solid red;
+  color: red;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.cancel-btn:hover {
+  background-color: red;
+  color: white !important;
+}

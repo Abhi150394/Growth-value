@@ -1,0 +1,163 @@
+.subscription-page {
+  height: 100%;
+  background-color: #fafafa;
+}
+
+.subscription-page h1 {
+  font-size: 32px;
+  font-weight: 800;
+  text-decoration: underline;
+  margin-left: 20px;
+}
+
+.subscription-page .outer-body {
+  margin: 40px 3%;
+  overflow-x: scroll;
+}
+
+.subscription-page .outer-body::-webkit-scrollbar {
+  width: 0px;
+}
+
+.subscription-page .current-plan {
+  min-width: 1034px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 8px 8px 0px 0px;
+}
+
+.subscription-page .head {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #68379e;
+  color: white;
+  font-size: 22px;
+  font-weight: 600;
+  border-radius: 8px 8px 0 0;
+  padding: 5px;
+}
+
+.subscription-page .plan-details {
+  display: flex;
+}
+
+.subscription-page .col-1 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.subscription-page .col-2 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.subscription-page .row {
+  padding: 40px;
+  border: 0.5px solid black;
+}
+
+.subscription-page .title {
+  font-size: 20px;
+  font-weight: 600;
+  padding-right: 10px;
+}
+
+.subscription-page .val {
+  font-size: 20px;
+}
+
+.subscription-page .col-3 {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 20px;
+}
+
+.subscription-page .feature-title {
+  flex: 1;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.subscription-page .features {
+  list-style-type: circle;
+  font-size: 20px;
+  line-height: 40px;
+  flex: 2;
+}
+
+.subscription-page .lower-body {
+  margin: 40px 3%;
+}
+
+.subscription-page .heading {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.subscription-page .subscription-plans {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px;
+  height: max-content;
+}
+
+@media screen and (max-width: 700px) {
+  .subscription-page .subscription-plans {
+    flex-direction: column;
+    gap: 30px;
+  }
+}
+
+.subscription-page .plan-card {
+  width: 300px;
+  text-align: center;
+  background-color: transparent;
+}
+
+.subscription-page .features-list {
+  padding: 0;
+  list-style-type: none;
+}
+
+.subscription-page .features-list li {
+  padding: 5px;
+}
+
+.subscription-page .price {
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+.subscription-page .annual {
+  color: #00a854;
+}
+
+.subscription-page .monthly {
+  color: #f04134;
+}
+
+.subscription-page .buy-button {
+  margin-top: 20px;
+}
+
+.subscription-page .ant-card-head {
+  background-color: #68379e !important;
+  color: white;
+  text-decoration: underline;
+}
+
+.subscription-page .plan-card button {
+  background-color: #68379e;
+}
+
+.subscription-page .plan-card button:hover {
+  background-color: #776a83 !important;
+  cursor: pointer;
+}

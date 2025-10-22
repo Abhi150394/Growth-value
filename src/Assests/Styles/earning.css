@@ -1,0 +1,35 @@
+.earning {
+  background-color: #fafafa;
+  height: 100vh;
+}
+
+.earning .page-header {
+  padding-top: 40px;
+  margin-left: 3%;
+  width: 94%;
+  padding-bottom: 25px;
+}
+
+.earning .heading {
+  width: 100%;
+  background-color: #9463c866;
+  color: black;
+  font-size: 32px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+  letter-spacing: 1vw;
+  box-shadow: rgba(0, 0, 0, 0.15) 3.95px 3.95px 6.6px;
+}
+
+.earning .table {
+  margin-right: 2%;
+  margin-left: 2%;
+}
+
+.earning .ant-table-thead .ant-table-cell {
+  background-color: #68379e;
+  color: white;
+}

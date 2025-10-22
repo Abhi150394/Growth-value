@@ -1,0 +1,35 @@
+.user-information-input {
+    display: flex;
+    align-items: center;
+    background-color: #d9d9d9;
+    border-radius: 10px;
+    padding: 1px 10px;
+}
+
+.user-information-input .ant-input {
+    width: 350px;
+    border: none;
+    border-radius: 0px;
+    background-color: transparent !important;
+}
+
+.user-information-input .icon {
+    cursor: pointer;
+}
+
+.user-information-input .actions-container .icon {
+    background-color: #a7a7a761;
+    padding: 2px;
+    border-radius: 5px;
+    height: 20px;
+    width: 25px;
+}
+
+.user-information-input .icon:hover {
+    transform: scale(1.2);
+}
+
+.user-information-input .actions-container {
+    display: flex;
+    gap: 10px;
+}

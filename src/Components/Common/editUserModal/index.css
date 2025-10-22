@@ -1,0 +1,4 @@
+.modal .ant-modal-body {
+    display: unset;
+    justify-content: center;
+}

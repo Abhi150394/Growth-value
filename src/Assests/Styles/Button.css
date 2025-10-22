@@ -1,0 +1,29 @@
+:root {
+    --box-background-color: #cccccc;
+    --primary: #B88634;
+    --secondary: #B8863466;
+    --colorPrimary: #B88634;
+    --colorWhite: #FFFFFF;
+    --box-background-color: #cccccc;
+}
+
+.hover-button {
+    background-color: var(--colorWhite);
+    color: var(--colorPrimary);
+    border: 1px solid var(--primary);
+    padding: 0px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    height: 40px;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: background-color 0.5s ease, color 0.3s ease !important;
+}
+
+.hover-button:hover {
+    background-color: var(--primary) !important;
+    color: var(--colorWhite) !important;
+
+}

@@ -1,0 +1,28 @@
+.scraping {
+  background-color: #fafafa;
+  height: 100vh;
+}
+
+.scraping .table {
+  padding-top: 25px;
+  margin-right: 2%;
+  margin-left: 2%;
+}
+
+.scraping .ant-table-thead .ant-table-cell {
+  background-color: #68379e;
+  color: white;
+}
+
+.scraping .action-col {
+  text-align: center;
+}
+
+.scraping .action-col button {
+  color: #68379e;
+  font-weight: 700;
+  border: none;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}

@@ -1,0 +1,10 @@
+.payment-warning-modal button {
+    width: 100%;
+    background-color: #68379E;
+    color: white;
+    margin-top: 25px;
+}
+
+.payment-warning-modal button:hover {
+    background-color: #3f215e !important;
+}

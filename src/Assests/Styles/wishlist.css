@@ -1,0 +1,84 @@
+.wishlist {
+  height: 100%;
+  background-color: #fafafa;
+}
+
+.wishlist .body-content {
+  display: flex;
+  flex-direction: row;
+  margin-left: 3%;
+  margin-right: 3%;
+  margin-bottom: 40px;
+  gap: 10px;
+}
+
+.wishlist .ant-checkbox-group .ant-checkbox-wrapper {
+  margin-bottom: 8px;
+}
+
+.wishlist .card-container {
+  margin-top: 40px;
+  width: 100%;
+}
+
+.wishlist .label {
+  font-weight: 700;
+  margin-right: 5px;
+}
+
+.wishlist p {
+  margin: 4px 0px;
+}
+
+.wishlist .btns-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+}
+
+.wishlist .btn-card {
+  /* background-color: #68379e; */
+  color: white;
+}
+
+.wishlist .item-card {
+  text-align: center;
+}
+
+.ant-popover {
+  max-width: 300px;
+}
+
+.wishlist .item-card {
+  text-align: center;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.wishlist .item-card img {
+  height: 100px;
+  width: auto;
+  max-width: 200px;
+  object-fit: cover;
+}
+
+.wishlist .info-container {
+  margin: 14px 8px;
+}
+
+.wishlist .info-container:hover {
+  cursor: pointer;
+}
+
+.wishlist .text-ellipsis {
+  overflow: hidden;
+  /* white-space: nowrap; */
+  text-overflow: ellipsis;
+}
+
+.wishlist .info-row {
+  display: flex;
+  align-items: center;
+}
