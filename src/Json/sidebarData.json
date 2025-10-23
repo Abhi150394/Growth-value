@@ -1,0 +1,128 @@
+[
+    {
+        "id": "sales",
+        "subMenu": [
+            {
+                "menuName": "Area"
+            },
+            {
+                "menuName": "Location"
+            },
+            {
+                "menuName": "Product Division"
+            },
+            {
+                "menuName": "Product Category"
+            },
+            {
+                "menuName": "Product Item"
+            },
+            {
+                "menuName": "Order Type"
+            },
+            {
+                "menuName": "Revenue Center"
+            }
+        ],
+        "menuName": "Sales"
+    },
+    {
+        "id": "operations",
+        "subMenu": [
+            {
+                "menuName": "Day of Week"
+            },
+            {
+                "menuName": "Part of Day"
+            },
+            {
+                "menuName": "Hour"
+            }
+        ],
+        "menuName": "Operations"
+    },
+    {
+        "id": "labour_cost",
+        "subMenu": [
+            {
+                "menuName": "Area"
+            },
+            {
+                "menuName": "Location"
+            },
+            {
+                "menuName": "House Part"
+            },
+            {
+                "menuName": "Role"
+            },
+            {
+                "menuName": "Hour"
+            }
+        ],
+        "menuName": "Labour"
+    },
+    {
+        "id": "inventory",
+        "subMenu": [
+            {
+                "menuName": "By Location"
+            },
+            {
+                "menuName": "By Category"
+            },
+            {
+                "menuName": "By Item"
+            },
+            {
+                "menuName": "By Vendor"
+            }
+        ],
+        "menuName": "Inventory"
+    },
+    {
+        "id": "planning",
+        "subMenu": [
+            {
+                "menuName": "Sales by Location"
+            },
+            {
+                "menuName": "Labour Planner"
+            },
+            {
+                "menuName": "Accuracy"
+            }
+        ],
+        "menuName": "Planning"
+    },
+    {
+        "id": 3959,
+        "type": "dashboard",
+        "menuName": "Budgeting Review"
+    },
+    {
+        "id": 3996,
+        "type": "dashboard",
+        "menuName": "Finance"
+    },
+    {
+        "id": 4556,
+        "type": "dashboard",
+        "menuName": "EOD Report"
+    },
+    {
+        "id": 5983,
+        "type": "dashboard",
+        "menuName": "Quick Social"
+    },
+    {
+        "id": 6187,
+        "type": "dashboard",
+        "menuName": "Ops. Manager"
+    },
+    {
+        "id": 6332,
+        "type": "dashboard",
+        "menuName": "Forecast"
+    }
+]

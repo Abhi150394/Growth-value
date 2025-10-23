@@ -13,6 +13,39 @@
   }
 }
 
+.ag-theme-quartz .ag-row-hover {
+    background-color: #ffe6cc !important; /* light orange hover */
+    transition: background-color 0.2s;
+}
+.ag-theme-quartz .ag-root-wrapper,
+/* .ag-theme-quartz .ag-header, */
+/* .ag-theme-quartz .ag-row, */
+.ag-theme-quartz .ag-cell {
+    border: none !important;
+    box-shadow: none !important;
+    z-index: 0;
+}
+.ag-header-cell-label {
+  font-weight: 500 !important;   /* bold */
+  font-size: 14px !important;    /* bigger font */
+  color: #222;                   /* darker text for clarity */
+}
+.ag-theme-quartz .ag-header-group-cell-label {
+  font-weight: 500;
+  margin-left: 30%;
+}
+
+.custom-modal .ant-modal-header {
+  background-color: #ffffff; 
+  color: white; 
+}
+
+
+.custom-modal .ant-modal-content {
+  background-color: white !important;
+}
+
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

@@ -1,0 +1,3174 @@
+[
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "from: 12/10/25 4:00 +0100",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "report generation time:",
+    "": "14/10/25 7:51 +0100"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "----------------------------",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "De Frietchalet",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Company ID:",
+    "": 44981
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "diepestraat",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "dendermonde",
+    "": ","
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "----------------------------",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "REVENUES:",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "delivery revenue:",
+    "": 796
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "takeaway_simple revenue:",
+    "": 518.5
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "takeaway revenue:",
+    "": 24.9
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Service charges:",
+    "": 0
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "----------------------------------------",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Total revenue:",
+    "": 1339.4
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "+ Revenue without discounts:",
+    "": 1339.4
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "- Total discounts:",
+    "": 0
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "= Total revenue:",
+    "": 1339.4
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "0%",
+    "": 42
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "6%",
+    "": 1216.91
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "21%",
+    "": 6.2
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "TIPS:",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "+ Cash tips:",
+    "": 0
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "+ Credit Card tips:",
+    "": 0
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "+ Other tips:",
+    "": 0
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "= Total tips earned:",
+    "": 0
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "TOTALS:",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Gross Sales:",
+    "": 1339.4
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Customers:",
+    "": 0
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Tickets:",
+    "": 51
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Tables Served:",
+    "": 51
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Voided Tickets:",
+    "": 0
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Corrected Items:",
+    "": 0
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS AND TIPS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "TYPE",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Cash",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "",
+    "": "Cash"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Credit Card",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "",
+    "": "Lightspeed Payments"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Other",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "",
+    "": "Shopify API"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "",
+    "": "TAKEAWAY_V2 API"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "TOTAL",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "----------------------------",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "TICKET VOID SUMMARY:",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "+ voided by manager:",
+    "": 0
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "+ voided by same waiter:",
+    "": 0
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "+ voided by other waiter:",
+    "": 0
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "= voided total:",
+    "": 0
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CORRECTION SUMMARY (OTHER THAN TICKET VOIDS):",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 0,
+    "": "items for a total of"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CATEGORY REVENUES",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CATEGORY",
+    "": "CATEGORY-TYPE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Snacks A-M",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Frietjes",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Snacks N-Z",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Divers",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Warme sauzen ap",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Burgers",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Koude sauzen ap",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Deliverect",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Frisdrank",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Alcohol",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Vegi",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Created on: 12/10/25 15:07 +0100 | Total: 70.90 | for table: Shopify Delivery | last mod: 12/10/25 15:07 +0100 | receipt id: 433401309 | number of customers: 0",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "ID",
+    "": "#"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216558,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216461,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216671,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216670,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216720,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216720,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216562,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216610,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216566,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216567,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216620,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216622,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216590,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4377753,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "6%",
+    "": 64.06
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "0%",
+    "": 3
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CREATION",
+    "": "AMOUNT"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 15:07",
+    "": 70.9
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Created on: 12/10/25 15:16 +0100 | Total: 30.70 | for table: Takeaway Delivery | last mod: 12/10/25 15:16 +0100 | receipt id: 433404326 | number of customers: 0",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "ID",
+    "": "#"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216434,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216454,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216567,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216638,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216563,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216358,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216610,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216720,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216659,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216662,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "6%",
+    "": 28.96
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CREATION",
+    "": "AMOUNT"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 15:16",
+    "": 30.7
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Created on: 12/10/25 15:41 +0100 | Total: 11.40 | for table: Afhaal | last mod: 12/10/25 16:08 +0100 | receipt id: 433412569 | number of customers: 0",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "ID",
+    "": "#"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216454,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216719,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216358,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "6%",
+    "": 10.75
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CREATION",
+    "": "AMOUNT"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 16:07",
+    "": 11.4
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Created on: 12/10/25 15:44 +0100 | Total: 43.50 | for table: Takeaway Delivery | last mod: 12/10/25 15:44 +0100 | receipt id: 433413541 | number of customers: 0",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "ID",
+    "": "#"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216434,
+    "": 2
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216555,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216646,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216588,
+    "": 2
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216634,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216592,
+    "": 2
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216571,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216636,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216566,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216574,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "6%",
+    "": 41.04
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CREATION",
+    "": "AMOUNT"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 15:44",
+    "": 43.5
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Created on: 12/10/25 15:47 +0100 | Total: 27.00 | for table: Shopify Delivery | last mod: 12/10/25 15:47 +0100 | receipt id: 433414667 | number of customers: 0",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "ID",
+    "": "#"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216461,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216668,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216660,
+    "": 2
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216598,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216590,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4377753,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "6%",
+    "": 22.64
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "0%",
+    "": 3
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CREATION",
+    "": "AMOUNT"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 15:47",
+    "": 27
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Created on: 12/10/25 15:50 +0100 | Total: 17.50 | for table: Shopify Delivery | last mod: 12/10/25 15:50 +0100 | receipt id: 433415446 | number of customers: 0",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "ID",
+    "": "#"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216454,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216590,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216628,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216719,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4377753,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "6%",
+    "": 13.68
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "0%",
+    "": 3
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CREATION",
+    "": "AMOUNT"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 15:50",
+    "": 17.5
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Created on: 12/10/25 15:51 +0100 | Total: 60.20 | for table: Takeaway Delivery | last mod: 12/10/25 16:00 +0100 | receipt id: 433415850 | number of customers: 0",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "ID",
+    "": "#"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4220697,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216459,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216459,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216567,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216563,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216573,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216720,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216720,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216592,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216649,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216638,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216624,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216600,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216674,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216598,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "6%",
+    "": 56.79
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CREATION",
+    "": "AMOUNT"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 15:51",
+    "": 60.2
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Created on: 12/10/25 15:51 +0100 | Total: 52.50 | for table: Takeaway Delivery | last mod: 12/10/25 16:00 +0100 | receipt id: 433415890 | number of customers: 0",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "ID",
+    "": "#"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216454,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216558,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216785,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216575,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216572,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216592,
+    "": 2
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216608,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216613,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216620,
+    "": 2
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216719,
+    "": 2
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216590,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216589,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "6%",
+    "": 49.53
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CREATION",
+    "": "AMOUNT"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 15:51",
+    "": 52.5
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Created on: 12/10/25 15:52 +0100 | Total: 16.90 | for table: Shopify Delivery | last mod: 12/10/25 16:00 +0100 | receipt id: 433416178 | number of customers: 0",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "ID",
+    "": "#"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216652,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216454,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216587,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4377753,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "6%",
+    "": 13.11
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "0%",
+    "": 3
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CREATION",
+    "": "AMOUNT"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 15:52",
+    "": 16.9
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Created on: 12/10/25 16:12 +0100 | Total: 11.20 | for table: Afhaal | last mod: 12/10/25 16:14 +0100 | receipt id: 433422115 | number of customers: 0",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "ID",
+    "": "#"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216659,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216591,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216603,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "6%",
+    "": 10.57
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CREATION",
+    "": "AMOUNT"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 16:14",
+    "": 11.2
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Created on: 12/10/25 16:18 +0100 | Total: 17.50 | for table: Afhaal | last mod: 12/10/25 16:18 +0100 | receipt id: 433423718 | number of customers: 0",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "ID",
+    "": "#"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216454,
+    "": 2
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216592,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216586,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216719,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "6%",
+    "": 16.51
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CREATION",
+    "": "AMOUNT"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 16:18",
+    "": 17.5
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Created on: 12/10/25 16:18 +0100 | Total: 10.90 | for table: Afhaal | last mod: 12/10/25 16:19 +0100 | receipt id: 433423945 | number of customers: 0",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "ID",
+    "": "#"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216454,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216720,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216719,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "6%",
+    "": 10.28
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CREATION",
+    "": "AMOUNT"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 16:19",
+    "": 10.9
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Created on: 12/10/25 16:25 +0100 | Total: 11.50 | for table: Afhaal | last mod: 12/10/25 16:26 +0100 | receipt id: 433425739 | number of customers: 0",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "ID",
+    "": "#"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216454,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216563,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216719,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216590,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "6%",
+    "": 10.85
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CREATION",
+    "": "AMOUNT"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 16:26",
+    "": 11.5
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Created on: 12/10/25 16:29 +0100 | Total: 27.10 | for table: Shopify Delivery | last mod: 12/10/25 16:29 +0100 | receipt id: 433426916 | number of customers: 0",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "ID",
+    "": "#"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216670,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216589,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216726,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4377753,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "6%",
+    "": 22.74
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "0%",
+    "": 3
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CREATION",
+    "": "AMOUNT"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 16:29",
+    "": 27.1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Created on: 12/10/25 16:39 +0100 | Total: 7.10 | for table: Afhaal | last mod: 12/10/25 16:39 +0100 | receipt id: 433429589 | number of customers: 0",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "ID",
+    "": "#"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216434,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216720,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "6%",
+    "": 6.7
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CREATION",
+    "": "AMOUNT"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 16:39",
+    "": 7.1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Created on: 12/10/25 16:39 +0100 | Total: 21.70 | for table: Shopify Delivery | last mod: 12/10/25 16:39 +0100 | receipt id: 433429790 | number of customers: 0",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "ID",
+    "": "#"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216636,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4218997,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4377753,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "6%",
+    "": 17.64
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "0%",
+    "": 3
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CREATION",
+    "": "AMOUNT"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 16:39",
+    "": 21.7
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Created on: 12/10/25 16:40 +0100 | Total: 22.70 | for table: Afhaal | last mod: 12/10/25 16:42 +0100 | receipt id: 433430027 | number of customers: 0",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "ID",
+    "": "#"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216454,
+    "": 2
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216639,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216591,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216600,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216582,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "6%",
+    "": 21.42
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CREATION",
+    "": "AMOUNT"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 16:41",
+    "": 22.7
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Created on: 12/10/25 16:49 +0100 | Total: 8.70 | for table: Afhaal | last mod: 12/10/25 17:16 +0100 | receipt id: 433432496 | number of customers: 0",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "ID",
+    "": "#"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216434,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216608,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216563,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "6%",
+    "": 8.21
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CREATION",
+    "": "AMOUNT"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 17:16",
+    "": 8.7
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Created on: 12/10/25 16:55 +0100 | Total: 41.40 | for table: Shopify Delivery | last mod: 12/10/25 16:55 +0100 | receipt id: 433434170 | number of customers: 0",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "ID",
+    "": "#"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216459,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216562,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216610,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216647,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216607,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216620,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216591,
+    "": 2
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4377753,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "6%",
+    "": 36.23
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "0%",
+    "": 3
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CREATION",
+    "": "AMOUNT"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 16:55",
+    "": 41.4
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Created on: 12/10/25 16:57 +0100 | Total: 16.50 | for table: Shopify Delivery | last mod: 12/10/25 16:57 +0100 | receipt id: 433434621 | number of customers: 0",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "ID",
+    "": "#"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216454,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216591,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216603,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4377753,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "6%",
+    "": 12.74
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "0%",
+    "": 3
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CREATION",
+    "": "AMOUNT"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 16:57",
+    "": 16.5
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Created on: 12/10/25 17:10 +0100 | Total: 42.30 | for table: Shopify Delivery | last mod: 12/10/25 17:10 +0100 | receipt id: 433438508 | number of customers: 0",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "ID",
+    "": "#"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216457,
+    "": 2
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216673,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216616,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216562,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216577,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216590,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216613,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216563,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4377753,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "6%",
+    "": 37.08
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "0%",
+    "": 3
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CREATION",
+    "": "AMOUNT"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 17:10",
+    "": 42.3
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Created on: 12/10/25 17:15 +0100 | Total: 13.80 | for table: Shopify Delivery | last mod: 12/10/25 17:15 +0100 | receipt id: 433440054 | number of customers: 0",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "ID",
+    "": "#"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216457,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216459,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4377753,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "6%",
+    "": 10.19
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "0%",
+    "": 3
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CREATION",
+    "": "AMOUNT"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 17:15",
+    "": 13.8
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Created on: 12/10/25 17:17 +0100 | Total: 23.70 | for table: Shopify Delivery | last mod: 12/10/25 17:17 +0100 | receipt id: 433440740 | number of customers: 0",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "ID",
+    "": "#"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216454,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216604,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216586,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216727,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216572,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4377753,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "6%",
+    "": 19.53
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "0%",
+    "": 3
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CREATION",
+    "": "AMOUNT"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 17:17",
+    "": 23.7
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Created on: 12/10/25 17:19 +0100 | Total: 34.40 | for table: Takeaway Delivery | last mod: 12/10/25 17:19 +0100 | receipt id: 433441299 | number of customers: 0",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "ID",
+    "": "#"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4220697,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216457,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216558,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216562,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216567,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216592,
+    "": 2
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216610,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216636,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4218993,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "6%",
+    "": 32.45
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CREATION",
+    "": "AMOUNT"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 17:19",
+    "": 34.4
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Created on: 12/10/25 17:21 +0100 | Total: 38.00 | for table: Shopify Delivery | last mod: 12/10/25 17:21 +0100 | receipt id: 433441833 | number of customers: 0",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "ID",
+    "": "#"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216558,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216457,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216588,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216613,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216622,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216608,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216719,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216621,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4377753,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "6%",
+    "": 33.02
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "0%",
+    "": 3
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CREATION",
+    "": "AMOUNT"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 17:21",
+    "": 38
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Created on: 12/10/25 17:27 +0100 | Total: 42.50 | for table: Takeaway Delivery | last mod: 12/10/25 17:27 +0100 | receipt id: 433443598 | number of customers: 0",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "ID",
+    "": "#"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216655,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216434,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216558,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216670,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216719,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216593,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216595,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "6%",
+    "": 40.09
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CREATION",
+    "": "AMOUNT"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 17:27",
+    "": 42.5
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Created on: 12/10/25 17:29 +0100 | Total: 30.90 | for table: Afhaal | last mod: 12/10/25 17:38 +0100 | receipt id: 433444030 | number of customers: 0",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "ID",
+    "": "#"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216459,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216488,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216727,
+    "": 2
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216620,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216630,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216563,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "6%",
+    "": 29.15
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CREATION",
+    "": "AMOUNT"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 17:38",
+    "": 30.9
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Created on: 12/10/25 17:39 +0100 | Total: 4.40 | for table: Afhaal | last mod: 12/10/25 17:42 +0100 | receipt id: 433447110 | number of customers: 0",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "ID",
+    "": "#"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216664,
+    "": 2
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "6%",
+    "": 4.15
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CREATION",
+    "": "AMOUNT"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 17:42",
+    "": 4.4
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Created on: 12/10/25 17:42 +0100 | Total: 38.30 | for table: Afhaal | last mod: 12/10/25 17:43 +0100 | receipt id: 433447867 | number of customers: 0",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "ID",
+    "": "#"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216671,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216457,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216558,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216589,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216592,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216616,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216647,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "6%",
+    "": 36.13
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CREATION",
+    "": "AMOUNT"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 17:43",
+    "": 38.3
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Created on: 12/10/25 17:46 +0100 | Total: 22.60 | for table: Afhaal | last mod: 12/10/25 17:47 +0100 | receipt id: 433449085 | number of customers: 0",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "ID",
+    "": "#"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216454,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216556,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216592,
+    "": 2
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216610,
+    "": 2
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "6%",
+    "": 21.32
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CREATION",
+    "": "AMOUNT"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 17:46",
+    "": 22.6
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Created on: 12/10/25 17:48 +0100 | Total: 20.20 | for table: Afhaal | last mod: 12/10/25 17:49 +0100 | receipt id: 433449670 | number of customers: 0",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "ID",
+    "": "#"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216459,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216719,
+    "": 2
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216592,
+    "": 3
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "6%",
+    "": 19.06
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CREATION",
+    "": "AMOUNT"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 17:49",
+    "": 20.2
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Created on: 12/10/25 17:54 +0100 | Total: 34.50 | for table: Afhaal | last mod: 12/10/25 17:54 +0100 | receipt id: 433451079 | number of customers: 0",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "ID",
+    "": "#"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216461,
+    "": 3
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216558,
+    "": 3
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "6%",
+    "": 32.55
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CREATION",
+    "": "AMOUNT"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 17:54",
+    "": 0.4
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 17:54",
+    "": 34.1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Created on: 12/10/25 18:05 +0100 | Total: 52.30 | for table: Afhaal | last mod: 12/10/25 18:07 +0100 | receipt id: 433453895 | number of customers: 0",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "ID",
+    "": "#"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216461,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216459,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216558,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216727,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216719,
+    "": 2
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216608,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216587,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216621,
+    "": 2
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216591,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "6%",
+    "": 49.34
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CREATION",
+    "": "AMOUNT"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 18:06",
+    "": 52.3
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Created on: 12/10/25 18:11 +0100 | Total: 13.70 | for table: Afhaal | last mod: 12/10/25 18:12 +0100 | receipt id: 433455636 | number of customers: 0",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "ID",
+    "": "#"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216454,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216488,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216568,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216719,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216669,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "6%",
+    "": 10.57
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "21%",
+    "": 2.07
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CREATION",
+    "": "AMOUNT"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 18:12",
+    "": 13.7
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Created on: 12/10/25 18:16 +0100 | Total: 22.80 | for table: Afhaal | last mod: 12/10/25 18:18 +0100 | receipt id: 433456761 | number of customers: 0",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "ID",
+    "": "#"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216434,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216653,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216562,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216720,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216594,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216635,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "6%",
+    "": 21.51
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CREATION",
+    "": "AMOUNT"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 18:18",
+    "": 22.8
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Created on: 12/10/25 18:20 +0100 | Total: 10.00 | for table: Afhaal | last mod: 12/10/25 18:20 +0100 | receipt id: 433457727 | number of customers: 0",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "ID",
+    "": "#"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216457,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216554,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "6%",
+    "": 9.43
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CREATION",
+    "": "AMOUNT"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 18:20",
+    "": 10
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Created on: 12/10/25 18:25 +0100 | Total: 45.80 | for table: Takeaway Delivery | last mod: 12/10/25 18:25 +0100 | receipt id: 433458837 | number of customers: 0",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "ID",
+    "": "#"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216457,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216567,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216591,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216592,
+    "": 2
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216620,
+    "": 2
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216646,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216638,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216628,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216619,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "6%",
+    "": 43.21
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CREATION",
+    "": "AMOUNT"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 18:25",
+    "": 45.8
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Created on: 12/10/25 18:25 +0100 | Total: 27.40 | for table: Afhaal | last mod: 12/10/25 18:27 +0100 | receipt id: 433458871 | number of customers: 0",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "ID",
+    "": "#"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216454,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216558,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216434,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216562,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216567,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216616,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216564,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216599,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216590,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216666,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "6%",
+    "": 25.85
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CREATION",
+    "": "AMOUNT"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 18:26",
+    "": 27.4
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Created on: 12/10/25 18:28 +0100 | Total: 24.90 | for table: Takeaway Takeaway | last mod: 12/10/25 18:28 +0100 | receipt id: 433459495 | number of customers: 0",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "ID",
+    "": "#"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216454,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216558,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216434,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216719,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216567,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216615,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216592,
+    "": 2
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "6%",
+    "": 23.49
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CREATION",
+    "": "AMOUNT"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 18:28",
+    "": 24.9
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Created on: 12/10/25 18:35 +0100 | Total: 38.90 | for table: Shopify Delivery | last mod: 12/10/25 18:35 +0100 | receipt id: 433461202 | number of customers: 0",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "ID",
+    "": "#"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216558,
+    "": 2
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216459,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216588,
+    "": 2
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216700,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216569,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216632,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216721,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4377753,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "6%",
+    "": 33.87
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "0%",
+    "": 3
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CREATION",
+    "": "AMOUNT"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 18:35",
+    "": 38.9
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Created on: 12/10/25 18:37 +0100 | Total: 5.00 | for table: Afhaal | last mod: 12/10/25 18:38 +0100 | receipt id: 433461698 | number of customers: 0",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "ID",
+    "": "#"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216669,
+    "": 2
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "21%",
+    "": 4.13
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CREATION",
+    "": "AMOUNT"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 18:38",
+    "": 5
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Created on: 12/10/25 18:38 +0100 | Total: 25.40 | for table: Afhaal | last mod: 12/10/25 18:40 +0100 | receipt id: 433461850 | number of customers: 0",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "ID",
+    "": "#"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216459,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216535,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216527,
+    "": 2
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216587,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216615,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216358,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216629,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4221350,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "6%",
+    "": 23.96
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CREATION",
+    "": "AMOUNT"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 18:40",
+    "": 25.4
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Created on: 12/10/25 18:51 +0100 | Total: 15.90 | for table: Afhaal | last mod: 12/10/25 18:52 +0100 | receipt id: 433464570 | number of customers: 0",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "ID",
+    "": "#"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216647,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216589,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216630,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "6%",
+    "": 15
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CREATION",
+    "": "AMOUNT"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 18:52",
+    "": 15.9
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Created on: 12/10/25 19:00 +0100 | Total: 17.50 | for table: Afhaal | last mod: 12/10/25 19:01 +0100 | receipt id: 433466196 | number of customers: 0",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "ID",
+    "": "#"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216454,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216554,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216592,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216590,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216659,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "6%",
+    "": 16.51
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CREATION",
+    "": "AMOUNT"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 19:01",
+    "": 17.5
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Created on: 12/10/25 19:03 +0100 | Total: 26.40 | for table: Shopify Delivery | last mod: 12/10/25 19:03 +0100 | receipt id: 433466691 | number of customers: 0",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "ID",
+    "": "#"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216555,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216454,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216673,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4377753,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "6%",
+    "": 22.08
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "0%",
+    "": 3
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CREATION",
+    "": "AMOUNT"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 19:03",
+    "": 26.4
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Created on: 12/10/25 19:05 +0100 | Total: 9.90 | for table: Afhaal | last mod: 12/10/25 19:06 +0100 | receipt id: 433467066 | number of customers: 0",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "ID",
+    "": "#"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216434,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216554,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216577,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "6%",
+    "": 9.34
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CREATION",
+    "": "AMOUNT"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 19:06",
+    "": 9.9
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Created on: 12/10/25 19:19 +0100 | Total: 15.00 | for table: Afhaal | last mod: 12/10/25 19:20 +0100 | receipt id: 433469211 | number of customers: 0",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "ID",
+    "": "#"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216454,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216603,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216592,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216608,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "6%",
+    "": 14.15
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CREATION",
+    "": "AMOUNT"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 19:20",
+    "": 15
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Created on: 12/10/25 19:22 +0100 | Total: 31.10 | for table: Takeaway Delivery | last mod: 12/10/25 19:22 +0100 | receipt id: 433469761 | number of customers: 0",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "ID",
+    "": "#"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216434,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216562,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216569,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216648,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216646,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216594,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216589,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216613,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "6%",
+    "": 29.34
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CREATION",
+    "": "AMOUNT"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 19:22",
+    "": 31.1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Created on: 12/10/25 19:22 +0100 | Total: 33.20 | for table: Takeaway Delivery | last mod: 12/10/25 19:22 +0100 | receipt id: 433469762 | number of customers: 0",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "ID",
+    "": "#"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216459,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216569,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216719,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216601,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216720,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216590,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216659,
+    "": 3
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216635,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "6%",
+    "": 31.32
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CREATION",
+    "": "AMOUNT"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 19:22",
+    "": 33.2
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Created on: 12/10/25 19:43 +0100 | Total: 39.20 | for table: Afhaal | last mod: 12/10/25 19:45 +0100 | receipt id: 433472651 | number of customers: 0",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "ID",
+    "": "#"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216454,
+    "": 3
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216540,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216527,
+    "": 2
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216535,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216488,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216603,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216587,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216590,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216727,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "6%",
+    "": 36.98
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CREATION",
+    "": "AMOUNT"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 19:44",
+    "": 39.2
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "Created on: 12/10/25 19:45 +0100 | Total: 12.50 | for table: Afhaal | last mod: 12/10/25 19:45 +0100 | receipt id: 433472839 | number of customers: 0",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "ID",
+    "": "#"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216454,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216488,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216527,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": 4216358,
+    "": 1
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "VAT RATE",
+    "": "NET REVENUE"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "6%",
+    "": 11.79
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "PAYMENTS",
+    "": ""
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "CREATION",
+    "": "AMOUNT"
+  },
+  {
+    "RESTAURANT SUMMARY REPORT 12/10/25": "12/10/25 19:45",
+    "": 12.5
+  }
+]

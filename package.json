@@ -14,12 +14,17 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "ag-charts-community": "^12.2.0",
+    "ag-charts-react": "^12.2.0",
+    "ag-grid-react": "^34.2.0",
     "antd": "^5.7.2",
     "axios": "^1.4.0",
     "crypto-js": "^4.1.1",
+    "date-fns": "^2.30.0",
     "moment": "^2.29.4",
     "mui-datatables": "^4.3.0",
     "react": "^18.2.0",
+    "react-date-range": "^1.4.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.10.1",
     "react-phone-input-2": "^2.15.1",
@@ -27,6 +32,7 @@
     "react-responsive": "^10.0.0",
     "react-router-dom": "^6.14.2",
     "react-scripts": "5.0.1",
+    "react-select": "^5.10.2",
     "react-select-country-list": "^2.2.3",
     "web-vitals": "^2.1.4"
   },
@@ -42,6 +48,9 @@
       "react-app/jest"
     ]
   },
+  "resolutions": {
+    "source-map-loader": "3.0.1"
+  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -53,5 +62,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint-plugin-import": "^2.32.0"
   }
 }

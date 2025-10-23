@@ -1,0 +1,31 @@
+/* Smaller calendar text */
+.rdrCalendarWrapper {
+  font-size: 11px !important;
+}
+
+/* Smaller date cells */
+/* .rdrDay {
+  height: 30px !important;
+  width: 30px !important;
+} */
+
+/* Smaller header */
+.rdrMonthAndYearWrapper {
+  padding: 4px 0 !important;
+  font-size: 12px !important;
+}
+
+/* Smaller buttons */
+.rdrNextPrevButton {
+  width: 22px !important;
+  height: 22px !important;
+}
+/* .rdrCalendarWrapper {
+  transform: scale(0.9);
+  transform-origin: top left;
+} */
+ /* Hide month and year selectors */
+/* .rdrMonthAndYearPickers {
+  display: none !important;
+} */
+

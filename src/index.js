@@ -4,14 +4,26 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { LanguageProvider } from "./API/LanguageContext";
-// import { LanguageProvider } from "./context/LanguageContext";
+import { FilterProvider } from "./Contexts/FilterContext";
+import { ModuleRegistry } from "ag-grid-community";
+import { AllCommunityModule } from "ag-grid-community";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 
+// Register all community modules
+ModuleRegistry.registerModules([AllCommunityModule]);
+
+// import { LanguageProvider } from "./context/LanguageContext";
+const theme = createTheme();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-    <LanguageProvider>
+  <ThemeProvider theme={theme}>
+    <FilterProvider>
+      <LanguageProvider>
         <App />
-    </LanguageProvider>
+      </LanguageProvider>
+    </FilterProvider>
+  </ThemeProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

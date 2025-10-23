@@ -21,6 +21,7 @@ import updateUserStates, {
   handleLogout,
   handleUpdate,
 } from "./Utils/updateUserStates";
+import "./App.css";
 import { userDetails } from "./API/user";
 import { refresh } from "./API/auth";
 import { decryptText, encryptText } from "./Utils/encryption";
@@ -32,6 +33,15 @@ import PaymentWarningModal from "./Components/Common/paymentErrorModal";
 import { ConfigProvider } from "antd";
 import Demo from "./Pages/Demo/Demo";
 import ResetPassword from "./Pages/ResetPassword";
+import SalesPage from "./Pages/User/TenjoDummy";
+import Area from "./Pages/User/Sales/Area";
+import Location from "./Pages/User/Sales/Location";
+import ProductDivision from "./Pages/User/Sales/ProductDivision";
+import OrderType from "./Pages/User/Sales/OrderType";
+import RevenueCenter from "./Pages/User/Sales/RevenueCenter";
+import ProductCategory from "./Pages/User/Sales/ProductCategory";
+import SalesDashboard from "./Pages/User/Sales/TestingWithRealData";
+import Finance from "./Pages/User/Finance/Finance";
 
 function App() {
   const [userData, setUserData] = useState({
@@ -403,6 +413,107 @@ function App() {
                       <UserManagement userToken={userToken} userData={userData} />
                     }
                   />
+                  {/* ========================================================================================== */}
+                  <Route
+                    path="/home/sales/product-item"
+                    element={<SalesPage userToken={userToken} />}
+                  />
+                  <Route
+                    path="/home/sales/area"
+                    element={<Area userToken={userToken} />}
+                  />
+                  <Route
+                    path="/home/sales/location"
+                    element={<Location userToken={userToken} />}
+                  />
+                  <Route
+                    path="/home/sales/product-division"
+                    element={<ProductDivision userToken={userToken} />}
+                  />
+                  <Route
+                    path="/home/sales/revenue-center"
+                    element={<RevenueCenter userToken={userToken} />}
+                  />
+                  <Route
+                    path="/home/sales/product-category"
+                    element={<ProductCategory userToken={userToken} />}
+                  />
+                  <Route
+                    path="/home/sales/order-type"
+                    element={<OrderType userToken={userToken} />}
+                  />
+                  <Route
+                    path="home/operations/hour"
+                    element={<SalesDashboard userToken={userToken} />}
+                  />
+                  <Route
+                    path="home/finance"
+                    element={<Finance userToken={userToken} />}
+                  />
+                  <Route
+                    path="/dashboard"
+                    element={
+                      <Dashboard
+                        userToken={userToken}
+                        userData={userData}
+                        search={search}
+                        setSearch={setSearch}
+                        user={user}
+                      />
+                    }
+                  />
+                  <Route
+                    path="/search&compare"
+                    element={
+                      <SearchandCompare
+                        userToken={userToken}
+                        userData={userData}
+                        search={search}
+                        setSearch={setSearch}
+                      />
+                    }
+                  />
+                  <Route
+                    path="/summary"
+                    element={
+                      <Summary
+                        userToken={userToken}
+                        userData={userData}
+                        search={search}
+                        setSearch={setSearch}
+                      />
+                    }
+                  />
+                  <Route
+                    path="/account/subscription"
+                    element={
+                      <Subscription
+                        userToken={userToken}
+                        userData={userData}
+                        setUserData={setUserData}
+                      />
+                    }
+                  />
+                  <Route
+                    path="/help&support"
+                    element={
+                      <HelpandSupport
+                        userToken={userToken}
+                        userData={userData}
+                      />
+                    }
+                  />
+                  <Route
+                    path="/faqs"
+                    element={<FAQs userToken={userToken} userData={userData} />}
+                  />
+                  <Route
+                    path="/wishlist"
+                    element={
+                      <Wishlist userToken={userToken} userData={userData} />
+                    }
+                  />
+                  {/* -================================================================================================ */}
                   <Route path="*" element={<Navigate to={"/home"} />} />
                 </Routes>
               </Main>

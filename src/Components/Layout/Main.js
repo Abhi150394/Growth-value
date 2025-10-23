@@ -5,6 +5,7 @@ import Navbar from "./Navbar";
 import "../../Assests/Styles/Layout.css";
 import Sidebar2 from "./Sidebar2";
 import Sidebar3 from "./Sidebar3";
+import Sidebar4 from "./Sidebar4";
 const { Header: AntdHeader, Content, Sider } = Layout;
 
 const Main = ({
@@ -43,7 +44,8 @@ const Main = ({
                 {type === "user" ? (
                   <Sidebar updateUser={updateUser} user={user} setVisible={setVisible} />
                 ) : type === "admin" ? (
-                  <Sidebar2 updateUser={updateUser} setVisible={setVisible} />
+                  // <Sidebar2 updateUser={updateUser} setVisible={setVisible} />
+                  <Sidebar4 updateUser={updateUser} setVisible={setVisible} hamburger={true} />
                 ) : (
                   <Sidebar3 updateUser={updateUser} setVisible={setVisible} />
                 )}
@@ -66,7 +68,8 @@ const Main = ({
                 <Sidebar updateUser={updateUser} />
               ) : type === "admin" ? (
                 <>
-                  <Sidebar2 updateUser={updateUser} />
+                  {/* <Sidebar2 updateUser={updateUser} /> */}
+                  <Sidebar4 />
                 </>
               ) : (
                 <Sidebar3
