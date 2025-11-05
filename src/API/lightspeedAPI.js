@@ -48,6 +48,7 @@ export const getProductDetails = async (token) => {
 //   } catch (err) {
 //     console.log("Errpr:", err);
 //   }
+// hello
 // };
 export const getProductSales = async (token, fromDate, toDate) => {
   try {
