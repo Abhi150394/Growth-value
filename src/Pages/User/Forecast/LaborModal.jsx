@@ -4,16 +4,24 @@ import SearchIcon from "@mui/icons-material/Search";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
 import DateRangeSelector from "../../../Components/DateRange/DateRangeModalViewer";
-import { MoreHoriz } from "@mui/icons-material";
-import { useState } from "react";
+import React, { useState } from "react";
 import ControlMenuModal from "../../../Components/Modals/ControlMenuModal";
-import ManagerSectionDynamicTable from "../../../Components/GridTables/ManagerSectionTable";
-// import serviceData from "../../Components/GridTables/servicChargeDummyData";
-import serviceData from "../../../Components/GridTables/servicChargeDummyData";
-import DynamicDropdown from "../../../Components/Dropdowns/Dropdown";
-import { HiLocationMarker } from "react-icons/hi";
+import LaborHoursComparisonChart from "../../../Components/Charts/LaborHoursComparisonChart";
 
-const Phase2Report = () => {
+const sampleData = [
+  {
+    "House part": "Back of House",
+    "Labor Model Hours": "108.28",
+    "Scheduled Hours": "100.5",
+  },
+  {
+    "House part": "Front of House",
+    "Labor Model Hours": "83.3",
+    "Scheduled Hours": "293.5",
+  },
+];
+
+const LaborModal = ({ showExploreButton = true, handleExplore }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -27,19 +35,6 @@ const Phase2Report = () => {
     console.log("Menu action clicked:", action);
     // Add your logic here for download, print, etc.
   };
-
-  const serviceColumnMap = {
-    location_name: "Location",
-    full_name: "Employee Name",
-    Sales: "Sales",
-    "Service Charge": "Service Charge",
-    "Service Charge %": "Service Charge %",
-  };
-  const locationOptions = [
-    { value: "boston", label: "Boston" },
-    { value: "chicago", label: "Chicago" },
-    { value: "new_york", label: "New York" },
-  ];
   return (
     <Box>
       <Box
@@ -56,7 +51,7 @@ const Phase2Report = () => {
         <Box>
           <Box sx={{ display: "flex", alignItems: "center", gap: 0.6 }}>
             <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
-              Phase 2 PayStatement v7
+              Labor Modal
             </Typography>
             <Tooltip title="Info">
               <InfoOutlinedIcon
@@ -65,24 +60,27 @@ const Phase2Report = () => {
             </Tooltip>
           </Box>
           <Typography variant="body2" color="text.secondary">
-            Period to date
+           Tomarrow
           </Typography>
         </Box>
 
         <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              cursor: "pointer",
-              color: "#f57c00",
-            }}
-          >
-            <SearchIcon sx={{ fontSize: 20, mr: 0.5 }} />
-            <Typography variant="body2" sx={{ fontWeight: 500 }}>
-              Explore
-            </Typography>
-          </Box>
+          {showExploreButton && (
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                cursor: "pointer",
+                color: "#f57c00",
+              }}
+              onClick={handleExplore}
+            >
+              <SearchIcon sx={{ fontSize: 20, mr: 0.5 }} />
+              <Typography variant="body2" sx={{ fontWeight: 500 }}>
+                Explore
+              </Typography>
+            </Box>
+          )}
           <IconButton>
             <NotificationsNoneOutlinedIcon />
           </IconButton>
@@ -106,26 +104,14 @@ const Phase2Report = () => {
       </Box>
 
       <Box>
-        <Stack
-          direction={{ xm: "column", md: "row" }}
-          spacing={0.5}
-          width="100%"
-          justifyContent="space-between"
-          alignItems={{ xs: "stretch", sm: "center" }}
-        >
-          <DateRangeSelector />
+        <Stack direction="row" spacing={0.5} width="100%">
+          <DateRangeSelector size="small" />
           {/* {filters?.topBarSelectedSection?.id === 1 ? (
             <DynamicDropdown
               icon={HourglassBottomOutlined}
               options={timePeriod}
             />
           ) : null} */}
-          <DynamicDropdown
-            title="Location"
-            icon={HiLocationMarker}
-            options={locationOptions}
-            width={{ xs: "100%", sm: "50%" }}
-          />
         </Stack>
       </Box>
 
@@ -135,19 +121,13 @@ const Phase2Report = () => {
           height: 700,
           width: "100%",
           //   backgroundColor: "#f5f7fbff",
+          marginTop:"20px"
         }}
       >
-        <ManagerSectionDynamicTable
-          data={serviceData}
-          columnMap={serviceColumnMap}
-          tableHeight={600}
-          enableFilter={false}
-          enableSorting={true}
-          enableResize={false}
-        />
+        <LaborHoursComparisonChart data={sampleData} />
       </Box>
     </Box>
   );
 };
 
-export default Phase2Report;
+export default LaborModal;

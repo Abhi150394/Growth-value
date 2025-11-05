@@ -39,6 +39,7 @@ import myData from "../../Components/GridTables/DummyUserData";
 import serviceData from "../../Components/GridTables/servicChargeDummyData";
 import SalesTransactionsTable from "../../Components/GridTables/SalesGrid";
 import DrilldownGrid from "../../Components/GridTables/DummyNestedgrid";
+import DrilldownStyledGridTable from "../../Components/GridTables/NestedGridTable";
 
 const dummyFAQs = [
   {
@@ -134,7 +135,7 @@ const SalesPage = ({ userToken }) => {
 
   const handleButtonClick = (btn) => {
     console.log("Button clicked:", btn);
-    // example usage
+
     if (btn.type === "report") {
       alert(`Opening ${btn.title} for Phase ${btn.phase}`);
     }
@@ -191,6 +192,7 @@ const SalesPage = ({ userToken }) => {
           </tbody>
         </table>
       </div>
+      <DrilldownStyledGridTable />
       <div>
         <SalesTransactionsTable
           data={[
@@ -258,14 +260,15 @@ const SalesPage = ({ userToken }) => {
         <div style={{ padding: "0px", width: "auto " }}>
           {/* <h2>Dynamic Date Range Picker</h2> */}
           {/* <DateRangeDropdown onChange={handleDateChange} /> */}
-          <DateRangeSelector />
+          <DateRangeSelector size="small" />
         </div>
         <DynamicDropdown
           title="Area"
           icon={FaMapMarkedAlt}
           options={areaOptions}
+          size=""
         />
-        <DynamicDropdown options={userOptions} />
+        <DynamicDropdown size="small" options={userOptions} placeholder="Usertype" />
         <div>
           <IconButton onClick={handleMenuOpen}>
             <MoreHoriz />

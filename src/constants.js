@@ -14,7 +14,7 @@ export const COLORS = {
 
 export const BORDER_RADIUS = {
   lg: 20,
-  sm: 8,
+  sm: 6,
 };
 
 export const FONT_SIZES = {

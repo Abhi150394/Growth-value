@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ButtonGroup from "../../../Components/Buttons/TopBarControls";
 import { FilterContext } from "../../../Contexts/FilterContext";
 import DateRangeSelector from "../../../Components/DateRange/DateRangeModalViewer";
@@ -17,6 +17,10 @@ import { HourglassBottomOutlined } from "@mui/icons-material";
 import DynamicCategoryChart from "../../../Components/Charts/DynamicChart.jsx";
 import SalesTransactionsTable from "./SalesSnapshotTable.jsx";
 import XMLUploader from "./XMLUploading.jsx";
+import { getProductSales } from "../../../API/lightspeedAPI.js";
+import { formatToYMD } from "../../../Utils/dateUtils.js";
+import ProductSalesTable from "./NewGroupTable.jsx";
+import ProductPerformanceChart from "./NewChartCompo.jsx";
 
 const options = [
   { value: "profile", label: "Profile", icon: FaUser },
@@ -24,10 +28,12 @@ const options = [
   { value: "analytics", label: "Analytics", icon: FaChartLine },
 ];
 
-const Area = ({userToken}) => {
-  const { filters} = useContext(FilterContext);
+const Area = ({ userToken }) => {
+  const { filters } = useContext(FilterContext);
   const [selectedAreas, setSelectedAreas] = useState(null);
+  const [salesdata, setSalesData] = useState(null);
   console.log("filtersfilters", filters);
+  console.log("salesdatasalesdata");
   const buttonData = [
     { id: 0, title: "Snapshot", type: "snapshot", phase: 1 },
     { id: 1, title: "Trends", type: "trends", phase: 2 },
@@ -43,8 +49,8 @@ const Area = ({userToken}) => {
     { name: "Jane Smith", email: "jane@example.com", age: 32 },
   ];
 
-  const [region, setRegion] = useState("overall"); 
-  const valueFields = ["guest_total", "count"]; // fields to show
+  const [region, setRegion] = useState("overall");
+  const valueFields = ["guest_total", "count"]; // fields to show.
   const labelFields = ["Sales, $", "Transactions"];
   let dummyText = `Lorem ipsum, dolor sit amet consectetur...`;
 
@@ -52,10 +58,24 @@ const Area = ({userToken}) => {
     if (btn.type === "report")
       alert(`Opening ${btn.title} for Phase ${btn.phase}`);
   };
+  useEffect(() => {
+    const fetchSalesData = async () => {
+      try {
+        const fromDate = formatToYMD(filters?.dateRange?.startDate);
+        const toDate = formatToYMD(filters?.dateRange?.endDate);
+        const data = await getProductSales(userToken, fromDate, toDate);
+        setSalesData(data);
+      } catch (err) {
+        console.error("Error fetching Shipday data:", err);
+      }
+    };
+
+    fetchSalesData();
+  }, [filters?.dateRange?.startDate, filters?.dateRange?.endDate]);
 
   return (
     <Box p={1} mt={1}>
-      <XMLUploader token={userToken}/>
+      <XMLUploader token={userToken} />
       <Box mb={1}>
         <ButtonGroup buttons={buttonData} onButtonClick={handleButtonClick} />
       </Box>
@@ -115,10 +135,7 @@ const Area = ({userToken}) => {
                 {!filters?.switchToChart ? <ToggleSwitchButton /> : null}
               </Stack>
             ) : null}
-            <PrintAndCSV
-              data={data}
-              actions={["print"]}
-            />
+            <PrintAndCSV data={data} actions={["print"]} />
 
             {!filters?.switchToChart ? null : (
               <PrintAndCSV
@@ -128,9 +145,10 @@ const Area = ({userToken}) => {
               />
             )}
 
-            {filters?.switchToChart&&filters?.topBarSelectedSection?.id === 1 ?  (
+            {filters?.switchToChart &&
+            filters?.topBarSelectedSection?.id === 1 ? (
               <SearchBar placeholder="Search" debounceTime={300} width={200} />
-            ):null}
+            ) : null}
             {filters?.topBarSelectedSection?.id === 0 && (
               <SearchBar placeholder="Search" debounceTime={300} width={200} />
             )}
@@ -145,6 +163,12 @@ const Area = ({userToken}) => {
           </Box>
         </Stack>
       </Box>
+      <Box>{salesdata && <ProductSalesTable data={salesdata} />}</Box>
+      <div>
+    <h2>Product Profit Comparison</h2>
+    <ProductPerformanceChart data={salesdata} metric="profit" />
+  </div>
+
       <Box>
         <Box
           style={{
@@ -155,14 +179,14 @@ const Area = ({userToken}) => {
           {filters?.topBarSelectedSection?.id === 1 ? (
             filters?.switchToChart ? (
               <Box id="grid-section">
-              <ChartDataGroupedTable
-                data={chartData}
-                categories={
-                  selectedAreas?.length > 0
-                    ? selectedAreas?.map((el) => el.value)
-                    : ["all"]
-                }
-              />
+                <ChartDataGroupedTable
+                  data={chartData}
+                  categories={
+                    selectedAreas?.length > 0
+                      ? selectedAreas?.map((el) => el.value)
+                      : ["all"]
+                  }
+                />
               </Box>
             ) : (
               <Box id="chart-section">
@@ -183,9 +207,9 @@ const Area = ({userToken}) => {
               <SalesTransactionsTable
                 data={chartData}
                 defaultRegion={region}
-                valueFields={valueFields} 
-                labelFields={labelFields} 
-                COLORS={{ green: "#2ecc71", red: "#e74c3c" }} 
+                valueFields={valueFields}
+                labelFields={labelFields}
+                COLORS={{ green: "#2ecc71", red: "#e74c3c" }}
                 searchText={
                   filters?.searchedValue.length > 0
                     ? filters?.searchedValue

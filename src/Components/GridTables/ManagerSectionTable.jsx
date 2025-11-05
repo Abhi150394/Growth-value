@@ -15,6 +15,7 @@ const ManagerSectionDynamicTable = ({
     enableFilter = false,
     enableSorting = true,
     enableResize = false,
+    subTitle='Week to date'
 }) => {
     const gridApi = useRef(null);
     const [pageSize, setPageSize] = useState(10);
@@ -32,13 +33,14 @@ const ManagerSectionDynamicTable = ({
             resizable: enableResize,
             flex: 1,
             headerComponent: CustomHeader,
+            subTitle:subTitle,
             headerComponentParams: { title: columnMap[key] || key, key: key },
             cellStyle: {
                 fontSize: "14px",
                 padding: "10px",
                 // textAlign: typeof data[0][key] === "number" ? "right" : "left",
                 // textAlign: "left",
-                textAlign: key === 'full_name' || key === 'location_name' ? "left" : "right",
+                textAlign: key === 'full_name' || key === 'location_name'||key==='Location' ? "left" : "right",
             },
             valueFormatter: (p) =>
                 typeof p.value === "number"
@@ -183,7 +185,7 @@ export default ManagerSectionDynamicTable;
 
 
 const CustomHeader = (props) => {
-    const align = props.column?.colId === 'full_name' || props.column?.colId === 'location_name'
+    const align = props.column?.colId === 'full_name' || props.column?.colId === 'Location'|| props.column?.colId === 'location_name'
         ? 'left'
         : 'right';
 
@@ -240,7 +242,7 @@ const CustomHeader = (props) => {
                 <span style={{ fontSize: "12px" }}>{getSortIcon()}</span>
             </div>
 
-            {props.column?.colId !== 'full_name' && props.column?.colId !== 'location_name' && (
+            {props.column?.colId !== 'full_name' && props.column?.colId !== 'Location' && props.column?.colId !== 'location_name' && (
                 <div
                     style={{
                         fontSize: 12,
@@ -249,7 +251,8 @@ const CustomHeader = (props) => {
                         padding: "0 10px",
                     }}
                 >
-                    Week to date
+                    {props.column?.colDef?.subTitle}
+                    {/* week to date */}
                 </div>
             )}
         </div>

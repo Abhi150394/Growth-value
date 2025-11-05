@@ -4,7 +4,7 @@ import Select from "react-select";
 import { Pagination } from "antd";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-quartz.css";
-import { COLORS } from "../../constants"; // make sure COLORS has green/red shades
+import { COLORS } from "../../constants";
 
 const SalesTransactionsTable = ({ data }) => {
     const gridApi = useRef(null);

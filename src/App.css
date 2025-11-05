@@ -44,6 +44,35 @@
 .custom-modal .ant-modal-content {
   background-color: white !important;
 }
+/* Force modal to always stay perfectly centered */
+.centered-modal-wrapper {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ensure modal doesn't exceed viewport height */
+.centered-modal-wrapper .ant-modal {
+  top: auto !important;
+  transform: none !important;
+  margin: 0 !important;
+  max-height: 90vh;
+  overflow: hidden;
+}
+
+/* Responsive modal width */
+@media (max-width: 768px) {
+  .centered-modal-wrapper .ant-modal {
+    width: 100vw !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .centered-modal-wrapper .ant-modal {
+    width: 90vw !important;
+  }
+}
+
 
 
 .App-header {

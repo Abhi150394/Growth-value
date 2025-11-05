@@ -42,6 +42,8 @@ import RevenueCenter from "./Pages/User/Sales/RevenueCenter";
 import ProductCategory from "./Pages/User/Sales/ProductCategory";
 import SalesDashboard from "./Pages/User/Sales/TestingWithRealData";
 import Finance from "./Pages/User/Finance/Finance";
+import Forecast from "./Pages/User/Forecast/Forecast";
+import LaborDash from "./Pages/User/Labor Dash/LaborDash";
 
 function App() {
   const [userData, setUserData] = useState({
@@ -70,7 +72,7 @@ function App() {
       if (
         error?.response?.status === 401 &&
         error?.response?.data?.detail ===
-        "Given token not valid for any token type"
+          "Given token not valid for any token type"
       ) {
         const localStorageItems = localStorage;
         if (localStorageItems.length !== 0) {
@@ -169,7 +171,10 @@ function App() {
       if (userData?.id) {
         const res = await userDetails(userToken, userData?.id);
         setUser(res?.data);
-        localStorage.setItem(encryptText("loggedUser"), encryptText(JSON.stringify(res?.data)))
+        localStorage.setItem(
+          encryptText("loggedUser"),
+          encryptText(JSON.stringify(res?.data))
+        );
       }
     };
     func();
@@ -180,7 +185,7 @@ function App() {
       <ConfigProvider
         theme={{
           token: {
-            colorPrimary: '#AF8639',
+            colorPrimary: "#AF8639",
             colorTextBase: "#00000066",
             colorBgLayout: "#FFF",
             colorLink: "#AF8639",
@@ -200,8 +205,7 @@ function App() {
             fontSizeXLG: 16,
             fontSizeXXL: 18,
             fontSizeXXXL: 20,
-
-          }
+          },
         }}
       >
         {loading ? null : (
@@ -320,7 +324,9 @@ function App() {
                     />
                     <Route
                       path="/faqs"
-                      element={<FAQs userToken={userToken} userData={userData} />}
+                      element={
+                        <FAQs userToken={userToken} userData={userData} />
+                      }
                     />
                     <Route
                       path="/wishlist"
@@ -351,10 +357,7 @@ function App() {
                     <Route
                       path="/demo"
                       element={
-                        <Demo
-                          userToken={userToken}
-                          userData={userData}
-                        />
+                        <Demo userToken={userToken} userData={userData} />
                       }
                     />
                     <Route
@@ -392,7 +395,10 @@ function App() {
                   <Route
                     path="/home"
                     element={
-                      <AdminDashboard userToken={userToken} userData={userData} />
+                      <AdminDashboard
+                        userToken={userToken}
+                        userData={userData}
+                      />
                     }
                   />
                   {/* <Route
@@ -410,7 +416,10 @@ function App() {
                   <Route
                     path="/user-management"
                     element={
-                      <UserManagement userToken={userToken} userData={userData} />
+                      <UserManagement
+                        userToken={userToken}
+                        userData={userData}
+                      />
                     }
                   />
                   {/* ========================================================================================== */}
@@ -449,6 +458,14 @@ function App() {
                   <Route
                     path="home/finance"
                     element={<Finance userToken={userToken} />}
+                  />
+                  <Route
+                    path="home/forecast"
+                    element={<Forecast userToken={userToken} />}
+                  />
+                  <Route
+                    path="home/labor-dash"
+                    element={<LaborDash userToken={userToken} />}
                   />
                   <Route
                     path="/dashboard"
@@ -536,7 +553,9 @@ function App() {
                 />
                 <Route
                   path="/reset_password/:userId"
-                  element={<ResetPassword setNotificationType={setNotificationType} />}
+                  element={
+                    <ResetPassword setNotificationType={setNotificationType} />
+                  }
                 />
                 <Route path="*" element={<Navigate to={"/sign-in"} />} />
               </Routes>

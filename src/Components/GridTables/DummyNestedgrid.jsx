@@ -3,6 +3,7 @@ import { AgGridReact } from "ag-grid-react";
 import { Pagination } from "antd";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-quartz.css";
+import { ChevronRight } from "@mui/icons-material";
 
 // Dummy data
 const locationData = [
@@ -38,7 +39,37 @@ export default function DrilldownStyledGrid() {
   const [currentPage, setCurrentPage] = useState(0);
 
   const locationCols = [
-    { headerName: "Location", field: "location", flex: 1 },
+    {
+      headerName: "Location",
+      field: "location",
+      flex: 1,
+      cellRenderer: (params) => {
+        const hasDetails = params.data?.details?.length > 0;
+        return (
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              //   justifyContent: "space-between",
+              width: "100%",
+            }}
+          >
+            {hasDetails && (
+              <span
+                style={{
+                  color: "#999",
+                  fontWeight: 600,
+                  marginLeft: 8,
+                }}
+              >
+                <ChevronRight />
+              </span>
+            )}
+            <span>{params.value}</span>
+          </div>
+        );
+      },
+    },
     { headerName: "Payments", field: "payments", flex: 1 },
   ];
 
@@ -127,7 +158,8 @@ export default function DrilldownStyledGrid() {
           rowHeight={50}
           headerHeight={55}
           getRowStyle={(params) => ({
-            backgroundColor: params.node.rowIndex % 2 === 0 ? "#fafafa" : "#fff",
+            backgroundColor:
+              params.node.rowIndex % 2 === 0 ? "#fafafa" : "#fff",
             borderBottom: "1px solid #f0f0f0",
           })}
         />
