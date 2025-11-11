@@ -44,6 +44,7 @@ import SalesDashboard from "./Pages/User/Sales/TestingWithRealData";
 import Finance from "./Pages/User/Finance/Finance";
 import Forecast from "./Pages/User/Forecast/Forecast";
 import LaborDash from "./Pages/User/Labor Dash/LaborDash";
+import OpsManager from "./Pages/User/Ops Manager/OpsManager";
 
 function App() {
   const [userData, setUserData] = useState({
@@ -467,6 +468,12 @@ function App() {
                     path="home/labor-dash"
                     element={<LaborDash userToken={userToken} />}
                   />
+                  <Route
+                    path="home/ops.-manager"
+                    element={<OpsManager userToken={userToken} />}
+                  />
+
+                  
                   <Route
                     path="/dashboard"
                     element={

@@ -105,11 +105,7 @@
         "type": "dashboard",
         "menuName": "Finance"
     },
-    {
-        "id": 4556,
-        "type": "dashboard",
-        "menuName": "EOD Report"
-    },
+    
     {
         "id": 5983,
         "type": "dashboard",

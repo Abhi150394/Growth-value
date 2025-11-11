@@ -6,6 +6,7 @@ import { FilterContext } from "../../../Contexts/FilterContext";
 import ForecastAccuracy from "./ForecastAccuracy";
 import LaborModal from "./LaborModal";
 import SalesForecast from "./SalesForecast";
+import AccessDeniedCard from "../../../Components/Cards/ErrorCard/AccessDeniedCard";
 
 const Forecast = ({ userToken }) => {
   const [visible, setVisible] = useState(false);
@@ -49,8 +50,31 @@ const Forecast = ({ userToken }) => {
   return (
     <>
       <Box p={1} mt={1}>
-        {filters?.topBarSelectedSection?.id === 0 && (
-          <>
+        <>
+          <Box
+            sx={{
+              border: "1px solid #c2c0c0ff",
+              borderRadius: "5px",
+              padding: "10px",
+              height: "auto",
+              marginRight: "5px",
+              width: "100%",
+            }}
+          >
+            <SalesForecast handleExplore={openSalesForecastModal} />
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              //   px: 3,
+              gap: 1,
+              py: 1.5,
+              //   borderBottom: "1px solid #e0e0e0",
+              backgroundColor: "#fff",
+            }}
+          >
             <Box
               sx={{
                 border: "1px solid #c2c0c0ff",
@@ -58,50 +82,26 @@ const Forecast = ({ userToken }) => {
                 padding: "10px",
                 height: "auto",
                 marginRight: "5px",
-                width: "100%",
+                width: "50%",
               }}
             >
-              <SalesForecast handleExplore={openSalesForecastModal} />
+              <LaborModal handleExplore={openLaborModal} />
             </Box>
             <Box
               sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                //   px: 3,
-                gap: 1,
-                py: 1.5,
-                //   borderBottom: "1px solid #e0e0e0",
-                backgroundColor: "#fff",
+                border: "1px solid #c2c0c0ff",
+                borderRadius: "5px",
+                padding: "10px",
+                height: "auto",
+                marginRight: "5px",
+                width: "50%",
               }}
             >
-              <Box
-                sx={{
-                  border: "1px solid #c2c0c0ff",
-                  borderRadius: "5px",
-                  padding: "10px",
-                  height: "auto",
-                  marginRight: "5px",
-                  width: "50%",
-                }}
-              >
-                <LaborModal handleExplore={openLaborModal} />
-              </Box>
-              <Box
-                sx={{
-                  border: "1px solid #c2c0c0ff",
-                  borderRadius: "5px",
-                  padding: "10px",
-                  height: "auto",
-                  marginRight: "5px",
-                  width: "50%",
-                }}
-              >
-                <ForecastAccuracy handleExplore={openForecastAccuracyModal} />
-              </Box>
+              <ForecastAccuracy handleExplore={openForecastAccuracyModal} />
             </Box>
-          </>
-        )}
+          </Box>
+          <AccessDeniedCard />
+        </>
       </Box>
 
       <DynamicModal

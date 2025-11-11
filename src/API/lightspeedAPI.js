@@ -34,22 +34,7 @@ export const getProductDetails = async (token) => {
   }
 };
 
-// export const getProductSales = async (token) => {
-//   try {
-//     const response = await axios.get(
-//       `${process.env.REACT_APP_BACKEND_URL}/lightspeed/productsales`,
-//       {
-//         headers: {
-//           Authorization: `Bearer ${token.access}`,
-//         },
-//       }
-//     );
-//     return response;
-//   } catch (err) {
-//     console.log("Errpr:", err);
-//   }
-// hello
-// };
+    
 export const getProductSales = async (token, fromDate, toDate) => {
   try {
     const response = await axios.get(

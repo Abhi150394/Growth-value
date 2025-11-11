@@ -21,6 +21,7 @@ import { getProductSales } from "../../../API/lightspeedAPI.js";
 import { formatToYMD } from "../../../Utils/dateUtils.js";
 import ProductSalesTable from "./NewGroupTable.jsx";
 import ProductPerformanceChart from "./NewChartCompo.jsx";
+import DynamicProductPerformanceChart from "../../../Components/Charts/BarChart.jsx";
 
 const options = [
   { value: "profile", label: "Profile", icon: FaUser },
@@ -60,6 +61,7 @@ const Area = ({ userToken }) => {
   };
   useEffect(() => {
     const fetchSalesData = async () => {
+      setSalesData(null)
       try {
         const fromDate = formatToYMD(filters?.dateRange?.startDate);
         const toDate = formatToYMD(filters?.dateRange?.endDate);
@@ -163,10 +165,13 @@ const Area = ({ userToken }) => {
           </Box>
         </Stack>
       </Box>
-      <Box>{salesdata && <ProductSalesTable data={salesdata} />}</Box>
+      
+      <Box>{salesdata ? <ProductSalesTable data={salesdata} />:<img src="/gif/growthValue_animated_loader.gif" alt="Loading..." />}</Box>
       <div>
     <h2>Product Profit Comparison</h2>
-    <ProductPerformanceChart data={salesdata} metric="profit" />
+    {/* <ProductPerformanceChart data={salesdata} metric="profit" /> */}
+
+    <DynamicProductPerformanceChart data={salesdata} yKeys={[ "profit"]} />
   </div>
 
       <Box>
@@ -211,7 +216,7 @@ const Area = ({ userToken }) => {
                 labelFields={labelFields}
                 COLORS={{ green: "#2ecc71", red: "#e74c3c" }}
                 searchText={
-                  filters?.searchedValue.length > 0
+                  filters?.searchedValue?.length > 0
                     ? filters?.searchedValue
                     : null
                 }

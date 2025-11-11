@@ -4,57 +4,15 @@ import SearchIcon from "@mui/icons-material/Search";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
 import DateRangeSelector from "../../../Components/DateRange/DateRangeModalViewer";
-import React, { useState } from "react";
+import { MoreHoriz } from "@mui/icons-material";
+import { useState } from "react";
 import ControlMenuModal from "../../../Components/Modals/ControlMenuModal";
-import LaborHoursComparisonChart from "../../../Components/Charts/LaborHoursComparisonChart";
+import ManagerSectionDynamicTable from "../../../Components/GridTables/ManagerSectionTable";
+// import serviceData from "../../Components/GridTables/servicChargeDummyData";
+import serviceData from "../Finance/Phase1Reports/DayAndHour.js";
+import DynamicDropdown from "../../../Components/Dropdowns/Dropdown.jsx";
 
-const sampleData = [
-  {
-    "House part": "Back of House",
-    "Labor Model Hours": "108.28",
-    "Scheduled Hours": "100.5",
-  },
-  {
-    "House part": "Front of House",
-    "Labor Model Hours": "83.3",
-    "Scheduled Hours": "293.5",
-  },
-];
-
-const sampleData2 = [
-  {
-    child_cat_name: "Cold Drinks",
-    Sales: "3052.8",
-    "Previous Sales": "3631.6",
-  },
-  {
-    child_cat_name: "Hot Drinks",
-    Sales: "4797.86",
-    "Previous Sales": "5811.46",
-  },
-  {
-    child_cat_name: "Not Available",
-    Sales: "-261.75",
-    "Previous Sales": "-307.77",
-  },
-  {
-    child_cat_name: "Salad",
-    Sales: "10811.95",
-    "Previous Sales": "13981.25",
-  },
-  {
-    child_cat_name: "Sandwiches",
-    Sales: "11133.1",
-    "Previous Sales": "13457.4",
-  },
-  {
-    child_cat_name: "Snacks",
-    Sales: "2531.38",
-    "Previous Sales": "3139.04",
-  },
-];
-
-const LaborModal = ({ showExploreButton = true, handleExplore }) => {
+const InventorySummary = ({ showExploreButton = true, handleExplore }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -68,14 +26,56 @@ const LaborModal = ({ showExploreButton = true, handleExplore }) => {
     console.log("Menu action clicked:", action);
     // Add your logic here for download, print, etc.
   };
+
+  const serviceColumnMap = {
+    location_name: "Location",
+    full_name: "Employee Name",
+    date_of_business: "Date",
+    Sales: "Sales",
+    "Service Charge": "Service Charge",
+    "Service Charge %": "Service Charge %",
+  };
+  const timePeriod = [
+    { value: "hour-1", label: "1" },
+    { value: "hour-2", label: "2" },
+    { value: "hour-3", label: "3" },
+    { value: "hour-4", label: "4" },
+    { value: "hour-5", label: "5" },
+    { value: "hour-6", label: "6" },
+    { value: "hour-7", label: "7" },
+    { value: "hour-8", label: "8" },
+  ];
+  const mealOptions = [
+    { value: "breakfast", label: "Breakfast" },
+    { value: "lunch", label: "Lunch" },
+    { value: "dinner", label: "Dinner" },
+  ];
+  const dayOptions = [
+    { value: "monday", label: "Monday" },
+    { value: "tuesday", label: "Tuesday" },
+    { value: "wednesday", label: "Wednesday" },
+    { value: "thursday", label: "Thursday" },
+    { value: "friday", label: "Friday" },
+    { value: "saturday", label: "Saturday" },
+    { value: "sunday", label: "Sunday" },
+  ];
   return (
-    <Box>
+    <Box
+      sx={{
+        border: "1px solid #c2c0c0ff",
+        borderRadius: "5px",
+        padding: "10px",
+        height: "auto",
+        width: "100%",
+      }}
+    >
       <Box
         sx={{
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
           //   px: 3,
+          //   width:"45%",
           py: 1.5,
           //   borderBottom: "1px solid #e0e0e0",
           backgroundColor: "#fff",
@@ -84,7 +84,7 @@ const LaborModal = ({ showExploreButton = true, handleExplore }) => {
         <Box>
           <Box sx={{ display: "flex", alignItems: "center", gap: 0.6 }}>
             <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
-              Labor Modal
+              Sales By Day & Hour
             </Typography>
             <Tooltip title="Info">
               <InfoOutlinedIcon
@@ -93,7 +93,7 @@ const LaborModal = ({ showExploreButton = true, handleExplore }) => {
             </Tooltip>
           </Box>
           <Typography variant="body2" color="text.secondary">
-            Tomarrow
+            Period to date
           </Typography>
         </Box>
 
@@ -136,44 +136,53 @@ const LaborModal = ({ showExploreButton = true, handleExplore }) => {
         </Box>
       </Box>
 
-      <Box>
+      <Box sx={{ display: "flex", gap: 2, flexDirection: "column" }}>
         <Stack direction="row" spacing={0.5} width="100%">
           <DateRangeSelector size="small" />
-          {/* {filters?.topBarSelectedSection?.id === 1 ? (
-            <DynamicDropdown
-              icon={HourglassBottomOutlined}
-              options={timePeriod}
-            />
-          ) : null} */}
+          <DynamicDropdown
+            size="small"
+            placeholder="Hour"
+            options={timePeriod}
+            width="50%"
+          />
+        </Stack>
+        <Stack direction="row" spacing={0.5} width="100%">
+          <DynamicDropdown
+            size="small"
+            placeholder="Day Part"
+            options={mealOptions}
+            width="50%"
+          />
+
+          <DynamicDropdown
+            size="small"
+            placeholder="Day of Week"
+            options={dayOptions}
+            width="50%"
+          />
         </Stack>
       </Box>
 
       <Box
         className="ag-theme-quartz"
         style={{
-          height: 700,
-          width: "100%",
+          height: 387,
+          //   width: "45%",
           //   backgroundColor: "#f5f7fbff",
-          marginTop: "20px",
         }}
       >
-        <LaborHoursComparisonChart
-          data={sampleData}
-          seriesLabels={{
-            "Labor Model Hours": "Labor Model Hours",
-            "Scheduled Hours": "Scheduled Hours - Tomorrow",
-          }}
+        <ManagerSectionDynamicTable
+          data={serviceData}
+          columnMap={serviceColumnMap}
+          tableHeight={300}
+          enableFilter={false}
+          enableSorting={true}
+          enableResize={false}
+          subTitle="Period to date"
         />
-
       </Box>
-        {/* <LaborHoursComparisonChart
-          data={sampleData2}
-          // categoryKey="child_cat_name" // optional (auto-detect will find this)
-          // seriesKeys={["Sales", "Previous Sales"]} // optional (auto-detect will find these too)
-          seriesLabels={{ 'Sales': "Sales-Week to date", "Previous Sales": "Previous Sales - Last week to date" }}
-        /> */}
     </Box>
   );
 };
 
-export default LaborModal;
+export default InventorySummary;

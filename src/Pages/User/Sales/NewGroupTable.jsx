@@ -21,12 +21,12 @@ const ProductSalesTable = ({ data = [] }) => {
       { headerName: "Product Name", field: "productName", minWidth: 180 },
       { headerName: "Product ID", field: "pid", minWidth: 100 },
       { headerName: "VAT Rate (%)", field: "vatRate", minWidth: 120 },
-      { headerName: "VAT ($)", field: "vat", minWidth: 100 },
+      { headerName: "VAT (€)", field: "vat", minWidth: 100 },
       { headerName: "Amount Sold", field: "amount", minWidth: 120 },
-      { headerName: "Unit Price ($)", field: "price", minWidth: 120 },
-      { headerName: "Total Sales ($)", field: "total", minWidth: 140 },
+      { headerName: "Unit Price (€)", field: "price", minWidth: 120 },
+      { headerName: "Total Sales (€)", field: "total", minWidth: 140 },
       { headerName: "Cost (Excl. VAT)", field: "costVatExcl", minWidth: 140 },
-      { headerName: "Profit ($)", field: "profit", minWidth: 120 },
+      { headerName: "Profit (€)", field: "profit", minWidth: 120 },
     ];
 
     return { columnDefs };

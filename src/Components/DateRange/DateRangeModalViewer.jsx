@@ -44,11 +44,11 @@ const DateRangeSelector = ({ size = "default" }) => {
   const isSmall = size === "small";
 
   return (
-    <Box ref={dropdownRef} position="relative" width={{ xs: "100%", sm: "auto" }}>
+    <Box ref={dropdownRef} position="relative" width={{ xs: "100%", sm: "auto" }} >
       <Stack
         direction={{ xs: "column", sm: "row" }}
         alignItems="center"
-        spacing={isSmall ? 1 : 2}
+        spacing={isSmall ? 0.2 : 2}
         onClick={togglePicker}
         sx={{
           padding: isSmall ? "2px 6px" : "4px 10px",
@@ -57,7 +57,7 @@ const DateRangeSelector = ({ size = "default" }) => {
           cursor: "pointer",
           userSelect: "none",
           backgroundColor: "#f9f9f9",
-          transform: isSmall ? "scale(0.95)" : "scale(1)",
+          // transform: isSmall ? "scale(0.95)" : "scale(1)",
           maxWidth: isSmall ? 450 : 700,
         }}
       >

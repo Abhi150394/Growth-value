@@ -94,7 +94,7 @@ const ManagerSectionDynamicTable = ({
                     masterDetail={true}
                     suppressPaginationPanel={true}
                     onGridReady={onGridReady}
-                    rowHeight={50}
+                    rowHeight={40}
                     headerHeight={50}
                     getRowStyle={(params) => {
                         if (params.node.rowIndex === 0) {

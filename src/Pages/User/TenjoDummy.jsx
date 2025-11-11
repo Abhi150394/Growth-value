@@ -40,6 +40,7 @@ import serviceData from "../../Components/GridTables/servicChargeDummyData";
 import SalesTransactionsTable from "../../Components/GridTables/SalesGrid";
 import DrilldownGrid from "../../Components/GridTables/DummyNestedgrid";
 import DrilldownStyledGridTable from "../../Components/GridTables/NestedGridTable";
+import DynamicSalesTransactionsTable from "../../Components/GridTables/NestedDynamicGrid";
 
 const dummyFAQs = [
   {
@@ -256,6 +257,9 @@ const SalesPage = ({ userToken }) => {
           ]}
         />
       </div>
+      hello
+     
+          hiii
       <div style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
         <div style={{ padding: "0px", width: "auto " }}>
           {/* <h2>Dynamic Date Range Picker</h2> */}
