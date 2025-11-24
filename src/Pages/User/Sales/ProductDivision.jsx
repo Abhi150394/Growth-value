@@ -208,7 +208,7 @@ const ProductDivision = () => {
                 labelFields={labelFields}
                 COLORS={{ green: "#2ecc71", red: "#e74c3c" }}
                 searchText={
-                  filters?.searchedValue.length > 0
+                  filters?.searchedValue?.length > 0
                     ? filters?.searchedValue
                     : null
                 }

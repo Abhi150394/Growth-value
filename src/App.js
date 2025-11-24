@@ -45,6 +45,7 @@ import Finance from "./Pages/User/Finance/Finance";
 import Forecast from "./Pages/User/Forecast/Forecast";
 import LaborDash from "./Pages/User/Labor Dash/LaborDash";
 import OpsManager from "./Pages/User/Ops Manager/OpsManager";
+import DynamicRouteHost from "./Components/Modals/DynamicRouteHost"
 
 function App() {
   const [userData, setUserData] = useState({
@@ -424,6 +425,99 @@ function App() {
                     }
                   />
                   {/* ========================================================================================== */}
+                    <Route
+                    path="/home/advanced/scraping"
+                    element={
+                      <Scraping userToken={userToken} userData={userData} />
+                    }
+                  />
+                  <Route
+                    path="home/advanced/user-management"
+                    element={
+                      <UserManagement
+                        userToken={userToken}
+                        userData={userData}
+                      />
+                    }
+                  />
+                  <Route
+                    path="home/advanced/dashboard"
+                    element={
+                      <Dashboard
+                        userToken={userToken}
+                        userData={userData}
+                        search={search}
+                        setSearch={setSearch}
+                        user={user}
+                      />
+                    }
+                  />
+                  <Route
+                    path="home/advanced/search&compare"
+                    element={
+                      <SearchandCompare
+                        userToken={userToken}
+                        userData={userData}
+                        search={search}
+                        setSearch={setSearch}
+                      />
+                    }
+                  />
+                  <Route
+                    path="home/advanced/summary"
+                    element={
+                      <Summary
+                        userToken={userToken}
+                        userData={userData}
+                        search={search}
+                        setSearch={setSearch}
+                      />
+                    }
+                  />
+                  <Route
+                    path="home/advanced/subscription"
+                    element={
+                      <Subscription
+                        userToken={userToken}
+                        userData={userData}
+                        setUserData={setUserData}
+                      />
+                    }
+                  />
+                  <Route
+                    path="/home/advanced/help&support"
+                    element={
+                      <HelpandSupport
+                        userToken={userToken}
+                        userData={userData}
+                      />
+                    }
+                  />
+                  <Route
+                    path="home/advanced/faqs"
+                    element={<FAQs userToken={userToken} userData={userData} />}
+                  />
+                  <Route
+                    path="home/advanced/wishlist"
+                    element={
+                      <Wishlist userToken={userToken} userData={userData} />
+                    }
+                  />
+
+                  <Route
+                      path="home/advanced/checkoutForm"
+                      element={
+                        <Payment userToken={userToken} userData={userData} />
+                      }
+                    />
+                    <Route
+                      path="home/advanced/demo"
+                      element={
+                        <Demo userToken={userToken} userData={userData} />
+                      }
+                    />
+
+
                   <Route
                     path="/home/sales/product-item"
                     element={<SalesPage userToken={userToken} />}
@@ -473,7 +567,11 @@ function App() {
                     element={<OpsManager userToken={userToken} />}
                   />
 
-                  
+                  <Route
+                    path="/modal/:dynId"
+                    element={<DynamicRouteHost userToken={userToken} />}
+                  />
+
                   <Route
                     path="/dashboard"
                     element={

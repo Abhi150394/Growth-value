@@ -125,5 +125,35 @@
         "id":6666,
         "type":"dashboard",
         "menuName":"Labor Dash"
+    },
+    {
+        "id": "advanced",
+        "subMenu": [
+            {
+                "menuName": "Scraping"
+            },
+            {
+                "menuName": "User Management"
+            },
+            { "menuName":"Dashboard"},
+            {
+                "menuName": "Search&compare"
+            },
+            {
+                "menuName": "Summary"
+            },{
+                "menuName": "Subscription"
+            },{
+                "menuName": "Help&support"
+            },{
+                "menuName": "Faqs"
+            },
+            
+            {
+                "menuName":"demo"
+            },
+            {"menuName":"wishlist"}
+        ],
+        "menuName": "Advanced"
     }
 ]

@@ -58,10 +58,34 @@ export const getProductSales = async (token, fromDate, toDate) => {
 
 
 //Financial Details
-export const getFinancialDetailsData = async (token) => {
+export const getFinancialDetailsData = async (token,fromDate, toDate) => {
   try {
     const response = await axios.get(
       `${process.env.REACT_APP_BACKEND_URL}/lightspeed/financeDetails`,
+      {
+        headers: {
+          Authorization: `Bearer ${token.access}`,
+        },
+        params: {
+          from_date: fromDate,
+          to_date: toDate,
+        },
+      }
+    );
+    return response;
+  } catch (err) {
+    console.log("ERRor:", err);
+  }
+};
+  
+
+
+// Employees details
+
+export const getLabourDetailsData=async(token)=>{
+    try {
+    const response = await axios.get(
+      `${process.env.REACT_APP_BACKEND_URL}/api/shyfter/employees/`,
       {
         headers: {
           Authorization: `Bearer ${token.access}`,
@@ -72,4 +96,5 @@ export const getFinancialDetailsData = async (token) => {
   } catch (err) {
     console.log("ERRor:", err);
   }
-};
+
+}

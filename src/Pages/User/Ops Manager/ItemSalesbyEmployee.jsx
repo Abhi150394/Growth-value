@@ -571,7 +571,7 @@ const sampleData2 = [
     Quantity: "0.0",
   },
 ];
-const ItemSalesbyEmployee = ({ showExploreButton = true, handleExplore }) => {
+const ItemSalesbyEmployee = ({ showExploreButton = true, handleExplore,handleNewPageModal }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -657,7 +657,7 @@ const ItemSalesbyEmployee = ({ showExploreButton = true, handleExplore }) => {
                 </Typography>
               </Box>
             )}
-            <IconButton>
+            <IconButton onClick={handleNewPageModal}>
               <NotificationsNoneOutlinedIcon />
             </IconButton>
 

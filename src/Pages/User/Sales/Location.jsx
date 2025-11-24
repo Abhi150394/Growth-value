@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import ButtonGroup from "../../../Components/Buttons/TopBarControls";
 import { FilterContext } from "../../../Contexts/FilterContext";
 import DateRangeSelector from "../../../Components/DateRange/DateRangeModalViewer";
@@ -16,6 +16,8 @@ import chartData from "./DummyData.js";
 import { HourglassBottomOutlined } from "@mui/icons-material";
 import DynamicCategoryChart from "../../../Components/Charts/DynamicChart.jsx";
 import SalesTransactionsTable from "./SalesSnapshotTable.jsx";
+import { formatToYMD } from "../../../Utils/dateUtils.js";
+import { getFinancialDetailsData } from "../../../API/lightspeedAPI.js";
 
 const options = [
   { value: "profile", label: "Profile", icon: FaUser },
@@ -23,10 +25,11 @@ const options = [
   { value: "analytics", label: "Analytics", icon: FaChartLine },
 ];
 
-const Location = () => {
+const Location = ({ userToken }) => {
     const tablePrintRef = useRef();
   const { filters } = useContext(FilterContext);
   const [selectedAreas, setSelectedAreas] = useState(null);
+    const [salesdata, setSalesData] = useState(null);
     const handlePrint = () => {
     // Call child function when button is clicked
     tablePrintRef.current?.handlePrint();
@@ -63,6 +66,24 @@ const Location = () => {
       alert(`Opening ${btn.title} for Phase ${btn.phase}`);
   };
 
+
+    useEffect(() => {
+      const fetchSalesData = async () => {
+        setSalesData(null)
+        try {
+          const fromDate = formatToYMD(filters?.dateRange?.startDate);
+          const toDate = formatToYMD(filters?.dateRange?.endDate);
+          const data = await getFinancialDetailsData(userToken, fromDate, toDate);
+          setSalesData(data);
+        } catch (err) {
+          console.error("Error fetching Shipday data:", err);
+        }
+      };
+  
+      fetchSalesData();
+    }, [filters?.dateRange?.startDate, filters?.dateRange?.endDate]);
+
+    console.log("salesdatasalesdata",salesdata)
   return (
     <Box p={1} mt={1}>
       <Box mb={1}>
@@ -202,7 +223,7 @@ const Location = () => {
                 labelFields={labelFields}
                 COLORS={{ green: "#2ecc71", red: "#e74c3c" }}
                 searchText={
-                  filters?.searchedValue.length > 0
+                  filters?.searchedValue?.length > 0
                     ? filters?.searchedValue
                     : null
                 }

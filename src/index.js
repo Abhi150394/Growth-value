@@ -8,6 +8,8 @@ import { FilterProvider } from "./Contexts/FilterContext";
 import { ModuleRegistry } from "ag-grid-community";
 import { AllCommunityModule } from "ag-grid-community";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { registerComponent } from "./Utils/dynamicRouteService";
+import ItemSalesbyEmployee from "./Pages/User/Ops Manager/ItemSalesbyEmployee";
 
 // Register all community modules
 ModuleRegistry.registerModules([AllCommunityModule]);
@@ -16,6 +18,8 @@ ModuleRegistry.registerModules([AllCommunityModule]);
 const theme = createTheme();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+registerComponent("ItemSalesbyEmployee",ItemSalesbyEmployee );
+
 root.render(
   <ThemeProvider theme={theme}>
     <FilterProvider>

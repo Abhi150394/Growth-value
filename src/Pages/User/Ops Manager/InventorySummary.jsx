@@ -12,7 +12,7 @@ import ManagerSectionDynamicTable from "../../../Components/GridTables/ManagerSe
 import serviceData from "../Finance/Phase1Reports/DayAndHour.js";
 import DynamicDropdown from "../../../Components/Dropdowns/Dropdown.jsx";
 
-const InventorySummary = ({ showExploreButton = true, handleExplore }) => {
+const InventorySummary = ({ showExploreButton = true, handleExplore,handleNewPageModal }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -114,7 +114,7 @@ const InventorySummary = ({ showExploreButton = true, handleExplore }) => {
               </Typography>
             </Box>
           )}
-          <IconButton>
+          <IconButton onClick={handleNewPageModal}>
             <NotificationsNoneOutlinedIcon />
           </IconButton>
           {/* <IconButton>

@@ -19,8 +19,9 @@ import {
   LocationOnOutlined,
 } from "@mui/icons-material";
 import DynamicSalesTransactionsTable from "../../../Components/GridTables/NestedDynamicGrid";
+import DrilldownBeautifulGrid from "../../../Components/GridTables/NestedDropdownDynamicGrid";
 
-const WastagebyItem = ({ showExploreButton = true, handleExplore }) => {
+const WastagebyItem2 = ({ showExploreButton = true, handleExplore }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -170,7 +171,7 @@ const WastagebyItem = ({ showExploreButton = true, handleExplore }) => {
       </Box>
 
       <Box mt={1}>
-        <DynamicSalesTransactionsTable
+        <DrilldownBeautifulGrid
           data={[
             {
               location: "Boston",
@@ -270,4 +271,4 @@ const WastagebyItem = ({ showExploreButton = true, handleExplore }) => {
   );
 };
 
-export default WastagebyItem;
+export default WastagebyItem2;

@@ -3,36 +3,36 @@ import DynamicModal from "../../../Components/Modals/ExploreModal";
 import { useContext, useEffect, useState } from "react";
 import { FilterContext } from "../../../Contexts/FilterContext";
 import Test1 from "./Test1";
+import { getLabourDetailsData } from "../../../API/lightspeedAPI";
 
 const LaborDash = ({ userToken }) => {
   const [visible, setVisible] = useState(false);
   const { filters } = useContext(FilterContext);
+  const [employeesData, setEmployeesData] = useState();
   console.log("filtersfilters", filters);
   const [modalContent, setModalContent] = useState(null);
   const [modalTitle, setModalTitle] = useState("Explore");
 
-  //   useEffect(() => {
-  //     const fetchForecastData = async () => {
-  //       try {
-  //         const data = await getForecastDetailsData(userToken);
-  //         console.log(
-  //           "getForecastDetailsDatagetForecastDetailsData------",
-  //           data
-  //         );
-  //       } catch (err) {
-  //         console.error("Error fetching Shipday data:", err);
-  //       }
-  //     };
+  useEffect(() => {
+    const fetchLabourData = async () => {
+      try {
+        const data = await getLabourDetailsData(userToken);
+        console.log("getLabourDetailsDatagetLabourDetailsData------", data);
+        setEmployeesData(data?.data);
+      } catch (err) {
+        console.error("Error fetching Shipday data:", err);
+      }
+    };
 
-  //     fetchForecastData();
-  //   }, [userToken]);
+    fetchLabourData();
+  }, [userToken]);
 
   const openTest1Modal = () => {
     // setModalTitle("Forecast Details");
     setModalContent(<Test1 showExploreButton={false} />);
     setVisible(true);
   };
-
+  console.log("employeesData", employeesData);
   return (
     <>
       <Box p={1} mt={1}>
