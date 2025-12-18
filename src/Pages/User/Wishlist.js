@@ -4,7 +4,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { deleteWishlist, getWishlist } from "../../API/wishlist";
 import OrderModal from "../../Components/Common/orderModal/OrderModal";
 import ProductCard from "../../Components/Cards/ProductCard/ProductCard";
-import SkeltonCard from "../../Components/Cards/SkeltonCard/SkeltonCard"
+import SkeltonCard from "../../Components/Cards/SkeltonCard/SkeltonCard";
 import TranslatedText from "../../Components/Controls/TranslatedText"; // Import TranslatedText
 
 const Wishlist = ({ userToken, userData }) => {
@@ -43,7 +43,7 @@ const Wishlist = ({ userToken, userData }) => {
   };
 
   const sortedProducts = useMemo(() => {
-    return data.sort((a, b) => {
+    return data?.sort((a, b) => {
       if (a.vendor < b.vendor) return -1;
       if (a.vendor > b.vendor) return 1;
       if (a.product_name < b.product_name) return -1;
@@ -91,10 +91,18 @@ const Wishlist = ({ userToken, userData }) => {
             <Row gutter={[16, 16]}>
               {data?.length > 0 ? (
                 sortedProducts?.map((item, index) => (
-                  <Col xs={24} sm={12} md={8} lg={12} xl={8} xxl={8} key={index}>
+                  <Col
+                    xs={24}
+                    sm={12}
+                    md={8}
+                    lg={12}
+                    xl={8}
+                    xxl={8}
+                    key={index}
+                  >
                     <ProductCard
                       wishlistLoader={wishlistLoader}
-                      type='remove'
+                      type="remove"
                       paid={userData?.paid}
                       item={item}
                       index={index}
@@ -114,7 +122,12 @@ const Wishlist = ({ userToken, userData }) => {
             </Row>
           ) : (
             <Row gutter={[16, 16]} className="plan-cards-container">
-              <SkeltonCard avatar={false} image={true} count={6} loading={loading} />
+              <SkeltonCard
+                avatar={false}
+                image={true}
+                count={6}
+                loading={loading}
+              />
             </Row>
           )}
         </div>

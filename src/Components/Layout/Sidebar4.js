@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import {
     Drawer,
@@ -16,8 +16,9 @@ import logo from "../../Assests/Images/logo.png";
 import TranslatedText from "../Controls/TranslatedText";
 import sidebarData from "../../Json/sidebarData.json";
 import { COLORS } from "../../constants";
+import { filterSidebarByRole } from "../../Utils/sidebarRoleFilter";
 
-const SidebarMui = ({ drawerWidth = 300, visible, setVisible, hamburger }) => {
+const SidebarMui = ({ drawerWidth = 300, visible, setVisible, hamburger, userData }) => {
     const location = useLocation();
     const theme = useTheme();
     const isMobile = useMediaQuery("(max-width:992px)");
@@ -25,31 +26,39 @@ const SidebarMui = ({ drawerWidth = 300, visible, setVisible, hamburger }) => {
     const [openSubMenus, setOpenSubMenus] = useState({});
     const [selectedKey, setSelectedKey] = useState("");
 
+    const normalizePathPart = useCallback((value = "") => value.replace(/\s+/g, "-").toLowerCase(), []);
+
+    const buildSubPath = useCallback(
+        (menuName = "", subName = "") =>
+            `/home/${normalizePathPart(menuName)}/${normalizePathPart(subName)}`,
+        [normalizePathPart]
+    );
+
+    const filteredSidebarData = useMemo(() => {
+        if (!userData?.role) return sidebarData;
+        return filterSidebarByRole(sidebarData, userData.role);
+    }, [userData?.role]);
+
     // detect current route ,expand submenu
     useEffect(() => {
         const currentPath = location.pathname.toLowerCase();
         setSelectedKey(currentPath);
 
-        sidebarData.forEach((menu) => {
+        filteredSidebarData.forEach((menu) => {
             if (menu.subMenu) {
                 const hasMatch = menu.subMenu.some((sub) =>
-                    currentPath.includes(
-                        `/${sub.menuName.replace(/\s+/g, "-").toLowerCase()}`
-                    )
+                    currentPath.startsWith(buildSubPath(menu.menuName, sub.menuName))
                 );
                 if (hasMatch) {
                     setOpenSubMenus((prev) => ({ ...prev, [menu.id]: true }));
                 }
             }
         });
-    }, [location]);
+    }, [location, filteredSidebarData, buildSubPath]);
 
     const isMenuSelected = (menu) => {
         if (!menu.subMenu) return false;
-        return menu.subMenu.some((sub) => {
-            const path = `/${sub.menuName.replace(/\s+/g, "-").toLowerCase()}`;
-            return selectedKey === path;
-        });
+        return menu.subMenu.some((sub) => selectedKey === buildSubPath(menu.menuName, sub.menuName));
     };
 
     const handleSubMenuClick = (id) => {
@@ -94,7 +103,7 @@ const SidebarMui = ({ drawerWidth = 300, visible, setVisible, hamburger }) => {
             <Divider />
 
             <List>
-                {sidebarData.map((menu) => {
+                {filteredSidebarData.map((menu) => {
                     if (menu.subMenu) {
 
                         return (
@@ -123,10 +132,7 @@ const SidebarMui = ({ drawerWidth = 300, visible, setVisible, hamburger }) => {
                                 <Collapse in={openSubMenus[menu.id]} timeout="auto" unmountOnExit>
                                     <List component="div" disablePadding>
                                         {menu.subMenu.map((sub) => {
-                                            const path = `/home/${menu.menuName?.replace(/\s+/g, "-")
-                                                .toLowerCase()}/${sub.menuName
-                                                .replace(/\s+/g, "-")
-                                                .toLowerCase()}`;
+                                            const path = buildSubPath(menu.menuName, sub.menuName);
                                             return (
                                                 <ListItemButton
                                                     key={sub.menuName}

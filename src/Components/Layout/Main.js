@@ -42,12 +42,14 @@ const Main = ({
             <Layout className="">
               <Sider theme="light" className="sider-primary" trigger={null}>
                 {type === "user" ? (
-                  <Sidebar updateUser={updateUser} user={user} setVisible={setVisible} />
+                  // <Sidebar updateUser={updateUser} user={user} setVisible={setVisible} />
+                  <Sidebar4 updateUser={updateUser} setVisible={setVisible} hamburger={true} userData={userData} />
                 ) : type === "admin" ? (
                   // <Sidebar2 updateUser={updateUser} setVisible={setVisible} />
-                  <Sidebar4 updateUser={updateUser} setVisible={setVisible} hamburger={true} />
+                  <Sidebar4 updateUser={updateUser} setVisible={setVisible} hamburger={true} userData={userData} />
                 ) : (
-                  <Sidebar3 updateUser={updateUser} setVisible={setVisible} />
+                  <Sidebar4 updateUser={updateUser} setVisible={setVisible} hamburger={true} userData={userData} />
+                  // <Sidebar3 updateUser={updateUser} setVisible={setVisible} />
                 )}
               </Sider>
             </Layout>
@@ -65,18 +67,20 @@ const Main = ({
           >
             <div className="sider-fixed">
               {type === "user" ? (
-                <Sidebar updateUser={updateUser} />
+                // <Sidebar updateUser={updateUser} />
+                  <Sidebar4 userData={userData}/>
               ) : type === "admin" ? (
                 <>
                   {/* <Sidebar2 updateUser={updateUser} /> */}
-                  <Sidebar4 />
+                  <Sidebar4 userData={userData}/>
                 </>
               ) : (
-                <Sidebar3
-                  updateUser={updateUser}
-                  type={type}
-                  userData={userData}
-                />
+                // <Sidebar3
+                //   updateUser={updateUser}
+                //   type={type}
+                //   userData={userData}
+                // />
+                  <Sidebar4 userData={userData}/>
               )}
             </div>
           </Sider>

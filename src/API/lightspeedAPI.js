@@ -21,7 +21,7 @@ export const getOrderData = async (token) => {
 export const getProductDetails = async (token) => {
   try {
     const response = await axios.get(
-      `${process.env.REACT_APP_BACKEND_URL}/lightspeed/products`,
+      `${process.env.REACT_APP_BACKEND_URL}/lightspeed/products/`,
       {
         headers: {
           Authorization: `Bearer ${token.access}`,
@@ -38,7 +38,7 @@ export const getProductDetails = async (token) => {
 export const getProductSales = async (token, fromDate, toDate) => {
   try {
     const response = await axios.get(
-      `${process.env.REACT_APP_BACKEND_URL}/lightspeed/productsales`,
+      `${process.env.REACT_APP_BACKEND_URL}/lightspeed/productsales/`,
       {
         headers: {
           Authorization: `Bearer ${token.access}`,
@@ -59,9 +59,10 @@ export const getProductSales = async (token, fromDate, toDate) => {
 
 //Financial Details
 export const getFinancialDetailsData = async (token,fromDate, toDate) => {
+  
   try {
     const response = await axios.get(
-      `${process.env.REACT_APP_BACKEND_URL}/lightspeed/financeDetails`,
+      `${process.env.REACT_APP_BACKEND_URL}/lightspeed/finance/receipts/`,
       {
         headers: {
           Authorization: `Bearer ${token.access}`,

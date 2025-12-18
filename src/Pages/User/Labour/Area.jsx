@@ -13,10 +13,12 @@ import { FaUser, FaCog, FaChartLine, FaMapMarkedAlt } from "react-icons/fa";
 import { HiLocationMarker } from "react-icons/hi";
 import SearchBar from "../../../Components/Buttons/SearchBar.jsx";
 import ChartDataGroupedTable from "../../../Components/GridTables/ChartDataTable.jsx";
-import chartData from "./DummyData.js";
+// import chartData from "./DummyData.js";
 import { HourglassBottomOutlined } from "@mui/icons-material";
 import DynamicCategoryChart from "../../../Components/Charts/DynamicChart.jsx";
-import SalesTransactionsTable from "./SalesSnapshotTable.jsx";
+import SalesTransactionsTable from "../Sales/SalesSnapshotTable.jsx";
+import chartData from "../../../Components/Charts/dummyChartData.js";
+// import SalesTransactionsTable from "./SalesSnapshotTable.jsx";
 
 const options = [
   { value: "profile", label: "Profile", icon: FaUser },
@@ -189,7 +191,7 @@ const Area = () => {
               <Box id="chart-section">
                 <DynamicCategoryChart
                   data={chartData}
-                  height={500}
+                  height={400}
                   showBar={filters?.chart2ndAxis}
                   categories={
                     selectedAreas?.length > 0
@@ -208,7 +210,7 @@ const Area = () => {
                 labelFields={labelFields}
                 COLORS={{ green: "#2ecc71", red: "#e74c3c" }}
                 searchText={
-                  filters?.searchedValue.length > 0
+                  filters?.searchedValue?.length > 0
                     ? filters?.searchedValue
                     : null
                 }

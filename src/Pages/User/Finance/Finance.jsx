@@ -8,6 +8,8 @@ import Phase2Report from "./Phase2Report";
 import SalesByDayAndHour from "./Phase1Reports/SalesByDayAndHour";
 import GratuityByVendor from "./Phase1Reports/GratuityByVendor";
 import { getFinancialDetailsData } from "../../../API/lightspeedAPI";
+import { formatToYMD } from "../../../Utils/dateUtils";
+import getYOYComparison from "../../../Utils/commonFunction";
 
 const Finance = ({ userToken }) => {
   const [visible, setVisible] = useState(false);
@@ -24,18 +26,21 @@ const Finance = ({ userToken }) => {
   useEffect(() => {
     const fetchFinanceData = async () => {
       try {
-        const data = await getFinancialDetailsData(userToken);
+        const fromDate = formatToYMD(filters?.dateRange?.startDate);
+        const toDate = formatToYMD(filters?.dateRange?.endDate);
+        const data = await getFinancialDetailsData(userToken, fromDate, toDate);
         console.log(
           "getFinancialDetailsDatagetFinancialDetailsData------",
           data
         );
+        console.log("converted dtaa--------", getYOYComparison(data.data));
       } catch (err) {
         console.error("Error fetching Shipday data:", err);
       }
     };
 
     fetchFinanceData();
-  }, [userToken]);
+  }, [userToken, filters?.dateRange?.startDate, filters?.dateRange?.endDate]);
 
   const openPhase1V7Modal = () => {
     // setModalTitle("Product Details");

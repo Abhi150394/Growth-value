@@ -17,11 +17,18 @@ import { HourglassBottomOutlined } from "@mui/icons-material";
 import DynamicCategoryChart from "../../../Components/Charts/DynamicChart.jsx";
 import SalesTransactionsTable from "./SalesSnapshotTable.jsx";
 import XMLUploader from "./XMLUploading.jsx";
-import { getProductSales } from "../../../API/lightspeedAPI.js";
+import {
+  getFinancialDetailsData,
+  getProductSales,
+} from "../../../API/lightspeedAPI.js";
 import { formatToYMD } from "../../../Utils/dateUtils.js";
 import ProductSalesTable from "./NewGroupTable.jsx";
 import ProductPerformanceChart from "./NewChartCompo.jsx";
 import DynamicProductPerformanceChart from "../../../Components/Charts/BarChart.jsx";
+import getYOYComparison from "../../../Utils/commonFunction.js";
+import SalesYoYChart from "../../../Components/Charts/AreaSalesChart.jsx";
+import DynamicSalesTrendsTable from "../../../Components/GridTables/SalesAreaTrendsTable.jsx";
+import DynamicSalesSnapshotTable from "./SalesAreaSnapshotTable.jsx";
 
 const options = [
   { value: "profile", label: "Profile", icon: FaUser },
@@ -33,8 +40,8 @@ const Area = ({ userToken }) => {
   const { filters } = useContext(FilterContext);
   const [selectedAreas, setSelectedAreas] = useState(null);
   const [salesdata, setSalesData] = useState(null);
-  console.log("filtersfilters", filters);
-  console.log("salesdatasalesdata");
+  // console.log("filtersfilters", filters);
+  console.log("salesdatasalesdata", salesdata);
   const buttonData = [
     { id: 0, title: "Snapshot", type: "snapshot", phase: 1 },
     { id: 1, title: "Trends", type: "trends", phase: 2 },
@@ -59,31 +66,52 @@ const Area = ({ userToken }) => {
     if (btn.type === "report")
       alert(`Opening ${btn.title} for Phase ${btn.phase}`);
   };
+  // useEffect(() => {
+  //   const fetchSalesData = async () => {
+  //     setSalesData(null);
+  //     try {
+  //       const fromDate = formatToYMD(filters?.dateRange?.startDate);
+  //       const toDate = formatToYMD(filters?.dateRange?.endDate);
+  //       const data = await getProductSales(userToken, fromDate, toDate);
+  //       setSalesData(data);
+  //     } catch (err) {
+  //       console.error("Error fetching Shipday data:", err);
+  //     }
+  //   };
+
+  //   fetchSalesData();
+  // }, [filters?.dateRange?.startDate, filters?.dateRange?.endDate]);
   useEffect(() => {
-    const fetchSalesData = async () => {
-      setSalesData(null)
+    const fetchFinanceData = async () => {
       try {
         const fromDate = formatToYMD(filters?.dateRange?.startDate);
         const toDate = formatToYMD(filters?.dateRange?.endDate);
-        const data = await getProductSales(userToken, fromDate, toDate);
-        setSalesData(data);
+        
+        const data = await getFinancialDetailsData(userToken, fromDate, toDate);
+        console.log(
+          "getFinancialDetailsDatagetFinancialDetailsData------",
+          data
+        );
+        const convertedData = getYOYComparison(data.data);
+        // console.log("converted dtaa--------", convertedData);
+        setSalesData(convertedData);
       } catch (err) {
         console.error("Error fetching Shipday data:", err);
       }
     };
 
-    fetchSalesData();
+    fetchFinanceData();
   }, [filters?.dateRange?.startDate, filters?.dateRange?.endDate]);
 
   return (
     <Box p={1} mt={1}>
-      <XMLUploader token={userToken} />
+      {/* <XMLUploader token={userToken} /> */}
       <Box mb={1}>
         <ButtonGroup buttons={buttonData} onButtonClick={handleButtonClick} />
       </Box>
       <Box>
         <Stack direction="row" spacing={0.5} width="100%">
-          <DateRangeSelector />
+          <DateRangeSelector maxRange={7}/>
           {filters?.topBarSelectedSection?.id === 1 ? (
             <DynamicDropdown
               icon={HourglassBottomOutlined}
@@ -165,66 +193,83 @@ const Area = ({ userToken }) => {
           </Box>
         </Stack>
       </Box>
-      
-      <Box>{salesdata ? <ProductSalesTable data={salesdata} />:<img src="/gif/growthValue_animated_loader.gif" alt="Loading..." />}</Box>
-      <div>
-    <h2>Product Profit Comparison</h2>
-    {/* <ProductPerformanceChart data={salesdata} metric="profit" /> */}
 
-    <DynamicProductPerformanceChart data={salesdata} yKeys={[ "profit"]} />
-  </div>
+      <div>
+        {/* <h2>Product Profit Comparison</h2> */}
+        {/* <ProductPerformanceChart data={salesdata} metric="profit" /> */}
+
+        {/* <DynamicProductPerformanceChart data={salesdata} yKeys={["profit"]} /> */}
+      </div>
 
       <Box>
-        <Box
-          style={{
-            width: "100%",
-            marginTop: "10px",
-          }}
-        >
-          {filters?.topBarSelectedSection?.id === 1 ? (
-            filters?.switchToChart ? (
-              <Box id="grid-section">
-                <ChartDataGroupedTable
-                  data={chartData}
-                  categories={
-                    selectedAreas?.length > 0
-                      ? selectedAreas?.map((el) => el.value)
-                      : ["all"]
-                  }
-                />
-              </Box>
+        {salesdata?.length < 1 || !salesdata? (
+          <Box
+            direction={{ xs: "column", md: "column", lg: "row" }}
+            justifyContent="center"
+            alignItems="center"
+            sx={{ width: "100%", height: "100%", textAlign: "center" }}
+          >
+            <img
+              src="/gif/growthValue_animated_loader.gif"
+              style={{ width: "200px", height: "200px" }}
+              alt="Loading..."
+            />
+          </Box>
+        ) : (
+          <Box
+            style={{
+              width: "100%",
+              marginTop: "10px",
+            }}
+          >
+            {filters?.topBarSelectedSection?.id === 1 ? (
+              filters?.switchToChart ? (
+                <Box id="grid-section">
+                  <DynamicSalesTrendsTable data={salesdata}/>
+                  {/* <ChartDataGroupedTable
+                    data={chartData}
+                    categories={
+                      selectedAreas?.length > 0
+                        ? selectedAreas?.map((el) => el.value)
+                        : ["all"]
+                    }
+                  /> */}
+                </Box>
+              ) : (
+                <Box id="chart-section">
+                  <SalesYoYChart data={salesdata} height={500} showBar={filters?.chart2ndAxis}/>
+                  {/* <DynamicCategoryChart
+                    data={chartData}
+                    height={500}
+                    showBar={filters?.chart2ndAxis}
+                    categories={
+                      selectedAreas?.length > 0
+                        ? selectedAreas?.map((el) => el.value)
+                        : ["all"]
+                    }
+                  /> */}
+                </Box>
+              )
             ) : (
-              <Box id="chart-section">
-                <DynamicCategoryChart
+              <Box>
+                <DynamicSalesSnapshotTable data={salesdata} />
+                {/* <SalesTransactionsTable
                   data={chartData}
-                  height={500}
-                  showBar={filters?.chart2ndAxis}
-                  categories={
-                    selectedAreas?.length > 0
-                      ? selectedAreas?.map((el) => el.value)
-                      : ["all"]
+                  defaultRegion={region}
+                  valueFields={valueFields}
+                  labelFields={labelFields}
+                  COLORS={{ green: "#2ecc71", red: "#e74c3c" }}
+                  searchText={
+                    filters?.searchedValue?.length > 0
+                      ? filters?.searchedValue
+                      : null
                   }
-                />
+                  sectionName="Area"
+                /> */}
               </Box>
-            )
-          ) : (
-            <Box>
-              <SalesTransactionsTable
-                data={chartData}
-                defaultRegion={region}
-                valueFields={valueFields}
-                labelFields={labelFields}
-                COLORS={{ green: "#2ecc71", red: "#e74c3c" }}
-                searchText={
-                  filters?.searchedValue?.length > 0
-                    ? filters?.searchedValue
-                    : null
-                }
-                sectionName="Area"
-              />
-            </Box>
-          )}
-        </Box>
+            )}
+          </Box>
+        )}
       </Box>
     </Box>
   );
