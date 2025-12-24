@@ -83,3 +83,11 @@ export default function getYOYComparison(payload) {
 
   return result;
 }
+
+
+export function convertToOptions(arr) {
+  return arr?.map(item => ({
+    value: item,//.toLowerCase().trim(),
+    label: item
+  }));
+}

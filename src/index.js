@@ -10,6 +10,7 @@ import { AllCommunityModule } from "ag-grid-community";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { registerComponent } from "./Utils/dynamicRouteService";
 import ItemSalesbyEmployee from "./Pages/User/Ops Manager/ItemSalesbyEmployee";
+import { LookupProvider } from "./Contexts/LookupContext";
 
 // Register all community modules
 ModuleRegistry.registerModules([AllCommunityModule]);
@@ -22,11 +23,13 @@ registerComponent("ItemSalesbyEmployee",ItemSalesbyEmployee );
 
 root.render(
   <ThemeProvider theme={theme}>
+    <LookupProvider>
     <FilterProvider>
       <LanguageProvider>
         <App />
       </LanguageProvider>
     </FilterProvider>
+    </LookupProvider>
   </ThemeProvider>
 );
 

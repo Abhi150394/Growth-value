@@ -22,7 +22,7 @@ const ChartDataGroupedTable = ({ data, categories=["all"] }) => {
     if (!data?.detail) return { tableData: [], columnDefs: [] };
 
     // extract rows
-    const periods = [...new Set(data.detail[categories[0]].map((d) => d.period))];
+    const periods = [...new Set(data.detail[categories[0]]?.map((d) => d.period))];
 
     const tableData = periods.map((date) => {
       const row = { date };
@@ -98,6 +98,7 @@ const ChartDataGroupedTable = ({ data, categories=["all"] }) => {
         }}
       >
         <AgGridReact
+        theme="legacy"
           rowData={tableData}
           columnDefs={columnDefs}
           pagination={true}

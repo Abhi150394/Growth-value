@@ -10,6 +10,7 @@ const DynamicCategoryChart = ({
     width = 1200,
     height = 600,
 }) => {
+    console.log("categories",categories)
     const { chartData, yoyMin, yoyMax, diffMin, diffMax } = useMemo(() => {
         if (!data?.detail) {
             return { chartData: {}, yoyMin: 0, yoyMax: 0, diffMin: 0, diffMax: 0 };
@@ -17,7 +18,7 @@ const DynamicCategoryChart = ({
 
         let allYoy = [];
         let allDiff = [];
-
+// debugger
         const chartData = categories.reduce((acc, cat) => {
             if (!data.detail[cat]) return acc;
 
@@ -36,9 +37,9 @@ const DynamicCategoryChart = ({
         return {
             chartData,
             yoyMin: Math.min(...allYoy, 0),
-            yoyMax: Math.max(...allYoy, 0),
+            yoyMax: Math.max(...allYoy, Math.min(...allYoy, 0)+10),
             diffMin: Math.min(...allDiff, 0),
-            diffMax: Math.max(...allDiff, 0),
+            diffMax: Math.max(...allDiff, Math.min(...allDiff, 0)+10),
         };
     }, [data, categories]);
 

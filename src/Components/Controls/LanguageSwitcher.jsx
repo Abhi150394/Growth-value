@@ -42,7 +42,7 @@ const LanguageSwitcher = () => {
 
             <Modal
                 title="Select Language"
-                visible={isModalVisible}
+                open={isModalVisible}
                 onCancel={handleCancel}
                 footer={null}
             >

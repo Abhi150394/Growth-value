@@ -29,6 +29,7 @@ import getYOYComparison from "../../../Utils/commonFunction.js";
 import SalesYoYChart from "../../../Components/Charts/AreaSalesChart.jsx";
 import DynamicSalesTrendsTable from "../../../Components/GridTables/SalesAreaTrendsTable.jsx";
 import DynamicSalesSnapshotTable from "./SalesAreaSnapshotTable.jsx";
+import { getSalesAreaData } from "../../../API/reportsData.js";
 
 const options = [
   { value: "profile", label: "Profile", icon: FaUser },
@@ -66,42 +67,43 @@ const Area = ({ userToken }) => {
     if (btn.type === "report")
       alert(`Opening ${btn.title} for Phase ${btn.phase}`);
   };
-  // useEffect(() => {
-  //   const fetchSalesData = async () => {
-  //     setSalesData(null);
-  //     try {
-  //       const fromDate = formatToYMD(filters?.dateRange?.startDate);
-  //       const toDate = formatToYMD(filters?.dateRange?.endDate);
-  //       const data = await getProductSales(userToken, fromDate, toDate);
-  //       setSalesData(data);
-  //     } catch (err) {
-  //       console.error("Error fetching Shipday data:", err);
-  //     }
-  //   };
-
-  //   fetchSalesData();
-  // }, [filters?.dateRange?.startDate, filters?.dateRange?.endDate]);
   useEffect(() => {
-    const fetchFinanceData = async () => {
+    const fetchSalesData = async () => {
+      setSalesData(null);
       try {
         const fromDate = formatToYMD(filters?.dateRange?.startDate);
         const toDate = formatToYMD(filters?.dateRange?.endDate);
-        
-        const data = await getFinancialDetailsData(userToken, fromDate, toDate);
-        console.log(
-          "getFinancialDetailsDatagetFinancialDetailsData------",
-          data
-        );
-        const convertedData = getYOYComparison(data.data);
-        // console.log("converted dtaa--------", convertedData);
-        setSalesData(convertedData);
+        const data = await getSalesAreaData(userToken, fromDate, toDate);
+        setSalesData(data?.data);
       } catch (err) {
         console.error("Error fetching Shipday data:", err);
       }
     };
 
-    fetchFinanceData();
+    fetchSalesData();
   }, [filters?.dateRange?.startDate, filters?.dateRange?.endDate]);
+
+  // useEffect(() => {
+  //   const fetchFinanceData = async () => {
+  //     try {
+  //       const fromDate = formatToYMD(filters?.dateRange?.startDate);
+  //       const toDate = formatToYMD(filters?.dateRange?.endDate);
+        
+  //       const data = await getFinancialDetailsData(userToken, fromDate, toDate);
+  //       console.log(
+  //         "getFinancialDetailsDatagetFinancialDetailsData------",
+  //         data
+  //       );
+  //       const convertedData = getYOYComparison(data.data);
+  //       // console.log("converted dtaa--------", convertedData);
+  //       setSalesData(convertedData);
+  //     } catch (err) {
+  //       console.error("Error fetching Shipday data:", err);
+  //     }
+  //   };
+
+  //   fetchFinanceData();
+  // }, [filters?.dateRange?.startDate, filters?.dateRange?.endDate]);
 
   return (
     <Box p={1} mt={1}>
@@ -111,7 +113,7 @@ const Area = ({ userToken }) => {
       </Box>
       <Box>
         <Stack direction="row" spacing={0.5} width="100%">
-          <DateRangeSelector maxRange={7}/>
+          <DateRangeSelector maxRange={25}/>
           {filters?.topBarSelectedSection?.id === 1 ? (
             <DynamicDropdown
               icon={HourglassBottomOutlined}
@@ -185,11 +187,11 @@ const Area = ({ userToken }) => {
           </Stack>
 
           <Box width={{ xs: "100%", lg: "30%" }}>
-            <DynamicDropdown
+            {/* <DynamicDropdown
               options={options}
               onChange={(opt) => console.log("Selected:", opt)}
               width="100%"
-            />
+            /> */}
           </Box>
         </Stack>
       </Box>
@@ -225,21 +227,21 @@ const Area = ({ userToken }) => {
             {filters?.topBarSelectedSection?.id === 1 ? (
               filters?.switchToChart ? (
                 <Box id="grid-section">
-                  <DynamicSalesTrendsTable data={salesdata}/>
-                  {/* <ChartDataGroupedTable
-                    data={chartData}
+                  {/* <DynamicSalesTrendsTable data={salesdata}/> */}
+                  <ChartDataGroupedTable
+                    data={salesdata}
                     categories={
                       selectedAreas?.length > 0
                         ? selectedAreas?.map((el) => el.value)
                         : ["all"]
                     }
-                  /> */}
+                  />
                 </Box>
               ) : (
                 <Box id="chart-section">
-                  <SalesYoYChart data={salesdata} height={500} showBar={filters?.chart2ndAxis}/>
-                  {/* <DynamicCategoryChart
-                    data={chartData}
+                  {/* <SalesYoYChart data={salesdata} height={500} showBar={filters?.chart2ndAxis}/> */}
+                  <DynamicCategoryChart
+                    data={salesdata}
                     height={500}
                     showBar={filters?.chart2ndAxis}
                     categories={
@@ -247,14 +249,14 @@ const Area = ({ userToken }) => {
                         ? selectedAreas?.map((el) => el.value)
                         : ["all"]
                     }
-                  /> */}
+                  />
                 </Box>
               )
             ) : (
               <Box>
-                <DynamicSalesSnapshotTable data={salesdata} />
-                {/* <SalesTransactionsTable
-                  data={chartData}
+                {/* <DynamicSalesSnapshotTable data={salesdata} /> */}
+                <SalesTransactionsTable
+                  data={salesdata}
                   defaultRegion={region}
                   valueFields={valueFields}
                   labelFields={labelFields}
@@ -265,7 +267,7 @@ const Area = ({ userToken }) => {
                       : null
                   }
                   sectionName="Area"
-                /> */}
+                />
               </Box>
             )}
           </Box>

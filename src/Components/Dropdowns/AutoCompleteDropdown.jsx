@@ -52,7 +52,8 @@ const AutoCompleteDropdown = ({
           return;
         }
         setSelectedOptions([selected[1]]);
-        onChange?.([{ value: "all", label: "Overall" }]);
+        // onChange?.([{ value: "all", label: "Overall" }]);
+        onChange?.([selected[1]]);
         return;
       }
 

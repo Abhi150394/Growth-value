@@ -30,6 +30,7 @@ import AdminDashboard from "./Pages/Admin/Dashboard";
 import Plans from "./Pages/User/Payment/Plans";
 import Success from "./Pages/User/Payment/Success";
 import SalesDashboard from "./Pages/User/Sales/TestingWithRealData";
+import ProductItem from "./Pages/User/Sales/ProductItem";
 
 /**
  * Route config:
@@ -304,7 +305,7 @@ const APP_ROUTES = [
 
   // ==== Sales routes (Admin, Business leader, Manager, Vendor) ====
   {
-    path: "/home/sales/product-item",
+    path: "/home/sales/tenzo-dummy",
     allowedRoles: ["admin", "business_leader", "manager", "vendor"],
     render: ({ userToken }) => <SalesPage userToken={userToken} />,
   },
@@ -324,6 +325,11 @@ const APP_ROUTES = [
     render: ({ userToken }) => <ProductDivision userToken={userToken} />,
   },
   {
+    path:"/home/sales/product-item",
+    allowedRoles:["admin","bussiness_leader"],
+    render:({userToken})=><ProductItem userToken={userToken}/>
+  },
+  { 
     path: "/home/sales/revenue-center",
     allowedRoles: ["admin", "business_leader", "manager", "vendor"],
     render: ({ userToken }) => <RevenueCenter userToken={userToken} />,

@@ -18,7 +18,12 @@ import DynamicCategoryChart from "../../../Components/Charts/DynamicChart.jsx";
 import SalesTransactionsTable from "./SalesSnapshotTable.jsx";
 import { formatToYMD } from "../../../Utils/dateUtils.js";
 import { getFinancialDetailsData } from "../../../API/lightspeedAPI.js";
-import { getSalesLocationData } from "../../../API/reportsData.js";
+import {
+  getSalesLocationData,
+  getSalesProductItemData,
+  getSalesProductItemList,
+} from "../../../API/reportsData.js";
+import { convertToOptions } from "../../../Utils/commonFunction.js";
 
 const options = [
   { value: "profile", label: "Profile", icon: FaUser },
@@ -26,21 +31,23 @@ const options = [
   { value: "analytics", label: "Analytics", icon: FaChartLine },
 ];
 
-const Location = ({ userToken }) => {
-    const tablePrintRef = useRef();
+const ProductItem = ({ userToken }) => {
+  const tablePrintRef = useRef();
   const { filters } = useContext(FilterContext);
-  const [selectedAreas, setSelectedAreas] = useState(null);
-    const [salesdata, setSalesData] = useState(null);
-    const handlePrint = () => {
+  const [selectedItems, setSelectedItems] = useState(null);
+  const [productItems,setProductItems]=useState(null)
+  const [salesdata, setSalesData] = useState(null);
+  console.log("selectedItemsselectedItems",selectedItems)
+  const handlePrint = () => {
     // Call child function when button is clicked
     tablePrintRef.current?.handlePrint();
   };
-  console.log("filtersfilters", filters);
+  // console.log("filtersfilters", filters);
   const buttonData = [
     { id: 0, title: "Snapshot", type: "snapshot", phase: 1 },
     { id: 1, title: "Trends", type: "trends", phase: 2 },
   ];
-  const areaOptions = [
+  let itemOptions = [
     { value: "north", label: "North" },
     { value: "south", label: "South" },
     { value: "east", label: "East" },
@@ -66,25 +73,39 @@ const Location = ({ userToken }) => {
     if (btn.type === "report")
       alert(`Opening ${btn.title} for Phase ${btn.phase}`);
   };
+  const getProductItemList=async()=>{
+    try{
+      const response= await getSalesProductItemList(userToken)
+      console.log(response?.data)
+      itemOptions=convertToOptions(response?.data?.results)
+      setProductItems(itemOptions)
+      // console.log("itemOptions",itemOptions)
+    }catch(err){
+      console.log(err)
+    }
+  }
+  useEffect(()=>{
+    getProductItemList()
+  },[])
+  console.log("first,",productItems)
+  useEffect(() => {
+    const fetchSalesData = async () => {
+      setSalesData(null);
+      try {
+        const fromDate = formatToYMD(filters?.dateRange?.startDate);
+        const toDate = formatToYMD(filters?.dateRange?.endDate);
+        const data = await getSalesProductItemData(userToken, fromDate, toDate);
+        setSalesData(data?.data);
+      } catch (err) {
+        console.error("Error fetching Shipday data:", err);
+      }
+    };
 
+    fetchSalesData();
 
-    useEffect(() => {
-      const fetchSalesData = async () => {
-        setSalesData(null)
-        try {
-          const fromDate = formatToYMD(filters?.dateRange?.startDate);
-          const toDate = formatToYMD(filters?.dateRange?.endDate);
-          const data = await getSalesLocationData(userToken, fromDate, toDate);
-          setSalesData(data?.data);
-        } catch (err) {
-          console.error("Error fetching Shipday data:", err);
-        }
-      };
-  
-      fetchSalesData();
-    }, [filters?.dateRange?.startDate, filters?.dateRange?.endDate]);
+  }, [filters?.dateRange?.startDate, filters?.dateRange?.endDate]);
 
-    console.log("salesdatasalesdata",salesdata)
+  console.log("salesdatasalesdata", salesdata);
   return (
     <Box p={1} mt={1}>
       <Box mb={1}>
@@ -95,9 +116,14 @@ const Location = ({ userToken }) => {
           <DateRangeSelector />
 
           <DynamicDropdown
-            title="Area"
+            title="item"
             icon={FaMapMarkedAlt}
-            options={areaOptions}
+            options={[
+                // { value: "north", label: "North" },
+                { value: "south", label: "South" },
+                { value: "east", label: "East" },
+                { value: "west", label: "West" },
+              ]}
           />
           {filters?.topBarSelectedSection?.id === 1 ? (
             <DynamicDropdown
@@ -112,14 +138,9 @@ const Location = ({ userToken }) => {
             <AutoCompleteDropdown
               showLogoTitle
               logo="https://cdn-icons-png.flaticon.com/512/25/25694.png"
-              title="Areas"
-              options={[
-                // { value: "north", label: "North" },
-                { value: "south", label: "South" },
-                { value: "east", label: "East" },
-                { value: "west", label: "West" },
-              ]}
-              onChange={(vals) => setSelectedAreas(vals)}
+              title="Items"
+              options={productItems?productItems:[]}
+              onChange={(vals) => setSelectedItems(vals)}
               width="100%"
             />
           </Box>
@@ -153,7 +174,7 @@ const Location = ({ userToken }) => {
               </Stack>
             ) : null}
             <PrintAndCSV data={data} actions={["print"]} />
-<button onClick={handlePrint}>Call Child Function</button>
+            <button onClick={handlePrint}>Call Child Function</button>
 
             {!filters?.switchToChart ? null : (
               <PrintAndCSV
@@ -182,60 +203,75 @@ const Location = ({ userToken }) => {
         </Stack>
       </Box>
       <Box>
-        <Box
-          style={{
-            width: "100%",
-            marginTop: "10px",
-          }}
-        >
-          {filters?.topBarSelectedSection?.id === 1 ? (
-            filters?.switchToChart ? (
-              <Box id="grid-section">
-                <ChartDataGroupedTable
-                  data={salesdata}
-                  categories={
-                    selectedAreas?.length > 0
-                      ? selectedAreas?.map((el) => el.value)
-                      : ["all"]
-                  }
-                />
-              </Box>
+        {salesdata?.length < 1 || !salesdata ? (
+          <Box
+            direction={{ xs: "column", md: "column", lg: "row" }}
+            justifyContent="center"
+            alignItems="center"
+            sx={{ width: "100%", height: "100%", textAlign: "center" }}
+          >
+            <img
+              src="/gif/growthValue_animated_loader.gif"
+              style={{ width: "200px", height: "200px" }}
+              alt="Loading..."
+            />
+          </Box>
+        ) : (
+          <Box
+            style={{
+              width: "100%",
+              marginTop: "10px",
+            }}
+          >
+            {filters?.topBarSelectedSection?.id === 1 ? (
+              filters?.switchToChart ? (
+                <Box id="grid-section">
+                  <ChartDataGroupedTable
+                    data={salesdata}
+                    categories={
+                      selectedItems?.length > 0
+                        ? selectedItems?.map((el) => el.value)
+                        : ["all"]
+                    }
+                  />
+                </Box>
+              ) : (
+                <Box id="chart-section">
+                  <DynamicCategoryChart
+                    data={salesdata}
+                    height={500}
+                    showBar={filters?.chart2ndAxis}
+                    categories={
+                      selectedItems?.length > 0
+                        ? selectedItems?.map((el) => el.value)
+                        : ["all"]
+                    }
+                  />
+                </Box>
+              )
             ) : (
-              <Box id="chart-section">
-                <DynamicCategoryChart
+              <Box>
+                <SalesTransactionsTable
+                  ref={tablePrintRef}
                   data={salesdata}
-                  height={500}
-                  showBar={filters?.chart2ndAxis}
-                  categories={
-                    selectedAreas?.length > 0
-                      ? selectedAreas?.map((el) => el.value)
-                      : ["all"]
+                  defaultRegion={region}
+                  valueFields={valueFields}
+                  labelFields={labelFields}
+                  COLORS={{ green: "#2ecc71", red: "#e74c3c" }}
+                  searchText={
+                    filters?.searchedValue?.length > 0
+                      ? filters?.searchedValue
+                      : null
                   }
+                  sectionName="ProductItem"
                 />
               </Box>
-            )
-          ) : (
-            <Box>
-              <SalesTransactionsTable
-              ref={tablePrintRef} 
-                data={salesdata}
-                defaultRegion={region}
-                valueFields={valueFields}
-                labelFields={labelFields}
-                COLORS={{ green: "#2ecc71", red: "#e74c3c" }}
-                searchText={
-                  filters?.searchedValue?.length > 0
-                    ? filters?.searchedValue
-                    : null
-                }
-                sectionName="Location"
-              />
-            </Box>
-          )}
-        </Box>
+            )}
+          </Box>
+        )}
       </Box>
     </Box>
   );
 };
 
-export default Location;
+export default ProductItem;
