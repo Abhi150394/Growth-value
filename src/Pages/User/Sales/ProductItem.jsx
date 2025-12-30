@@ -26,18 +26,25 @@ import {
 import { convertToOptions } from "../../../Utils/commonFunction.js";
 
 const options = [
-  { value: "profile", label: "Profile", icon: FaUser },
-  { value: "settings", label: "Settings", icon: FaCog },
-  { value: "analytics", label: "Analytics", icon: FaChartLine },
+  { value: "guest", label: "Guest", icon: FaUser },
+  { value: "transactions", label: "Transactions", icon: FaCog },
+  {
+    value: "sales_and_ransactions",
+    label: "Sales and Transactions",
+    icon: FaChartLine,
+  },
+  { value: "price", label: "Price", icon: FaCog },
+  { value: "sales_mix", label: "Sales Mix", icon: FaChartLine },
 ];
 
 const ProductItem = ({ userToken }) => {
   const tablePrintRef = useRef();
   const { filters } = useContext(FilterContext);
   const [selectedItems, setSelectedItems] = useState(null);
-  const [productItems,setProductItems]=useState(null)
+  const [productItems, setProductItems] = useState(null);
   const [salesdata, setSalesData] = useState(null);
-  console.log("selectedItemsselectedItems",selectedItems)
+  const [selectedFilterOption,setSelectedFilterOption]=useState(null)
+  console.log("selectedItemsselectedItems", selectedItems);
   const handlePrint = () => {
     // Call child function when button is clicked
     tablePrintRef.current?.handlePrint();
@@ -73,21 +80,21 @@ const ProductItem = ({ userToken }) => {
     if (btn.type === "report")
       alert(`Opening ${btn.title} for Phase ${btn.phase}`);
   };
-  const getProductItemList=async()=>{
-    try{
-      const response= await getSalesProductItemList(userToken)
-      console.log(response?.data)
-      itemOptions=convertToOptions(response?.data?.results)
-      setProductItems(itemOptions)
+  const getProductItemList = async () => {
+    try {
+      const response = await getSalesProductItemList(userToken);
+      console.log(response?.data);
+      itemOptions = convertToOptions(response?.data?.results);
+      setProductItems(itemOptions);
       // console.log("itemOptions",itemOptions)
-    }catch(err){
-      console.log(err)
+    } catch (err) {
+      console.log(err);
     }
-  }
-  useEffect(()=>{
-    getProductItemList()
-  },[])
-  console.log("first,",productItems)
+  };
+  useEffect(() => {
+    getProductItemList();
+  }, []);
+  console.log("first,", productItems);
   useEffect(() => {
     const fetchSalesData = async () => {
       setSalesData(null);
@@ -102,7 +109,6 @@ const ProductItem = ({ userToken }) => {
     };
 
     fetchSalesData();
-
   }, [filters?.dateRange?.startDate, filters?.dateRange?.endDate]);
 
   console.log("salesdatasalesdata", salesdata);
@@ -119,11 +125,11 @@ const ProductItem = ({ userToken }) => {
             title="item"
             icon={FaMapMarkedAlt}
             options={[
-                // { value: "north", label: "North" },
-                { value: "south", label: "South" },
-                { value: "east", label: "East" },
-                { value: "west", label: "West" },
-              ]}
+              // { value: "north", label: "North" },
+              { value: "south", label: "South" },
+              { value: "east", label: "East" },
+              { value: "west", label: "West" },
+            ]}
           />
           {filters?.topBarSelectedSection?.id === 1 ? (
             <DynamicDropdown
@@ -139,7 +145,7 @@ const ProductItem = ({ userToken }) => {
               showLogoTitle
               logo="https://cdn-icons-png.flaticon.com/512/25/25694.png"
               title="Items"
-              options={productItems?productItems:[]}
+              options={productItems ? productItems : []}
               onChange={(vals) => setSelectedItems(vals)}
               width="100%"
             />
@@ -196,7 +202,7 @@ const ProductItem = ({ userToken }) => {
           <Box width={{ xs: "100%", lg: "30%" }}>
             <DynamicDropdown
               options={options}
-              onChange={(opt) => console.log("Selected:", opt)}
+              onChange={(opt) => setSelectedFilterOption(opt.value)}
               width="100%"
             />
           </Box>

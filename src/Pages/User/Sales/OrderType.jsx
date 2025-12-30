@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ButtonGroup from "../../../Components/Buttons/TopBarControls.jsx";
 import { FilterContext } from "../../../Contexts/FilterContext.js";
 import DateRangeSelector from "../../../Components/DateRange/DateRangeModalViewer.jsx";
@@ -17,6 +17,8 @@ import chartData from "./DummyData.js";
 import { HourglassBottomOutlined } from "@mui/icons-material";
 import DynamicCategoryChart from "../../../Components/Charts/DynamicChart.jsx";
 import SalesTransactionsTable from "./SalesSnapshotTable.jsx";
+import { getSalesOrderTypeData } from "../../../API/reportsData.js";
+import { formatToYMD } from "../../../Utils/dateUtils.js";
 
 const options = [
   { value: "profile", label: "Profile", icon: FaUser },
@@ -24,9 +26,10 @@ const options = [
   { value: "analytics", label: "Analytics", icon: FaChartLine },
 ];
 
-const OrderType = () => {
+const OrderType = ({ userToken }) => {
   const { filters } = useContext(FilterContext);
   const [selectedAreas, setSelectedAreas] = useState(null);
+  const [salesData, setSalesData] = useState(null);
   console.log("filtersfilters", filters);
   const buttonData = [
     { id: 0, title: "Snapshot", type: "snapshot", phase: 1 },
@@ -64,6 +67,22 @@ const OrderType = () => {
       alert(`Opening ${btn.title} for Phase ${btn.phase}`);
   };
 
+  useEffect(() => {
+    const fetchSalesData = async () => {
+      setSalesData(null);
+      try {
+        const fromDate = formatToYMD(filters?.dateRange?.startDate);
+        const toDate = formatToYMD(filters?.dateRange?.endDate);
+        const data = await getSalesOrderTypeData(userToken, fromDate, toDate);
+        setSalesData(data?.data);
+      } catch (err) {
+        console.error("Error fetching Shipday data:", err);
+      }
+    };
+
+    fetchSalesData();
+  }, [filters?.dateRange?.startDate, filters?.dateRange?.endDate]);
+
   return (
     <Box p={1} mt={1}>
       <Box mb={1}>
@@ -73,7 +92,7 @@ const OrderType = () => {
         <Stack direction="row" spacing={0.5} width="100%">
           <DateRangeSelector />
 
-          <DynamicDropdown
+          {/* <DynamicDropdown
             title="Area"
             icon={FaMapMarkedAlt}
             options={areaOptions}
@@ -91,7 +110,7 @@ const OrderType = () => {
               icon={HourglassBottomOutlined}
               options={timePeriod}
             />
-          ) : null}
+          ) : null} */}
         </Stack>
 
         {filters?.topBarSelectedSection?.id === 1 ? (
@@ -99,11 +118,12 @@ const OrderType = () => {
             <AutoCompleteDropdown
               showLogoTitle
               logo="https://cdn-icons-png.flaticon.com/512/25/25694.png"
-              title="Areas"
+              title="Order Types"
               options={[
-                { value: "south", label: "South" },
-                { value: "east", label: "East" },
-                { value: "west", label: "West" },
+                { value: "takeaway", label: "TakeAway" },
+                { value: "shopify", label: "Shopify" },
+                { value: "deliverect", label: "Deliverect" },
+                { value: "takeaway.com", label: "Takeaway.com" },
               ]}
               onChange={(vals) => setSelectedAreas(vals)}
               width="100%"
@@ -158,65 +178,80 @@ const OrderType = () => {
           </Stack>
 
           <Box width={{ xs: "100%", lg: "30%" }}>
-            <DynamicDropdown
+            {/* <DynamicDropdown
               options={options}
               onChange={(opt) => console.log("Selected:", opt)}
               width="100%"
-            />
+            /> */}
           </Box>
         </Stack>
       </Box>
       <Box>
-        <Box
-          style={{
-            width: "100%",
-            marginTop: "10px",
-          }}
-        >
-          {filters?.topBarSelectedSection?.id === 1 ? (
-            filters?.switchToChart ? (
-              <Box id="grid-section">
-                <ChartDataGroupedTable
-                  data={chartData}
-                  categories={
-                    selectedAreas?.length > 0
-                      ? selectedAreas?.map((el) => el.value)
-                      : ["all"]
-                  }
-                />
-              </Box>
+        {salesData?.length < 1 || !salesData ? (
+          <Box
+            direction={{ xs: "column", md: "column", lg: "row" }}
+            justifyContent="center"
+            alignItems="center"
+            sx={{ width: "100%", height: "100%", textAlign: "center" }}
+          >
+            <img
+              src="/gif/growthValue_animated_loader.gif"
+              style={{ width: "200px", height: "200px" }}
+              alt="Loading..."
+            />
+          </Box>
+        ) : (
+          <Box
+            style={{
+              width: "100%",
+              marginTop: "10px",
+            }}
+          >
+            {filters?.topBarSelectedSection?.id === 1 ? (
+              filters?.switchToChart ? (
+                <Box id="grid-section">
+                  <ChartDataGroupedTable
+                    data={salesData}
+                    categories={
+                      selectedAreas?.length > 0
+                        ? selectedAreas?.map((el) => el.value)
+                        : ["all"]
+                    }
+                  />
+                </Box>
+              ) : (
+                <Box id="chart-section">
+                  <DynamicCategoryChart
+                    data={salesData}
+                    height={500}
+                    showBar={filters?.chart2ndAxis}
+                    categories={
+                      selectedAreas?.length > 0
+                        ? selectedAreas?.map((el) => el.value)
+                        : ["all"]
+                    }
+                  />
+                </Box>
+              )
             ) : (
-              <Box id="chart-section">
-                <DynamicCategoryChart
-                  data={chartData}
-                  height={500}
-                  showBar={filters?.chart2ndAxis}
-                  categories={
-                    selectedAreas?.length > 0
-                      ? selectedAreas?.map((el) => el.value)
-                      : ["all"]
+              <Box>
+                <SalesTransactionsTable
+                  data={salesData}
+                  defaultRegion={region}
+                  valueFields={valueFields}
+                  labelFields={labelFields}
+                  COLORS={{ green: "#2ecc71", red: "#e74c3c" }}
+                  searchText={
+                    filters?.searchedValue?.length > 0
+                      ? filters?.searchedValue
+                      : null
                   }
+                  sectionName="Division"
                 />
               </Box>
-            )
-          ) : (
-            <Box>
-              <SalesTransactionsTable
-                data={chartData}
-                defaultRegion={region}
-                valueFields={valueFields}
-                labelFields={labelFields}
-                COLORS={{ green: "#2ecc71", red: "#e74c3c" }}
-                searchText={
-                  filters?.searchedValue?.length > 0
-                    ? filters?.searchedValue
-                    : null
-                }
-                sectionName="Division"
-              />
-            </Box>
-          )}
-        </Box>
+            )}
+          </Box>
+        )}
       </Box>
     </Box>
   );

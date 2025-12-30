@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ButtonGroup from "../../../Components/Buttons/TopBarControls.jsx";
 import { FilterContext } from "../../../Contexts/FilterContext.js";
 import DateRangeSelector from "../../../Components/DateRange/DateRangeModalViewer.jsx";
@@ -17,6 +17,12 @@ import chartData from "./DummyData.js";
 import { HourglassBottomOutlined } from "@mui/icons-material";
 import DynamicCategoryChart from "../../../Components/Charts/DynamicChart.jsx";
 import SalesTransactionsTable from "./SalesSnapshotTable.jsx";
+import { formatToYMD } from "../../../Utils/dateUtils.js";
+import {
+  getSalesProductCategoriesList,
+  getSalesProductCategoryData,
+} from "../../../API/reportsData.js";
+import { convertToOptions } from "../../../Utils/commonFunction.js";
 
 const options = [
   { value: "profile", label: "Profile", icon: FaUser },
@@ -24,9 +30,11 @@ const options = [
   { value: "analytics", label: "Analytics", icon: FaChartLine },
 ];
 
-const ProductCategory = () => {
+const ProductCategory = ({ userToken }) => {
   const { filters } = useContext(FilterContext);
-  const [selectedAreas, setSelectedAreas] = useState(null);
+  const [selectedCatogries, setSelectedCatogries] = useState(null);
+  const [salesData, setSalesData] = useState(null);
+  const [productCategories, setProductCategories] = useState(null);
   console.log("filtersfilters", filters);
   const buttonData = [
     { id: 0, title: "Snapshot", type: "snapshot", phase: 1 },
@@ -64,6 +72,41 @@ const ProductCategory = () => {
       alert(`Opening ${btn.title} for Phase ${btn.phase}`);
   };
 
+  const getProductCategoriesList = async () => {
+    try {
+      const response = await getSalesProductCategoriesList(userToken);
+      console.log(response?.data);
+      let itemOptions = convertToOptions(response?.data?.results);
+      setProductCategories(itemOptions);
+      // console.log("itemOptions",itemOptions)
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  useEffect(() => {
+    getProductCategoriesList();
+  }, []);
+
+  useEffect(() => {
+    const fetchSalesData = async () => {
+      setSalesData(null);
+      try {
+        const fromDate = formatToYMD(filters?.dateRange?.startDate);
+        const toDate = formatToYMD(filters?.dateRange?.endDate);
+        const data = await getSalesProductCategoryData(
+          userToken,
+          fromDate,
+          toDate
+        );
+        setSalesData(data?.data);
+      } catch (err) {
+        console.error("Error fetching Shipday data:", err);
+      }
+    };
+
+    fetchSalesData();
+  }, [filters?.dateRange?.startDate, filters?.dateRange?.endDate]);
+
   return (
     <Box p={1} mt={1}>
       <Box mb={1}>
@@ -100,12 +143,8 @@ const ProductCategory = () => {
               showLogoTitle
               logo="https://cdn-icons-png.flaticon.com/512/25/25694.png"
               title="Areas"
-              options={[
-                { value: "south", label: "South" },
-                { value: "east", label: "East" },
-                { value: "west", label: "West" },
-              ]}
-              onChange={(vals) => setSelectedAreas(vals)}
+              options={productCategories ? productCategories : []}
+              onChange={(vals) => setSelectedCatogries(vals)}
               width="100%"
             />
           </Box>
@@ -158,65 +197,80 @@ const ProductCategory = () => {
           </Stack>
 
           <Box width={{ xs: "100%", lg: "30%" }}>
-            <DynamicDropdown
+            {/* <DynamicDropdown
               options={options}
               onChange={(opt) => console.log("Selected:", opt)}
               width="100%"
-            />
+            /> */}
           </Box>
         </Stack>
       </Box>
       <Box>
-        <Box
-          style={{
-            width: "100%",
-            marginTop: "10px",
-          }}
-        >
-          {filters?.topBarSelectedSection?.id === 1 ? (
-            filters?.switchToChart ? (
-              <Box id="grid-section">
-                <ChartDataGroupedTable
-                  data={chartData}
-                  categories={
-                    selectedAreas?.length > 0
-                      ? selectedAreas?.map((el) => el.value)
-                      : ["all"]
-                  }
-                />
-              </Box>
+        {salesData?.length < 1 || !salesData ? (
+          <Box
+            direction={{ xs: "column", md: "column", lg: "row" }}
+            justifyContent="center"
+            alignItems="center"
+            sx={{ width: "100%", height: "100%", textAlign: "center" }}
+          >
+            <img
+              src="/gif/growthValue_animated_loader.gif"
+              style={{ width: "200px", height: "200px" }}
+              alt="Loading..."
+            />
+          </Box>
+        ) : (
+          <Box
+            style={{
+              width: "100%",
+              marginTop: "10px",
+            }}
+          >
+            {filters?.topBarSelectedSection?.id === 1 ? (
+              filters?.switchToChart ? (
+                <Box id="grid-section">
+                  <ChartDataGroupedTable
+                    data={salesData}
+                    categories={
+                      selectedCatogries?.length > 0
+                        ? selectedCatogries?.map((el) => el.value)
+                        : ["all"]
+                    }
+                  />
+                </Box>
+              ) : (
+                <Box id="chart-section">
+                  <DynamicCategoryChart
+                    data={salesData}
+                    height={500}
+                    showBar={filters?.chart2ndAxis}
+                    categories={
+                      selectedCatogries?.length > 0
+                        ? selectedCatogries?.map((el) => el.value)
+                        : ["all"]
+                    }
+                  />
+                </Box>
+              )
             ) : (
-              <Box id="chart-section">
-                <DynamicCategoryChart
-                  data={chartData}
-                  height={500}
-                  showBar={filters?.chart2ndAxis}
-                  categories={
-                    selectedAreas?.length > 0
-                      ? selectedAreas?.map((el) => el.value)
-                      : ["all"]
+              <Box>
+                <SalesTransactionsTable
+                  data={salesData}
+                  defaultRegion={region}
+                  valueFields={valueFields}
+                  labelFields={labelFields}
+                  COLORS={{ green: "#2ecc71", red: "#e74c3c" }}
+                  searchText={
+                    filters?.searchedValue?.length > 0
+                      ? filters?.searchedValue
+                      : null
                   }
+                  sectionName="Division"
                 />
               </Box>
-            )
-          ) : (
-            <Box>
-              <SalesTransactionsTable
-                data={chartData}
-                defaultRegion={region}
-                valueFields={valueFields}
-                labelFields={labelFields}
-                COLORS={{ green: "#2ecc71", red: "#e74c3c" }}
-                searchText={
-                  filters?.searchedValue?.length > 0
-                    ? filters?.searchedValue
-                    : null
-                }
-                sectionName="Division"
-              />
-            </Box>
-          )}
-        </Box>
+            )}
+          </Box>
+        )}
       </Box>
     </Box>
   );

@@ -27,11 +27,11 @@ const options = [
 ];
 
 const Location = ({ userToken }) => {
-    const tablePrintRef = useRef();
+  const tablePrintRef = useRef();
   const { filters } = useContext(FilterContext);
   const [selectedAreas, setSelectedAreas] = useState(null);
-    const [salesdata, setSalesData] = useState(null);
-    const handlePrint = () => {
+  const [salesdata, setSalesData] = useState(null);
+  const handlePrint = () => {
     // Call child function when button is clicked
     tablePrintRef.current?.handlePrint();
   };
@@ -67,24 +67,23 @@ const Location = ({ userToken }) => {
       alert(`Opening ${btn.title} for Phase ${btn.phase}`);
   };
 
+  useEffect(() => {
+    const fetchSalesData = async () => {
+      setSalesData(null);
+      try {
+        const fromDate = formatToYMD(filters?.dateRange?.startDate);
+        const toDate = formatToYMD(filters?.dateRange?.endDate);
+        const data = await getSalesLocationData(userToken, fromDate, toDate);
+        setSalesData(data?.data);
+      } catch (err) {
+        console.error("Error fetching Shipday data:", err);
+      }
+    };
 
-    useEffect(() => {
-      const fetchSalesData = async () => {
-        setSalesData(null)
-        try {
-          const fromDate = formatToYMD(filters?.dateRange?.startDate);
-          const toDate = formatToYMD(filters?.dateRange?.endDate);
-          const data = await getSalesLocationData(userToken, fromDate, toDate);
-          setSalesData(data?.data);
-        } catch (err) {
-          console.error("Error fetching Shipday data:", err);
-        }
-      };
-  
-      fetchSalesData();
-    }, [filters?.dateRange?.startDate, filters?.dateRange?.endDate]);
+    fetchSalesData();
+  }, [filters?.dateRange?.startDate, filters?.dateRange?.endDate]);
 
-    console.log("salesdatasalesdata",salesdata)
+  console.log("salesdatasalesdata", salesdata);
   return (
     <Box p={1} mt={1}>
       <Box mb={1}>
@@ -153,7 +152,7 @@ const Location = ({ userToken }) => {
               </Stack>
             ) : null}
             <PrintAndCSV data={data} actions={["print"]} />
-<button onClick={handlePrint}>Call Child Function</button>
+            <button onClick={handlePrint}>Call Child Function</button>
 
             {!filters?.switchToChart ? null : (
               <PrintAndCSV
@@ -182,57 +181,72 @@ const Location = ({ userToken }) => {
         </Stack>
       </Box>
       <Box>
-        <Box
-          style={{
-            width: "100%",
-            marginTop: "10px",
-          }}
-        >
-          {filters?.topBarSelectedSection?.id === 1 ? (
-            filters?.switchToChart ? (
-              <Box id="grid-section">
-                <ChartDataGroupedTable
-                  data={salesdata}
-                  categories={
-                    selectedAreas?.length > 0
-                      ? selectedAreas?.map((el) => el.value)
-                      : ["all"]
-                  }
-                />
-              </Box>
+        {salesdata?.length < 1 || !salesdata ? (
+          <Box
+            direction={{ xs: "column", md: "column", lg: "row" }}
+            justifyContent="center"
+            alignItems="center"
+            sx={{ width: "100%", height: "100%", textAlign: "center" }}
+          >
+            <img
+              src="/gif/growthValue_animated_loader.gif"
+              style={{ width: "200px", height: "200px" }}
+              alt="Loading..."
+            />
+          </Box>
+        ) : (
+          <Box
+            style={{
+              width: "100%",
+              marginTop: "10px",
+            }}
+          >
+            {filters?.topBarSelectedSection?.id === 1 ? (
+              filters?.switchToChart ? (
+                <Box id="grid-section">
+                  <ChartDataGroupedTable
+                    data={salesdata}
+                    categories={
+                      selectedAreas?.length > 0
+                        ? selectedAreas?.map((el) => el.value)
+                        : ["all"]
+                    }
+                  />
+                </Box>
+              ) : (
+                <Box id="chart-section">
+                  <DynamicCategoryChart
+                    data={salesdata}
+                    height={500}
+                    showBar={filters?.chart2ndAxis}
+                    categories={
+                      selectedAreas?.length > 0
+                        ? selectedAreas?.map((el) => el.value)
+                        : ["all"]
+                    }
+                  />
+                </Box>
+              )
             ) : (
-              <Box id="chart-section">
-                <DynamicCategoryChart
+              <Box>
+                <SalesTransactionsTable
+                  ref={tablePrintRef}
                   data={salesdata}
-                  height={500}
-                  showBar={filters?.chart2ndAxis}
-                  categories={
-                    selectedAreas?.length > 0
-                      ? selectedAreas?.map((el) => el.value)
-                      : ["all"]
+                  defaultRegion={region}
+                  valueFields={valueFields}
+                  labelFields={labelFields}
+                  COLORS={{ green: "#2ecc71", red: "#e74c3c" }}
+                  searchText={
+                    filters?.searchedValue?.length > 0
+                      ? filters?.searchedValue
+                      : null
                   }
+                  sectionName="Location"
                 />
               </Box>
-            )
-          ) : (
-            <Box>
-              <SalesTransactionsTable
-              ref={tablePrintRef} 
-                data={salesdata}
-                defaultRegion={region}
-                valueFields={valueFields}
-                labelFields={labelFields}
-                COLORS={{ green: "#2ecc71", red: "#e74c3c" }}
-                searchText={
-                  filters?.searchedValue?.length > 0
-                    ? filters?.searchedValue
-                    : null
-                }
-                sectionName="Location"
-              />
-            </Box>
-          )}
-        </Box>
+            )}
+          </Box>
+        )}
       </Box>
     </Box>
   );

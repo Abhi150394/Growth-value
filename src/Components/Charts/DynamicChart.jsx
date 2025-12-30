@@ -1,148 +1,169 @@
 import React, { useMemo } from "react";
 import { AgCharts } from "ag-charts-react";
 
+const filterOptions = [
+  { value: "guest", label: "Guest" },
+  { value: "transactions", label: "Transactions" },
+  {
+    value: "sales_and_ransactions",
+    label: "Sales and Transactions",
+  },
+  { value: "price", label: "Price" },
+  { value: "sales_mix", label: "Sales Mix" },
+];
+
 const DynamicCategoryChart = ({
-    data,
-    categories = ["salad", "cold drinks", "hot drinks", "sandwiches", "snacks"], // default
-    showLine = true,
-    showBar = true,
-    showLegend = true,
-    width = 1200,
-    height = 600,
+  data,
+  categories = ["salad", "cold drinks", "hot drinks", "sandwiches", "snacks"], // default
+  showLine = true,
+  showBar = true,
+  showLegend = true,
+  width = 1200,
+  height = 600,
+  selectedFilterOption = null,
 }) => {
-    console.log("categories",categories)
-    const { chartData, yoyMin, yoyMax, diffMin, diffMax } = useMemo(() => {
-        if (!data?.detail) {
-            return { chartData: {}, yoyMin: 0, yoyMax: 0, diffMin: 0, diffMax: 0 };
+  console.log("categories", categories);
+  const { chartData, yoyMin, yoyMax, diffMin, diffMax } = useMemo(() => {
+    if (!data?.detail) {
+      return { chartData: {}, yoyMin: 0, yoyMax: 0, diffMin: 0, diffMax: 0 };
+    }
+
+    let allYoy = [];
+    let allDiff = [];
+    // debugger
+    const chartData = categories.reduce((acc, cat) => {
+      if (!data.detail[cat]) return acc;
+
+      acc[cat] = data.detail[cat].map((d) => {
+        if (!selectedFilterOption) {
+          const yoy = d.total_ly ? d.total - d.total_ly : d.total || 0;
+          const diff = d.count_ly ? d.count - d.count_ly : d.count || 0;
+        } else if (selectedFilterOption === "transactions") {
+          const yoy = d.total_ly ? d.total - d.total_ly : d.total || 0;
+          const diff = d.count_ly ? d.count - d.count_ly : d.count || 0;
         }
+        allYoy.push(yoy);
+        allDiff.push(diff);
 
-        let allYoy = [];
-        let allDiff = [];
-// debugger
-        const chartData = categories.reduce((acc, cat) => {
-            if (!data.detail[cat]) return acc;
+        return { date: d.period, yoy, diff };
+      });
 
-            acc[cat] = data.detail[cat].map((d) => {
-                const yoy = d.total_ly ? d.total - d.total_ly : 0;
-                const diff = d.count_ly ? d.count : 0;
-                allYoy.push(yoy);
-                allDiff.push(diff);
+      return acc;
+    }, {});
 
-                return { date: d.period, yoy, diff };
-            });
-
-            return acc;
-        }, {});
-
-        return {
-            chartData,
-            yoyMin: Math.min(...allYoy, 0),
-            yoyMax: Math.max(...allYoy, Math.min(...allYoy, 0)+10),
-            diffMin: Math.min(...allDiff, 0),
-            diffMax: Math.max(...allDiff, Math.min(...allDiff, 0)+10),
-        };
-    }, [data, categories]);
-
-    // Dynamically build series
-    const singleCategory = categories.length === 1;
-    const series = [];
-    Object.entries(chartData).forEach(([cat, values]) => {
-        if (showBar) {
-            series.push({
-                type: "bar",
-                xKey: "date",
-                yKey: "yoy",
-                yName: cat,
-                data: values,
-                grouped: true,
-                showInLegend: false,
-                itemStyler: singleCategory
-                    ? ({ datum }) => ({
-                        fill: datum.yoy >= 0 ? "green" : "red",
-                        stroke: datum.yoy >= 0 ? "darkgreen" : "darkred",
-                    })
-                    : undefined,
-
-            });
-        }
-
-        if (showLine) {
-            series.push({
-                type: "line",
-                xKey: "date",
-                yKey: "diff",
-                yName: cat==='all'?'Overall':!cat.includes(" ")?cat.charAt(0).toUpperCase() + cat.slice(1):cat.split(" ").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" "),
-                data: values,
-                marker: { enabled: true, size: 5 },
-                interpolation: { type: "smooth" },
-                showInLegend: true, // avoids duplicate legends
-            });
-        }
-    });
-
-    const options = {
-        series,
-        axes: [
-            {
-                type: "category",
-                position: "bottom",
-                title: { text: "Date" },
-            },
-            ...(showBar
-                ? [
-                    {
-                        type: "number",
-                        position: "right",
-                        title: { text: "YoY Growth" },
-                        nice: true,
-                        min: yoyMin,
-                        max: yoyMax,
-                    },
-                ]
-                : []),
-            ...(showLine
-                ? [
-                    {
-                        type: "number",
-                        position: "left",
-                        title: { text: "Δ Quantity vs LY" },
-                        nice: true,
-                        min: diffMin,
-                        max: diffMax,
-                    },
-                ]
-                : []),
-        ],
-        legend: showLegend
-            ? {
-                enabled: true,
-                position: "top",
-                item: { label: { fontSize: 13, fontWeight: "bold" } },
-            }
-            : { enabled: false },
-        // width,
-        height,
-        theme: {
-            palette: {
-                fills: ["#2a9d8f", "#e76f51", "#f4a261", "#264653"],
-                strokes: ["#225c58", "#8c2c15", "#ad6a2a", "#122b34"],
-            },
-        },
-        background: { fill: "#fafafa" },
-        navigator: { enabled: true },
+    return {
+      chartData,
+      yoyMin: Math.min(...allYoy, 0),
+      yoyMax: Math.max(...allYoy, Math.min(...allYoy, 0) + 10),
+      diffMin: Math.min(...allDiff, 0),
+      diffMax: Math.max(...allDiff, Math.min(...allDiff, 0) + 10),
     };
-    
-    return (
-        <div style={{ width: "100%", height: "auto" }}>
-            <AgCharts options={options} />
-        </div>
-    );
+  }, [data, categories]);
+
+  // Dynamically build series
+  const singleCategory = categories.length === 1;
+  const series = [];
+  Object.entries(chartData).forEach(([cat, values]) => {
+    if (showBar) {
+      series.push({
+        type: "bar",
+        xKey: "date",
+        yKey: "yoy",
+        yName: cat,
+        data: values,
+        grouped: true,
+        showInLegend: false,
+        itemStyler: singleCategory
+          ? ({ datum }) => ({
+              fill: datum.yoy >= 0 ? "green" : "red",
+              stroke: datum.yoy >= 0 ? "darkgreen" : "darkred",
+            })
+          : undefined,
+      });
+    }
+
+    if (showLine) {
+      series.push({
+        type: "line",
+        xKey: "date",
+        yKey: "diff",
+        yName:
+          cat === "all"
+            ? "Overall"
+            : !cat.includes(" ")
+            ? cat.charAt(0).toUpperCase() + cat.slice(1)
+            : cat
+                .split(" ")
+                .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                .join(" "),
+        data: values,
+        marker: { enabled: true, size: 5 },
+        interpolation: { type: "smooth" },
+        showInLegend: true, // avoids duplicate legends
+      });
+    }
+  });
+
+  const options = {
+    series,
+    axes: [
+      {
+        type: "category",
+        position: "bottom",
+        title: { text: "Date" },
+      },
+      ...(showBar
+        ? [
+            {
+              type: "number",
+              position: "right",
+              title: { text: "YoY Growth" },
+              nice: true,
+              min: yoyMin,
+              max: yoyMax,
+            },
+          ]
+        : []),
+      ...(showLine
+        ? [
+            {
+              type: "number",
+              position: "left",
+              title: { text: "Δ Quantity vs LY" },
+              nice: true,
+              min: diffMin,
+              max: diffMax,
+            },
+          ]
+        : []),
+    ],
+    legend: showLegend
+      ? {
+          enabled: true,
+          position: "top",
+          item: { label: { fontSize: 13, fontWeight: "bold" } },
+        }
+      : { enabled: false },
+    // width,
+    height,
+    theme: {
+      palette: {
+        fills: ["#2a9d8f", "#e76f51", "#f4a261", "#264653"],
+        strokes: ["#225c58", "#8c2c15", "#ad6a2a", "#122b34"],
+      },
+    },
+    background: { fill: "#fafafa" },
+    navigator: { enabled: true },
+  };
+
+  return (
+    <div style={{ width: "100%", height: "auto" }}>
+      <AgCharts options={options} />
+    </div>
+  );
 };
 
 export default DynamicCategoryChart;
-
-
-
 
 // import React, { useMemo } from "react";
 // import { AgCharts } from "ag-charts-react";
