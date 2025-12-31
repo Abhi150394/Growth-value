@@ -116,7 +116,7 @@ const ProductCategory = ({ userToken }) => {
         <Stack direction="row" spacing={0.5} width="100%">
           <DateRangeSelector />
 
-          <DynamicDropdown
+          {/* <DynamicDropdown
             title="Area"
             icon={FaMapMarkedAlt}
             options={areaOptions}
@@ -134,7 +134,7 @@ const ProductCategory = ({ userToken }) => {
               icon={HourglassBottomOutlined}
               options={timePeriod}
             />
-          ) : null}
+          ) : null} */}
         </Stack>
 
         {filters?.topBarSelectedSection?.id === 1 ? (

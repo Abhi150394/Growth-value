@@ -32,17 +32,25 @@ import DynamicSalesSnapshotTable from "./SalesAreaSnapshotTable.jsx";
 import { getSalesAreaData } from "../../../API/reportsData.js";
 
 const options = [
-  { value: "profile", label: "Profile", icon: FaUser },
-  { value: "settings", label: "Settings", icon: FaCog },
-  { value: "analytics", label: "Analytics", icon: FaChartLine },
+  { value: "guest", label: "Guest", icon: FaUser },
+  { value: "transactions", label: "Transactions", icon: FaCog },
+  {
+    value: "delivery",
+    label: "Delivery",
+    icon: FaChartLine,
+  },
+  { value: "sales", label: "Sales", icon: FaChartLine },
 ];
+
 
 const Area = ({ userToken }) => {
   const { filters } = useContext(FilterContext);
   const [selectedAreas, setSelectedAreas] = useState(null);
   const [salesdata, setSalesData] = useState(null);
+    const [selectedFilterOption,setSelectedFilterOption]=useState(null)
+  
   // console.log("filtersfilters", filters);
-  console.log("salesdatasalesdata", salesdata);
+  // console.log("salesdatasalesdata", salesdata);
   const buttonData = [
     { id: 0, title: "Snapshot", type: "snapshot", phase: 1 },
     { id: 1, title: "Trends", type: "trends", phase: 2 },
@@ -114,12 +122,12 @@ const Area = ({ userToken }) => {
       <Box>
         <Stack direction="row" spacing={0.5} width="100%">
           <DateRangeSelector maxRange={25}/>
-          {filters?.topBarSelectedSection?.id === 1 ? (
+          {/* {filters?.topBarSelectedSection?.id === 1 ? (
             <DynamicDropdown
               icon={HourglassBottomOutlined}
               options={timePeriod}
             />
-          ) : null}
+          ) : null} */}
         </Stack>
 
         {filters?.topBarSelectedSection?.id === 1 ? (
@@ -187,11 +195,11 @@ const Area = ({ userToken }) => {
           </Stack>
 
           <Box width={{ xs: "100%", lg: "30%" }}>
-            {/* <DynamicDropdown
+            <DynamicDropdown
               options={options}
-              onChange={(opt) => console.log("Selected:", opt)}
+              onChange={(opt) => setSelectedFilterOption(opt.value)}
               width="100%"
-            /> */}
+            />
           </Box>
         </Stack>
       </Box>
@@ -244,6 +252,7 @@ const Area = ({ userToken }) => {
                     data={salesdata}
                     height={500}
                     showBar={filters?.chart2ndAxis}
+                    selectedFilterOption={selectedFilterOption}
                     categories={
                       selectedAreas?.length > 0
                         ? selectedAreas?.map((el) => el.value)

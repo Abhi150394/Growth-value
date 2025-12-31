@@ -29,11 +29,10 @@ const options = [
   { value: "guest", label: "Guest", icon: FaUser },
   { value: "transactions", label: "Transactions", icon: FaCog },
   {
-    value: "sales_and_ransactions",
-    label: "Sales and Transactions",
+    value: "delivery",
+    label: "Delivery",
     icon: FaChartLine,
   },
-  { value: "price", label: "Price", icon: FaCog },
   { value: "sales_mix", label: "Sales Mix", icon: FaChartLine },
 ];
 
@@ -44,7 +43,7 @@ const ProductItem = ({ userToken }) => {
   const [productItems, setProductItems] = useState(null);
   const [salesdata, setSalesData] = useState(null);
   const [selectedFilterOption,setSelectedFilterOption]=useState(null)
-  console.log("selectedItemsselectedItems", selectedItems);
+  console.log("selectedFilterOptionselectedFilterOption", selectedFilterOption);
   const handlePrint = () => {
     // Call child function when button is clicked
     tablePrintRef.current?.handlePrint();
@@ -83,7 +82,7 @@ const ProductItem = ({ userToken }) => {
   const getProductItemList = async () => {
     try {
       const response = await getSalesProductItemList(userToken);
-      console.log(response?.data);
+      // console.log(response?.data);
       itemOptions = convertToOptions(response?.data?.results);
       setProductItems(itemOptions);
       // console.log("itemOptions",itemOptions)
@@ -94,7 +93,7 @@ const ProductItem = ({ userToken }) => {
   useEffect(() => {
     getProductItemList();
   }, []);
-  console.log("first,", productItems);
+
   useEffect(() => {
     const fetchSalesData = async () => {
       setSalesData(null);
@@ -111,7 +110,6 @@ const ProductItem = ({ userToken }) => {
     fetchSalesData();
   }, [filters?.dateRange?.startDate, filters?.dateRange?.endDate]);
 
-  console.log("salesdatasalesdata", salesdata);
   return (
     <Box p={1} mt={1}>
       <Box mb={1}>
@@ -247,6 +245,7 @@ const ProductItem = ({ userToken }) => {
                     data={salesdata}
                     height={500}
                     showBar={filters?.chart2ndAxis}
+                    selectedFilterOption={selectedFilterOption}
                     categories={
                       selectedItems?.length > 0
                         ? selectedItems?.map((el) => el.value)

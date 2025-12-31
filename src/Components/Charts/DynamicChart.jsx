@@ -38,18 +38,33 @@ const DynamicCategoryChart = ({
       acc[cat] = data.detail[cat].map((d) => {
         let yoy = 0;
         let diff = 0;
-        const v1 = Number(d.total) || 0; // current
-        const v2 = Number(d.total_ly) || 0;
+        let v1 = Number(d.guest_count) || 0;
+        let v2 = Number(d.guest_count_ly) || 0;
+        if (selectedFilterOption === "guest") {
+          v1 = Number(d.guest_count) || 0;
+          v2 = Number(d.guest_count_ly) || 0;
+        } else if (selectedFilterOption === "transactions") {
+          v1 = Number(d.total) || 0;
+          v2 = Number(d.total_ly) || 0;
+        } else if (selectedFilterOption === "delivery") {
+          v1 = Number(d.time_to_serve) || 0;
+          v2 = Number(d.time_to_serve_ly) || 0;
+        } else if (selectedFilterOption === "sales") {
+          v1 = Number(d.guest_total) || 0;
+          v2 = Number(d.guest_total_ly) || 0;
+        }else{
+            v1 = Number(d.guest_count) || 0;
+          v2 = Number(d.guest_count_ly) || 0;
+        }
+
         if (v1 !== 0 || v2 !== 0) {
           yoy = ((v1 - v2) / ((v1 + v2) / 2)) * 100;
         }
 
-        if (!selectedFilterOption) {
-        } else if (selectedFilterOption === "transactions") {
-        }
         yoy = Number(yoy.toFixed(2));
-        diff = d.count_ly ? d.count - d.count_ly : d.count || 0;
-        // console.log("diff",diff,"yoy",yoy)
+        // diff = d.count_ly ? d.count - d.count_ly : d.count || 0;
+        diff = v1;
+        console.log("diff", diff, "yoy", yoy);
         allYoy.push(yoy);
         allDiff.push(diff);
 
@@ -66,9 +81,9 @@ const DynamicCategoryChart = ({
       diffMin: Math.min(...allDiff, 0),
       diffMax: Math.max(...allDiff, 0),
     };
-  }, [data, categories]);
+  }, [data, categories, selectedFilterOption]);
 
-  //   console.log("yoy",yoyMin, yoyMax,"diff", diffMin, diffMax)
+  console.log("yoy", yoyMin, yoyMax, "diff", diffMin, diffMax);
   // Dynamically build series
   const singleCategory = categories.length === 1;
   const series = [];
@@ -128,6 +143,7 @@ const DynamicCategoryChart = ({
               position: "right",
               title: { text: "YoY Growth" },
               nice: true,
+              keys: ["yoy"],
               min: yoyMin * 1.2,
               max: yoyMax * 1.2,
             },
@@ -140,6 +156,7 @@ const DynamicCategoryChart = ({
               position: "left",
               title: { text: "Δ Quantity vs LY" },
               nice: true,
+              keys: ["diff"],
               min: diffMin * 1.2,
               max: diffMax * 1.2,
             },

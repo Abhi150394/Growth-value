@@ -93,7 +93,7 @@ const Location = ({ userToken }) => {
         <Stack direction="row" spacing={0.5} width="100%">
           <DateRangeSelector />
 
-          <DynamicDropdown
+          {/* <DynamicDropdown
             title="Area"
             icon={FaMapMarkedAlt}
             options={areaOptions}
@@ -103,7 +103,7 @@ const Location = ({ userToken }) => {
               icon={HourglassBottomOutlined}
               options={timePeriod}
             />
-          ) : null}
+          ) : null} */}
         </Stack>
 
         {filters?.topBarSelectedSection?.id === 1 ? (
@@ -111,12 +111,12 @@ const Location = ({ userToken }) => {
             <AutoCompleteDropdown
               showLogoTitle
               logo="https://cdn-icons-png.flaticon.com/512/25/25694.png"
-              title="Areas"
+              title="Locations"
               options={[
                 // { value: "north", label: "North" },
-                { value: "south", label: "South" },
-                { value: "east", label: "East" },
-                { value: "west", label: "West" },
+                { value: "south", label: "Berlare" },
+                { value: "east", label: "Aalst" },
+                { value: "west", label: "Dendramonde" },
               ]}
               onChange={(vals) => setSelectedAreas(vals)}
               width="100%"
