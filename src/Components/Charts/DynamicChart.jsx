@@ -22,7 +22,8 @@ const DynamicCategoryChart = ({
   height = 600,
   selectedFilterOption = null,
 }) => {
-  console.log("categories", categories);
+  //   console.log("categories", categories);
+  console.log("selectedFilterOption", selectedFilterOption);
   const { chartData, yoyMin, yoyMax, diffMin, diffMax } = useMemo(() => {
     if (!data?.detail) {
       return { chartData: {}, yoyMin: 0, yoyMax: 0, diffMin: 0, diffMax: 0 };
@@ -30,18 +31,25 @@ const DynamicCategoryChart = ({
 
     let allYoy = [];
     let allDiff = [];
-    // debugger
+
     const chartData = categories.reduce((acc, cat) => {
       if (!data.detail[cat]) return acc;
 
       acc[cat] = data.detail[cat].map((d) => {
-        if (!selectedFilterOption) {
-          const yoy = d.total_ly ? d.total - d.total_ly : d.total || 0;
-          const diff = d.count_ly ? d.count - d.count_ly : d.count || 0;
-        } else if (selectedFilterOption === "transactions") {
-          const yoy = d.total_ly ? d.total - d.total_ly : d.total || 0;
-          const diff = d.count_ly ? d.count - d.count_ly : d.count || 0;
+        let yoy = 0;
+        let diff = 0;
+        const v1 = Number(d.total) || 0; // current
+        const v2 = Number(d.total_ly) || 0;
+        if (v1 !== 0 || v2 !== 0) {
+          yoy = ((v1 - v2) / ((v1 + v2) / 2)) * 100;
         }
+
+        if (!selectedFilterOption) {
+        } else if (selectedFilterOption === "transactions") {
+        }
+        yoy = Number(yoy.toFixed(2));
+        diff = d.count_ly ? d.count - d.count_ly : d.count || 0;
+        // console.log("diff",diff,"yoy",yoy)
         allYoy.push(yoy);
         allDiff.push(diff);
 
@@ -54,12 +62,13 @@ const DynamicCategoryChart = ({
     return {
       chartData,
       yoyMin: Math.min(...allYoy, 0),
-      yoyMax: Math.max(...allYoy, Math.min(...allYoy, 0) + 10),
+      yoyMax: Math.max(...allYoy, 0),
       diffMin: Math.min(...allDiff, 0),
-      diffMax: Math.max(...allDiff, Math.min(...allDiff, 0) + 10),
+      diffMax: Math.max(...allDiff, 0),
     };
   }, [data, categories]);
 
+  //   console.log("yoy",yoyMin, yoyMax,"diff", diffMin, diffMax)
   // Dynamically build series
   const singleCategory = categories.length === 1;
   const series = [];
@@ -119,8 +128,8 @@ const DynamicCategoryChart = ({
               position: "right",
               title: { text: "YoY Growth" },
               nice: true,
-              min: yoyMin,
-              max: yoyMax,
+              min: yoyMin * 1.2,
+              max: yoyMax * 1.2,
             },
           ]
         : []),
@@ -131,8 +140,8 @@ const DynamicCategoryChart = ({
               position: "left",
               title: { text: "Δ Quantity vs LY" },
               nice: true,
-              min: diffMin,
-              max: diffMax,
+              min: diffMin * 1.2,
+              max: diffMax * 1.2,
             },
           ]
         : []),
