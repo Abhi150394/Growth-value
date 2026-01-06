@@ -26,6 +26,7 @@ const SalesTransactionsTable = forwardRef(
       COLORS = { green: "#2ecc71", red: "#e74c3c" },
       searchText = "",
       sectionName = "Area",
+      selectedFilterOption = null,
     },
     ref
   ) => {
@@ -33,6 +34,11 @@ const SalesTransactionsTable = forwardRef(
     const [pageSize, setPageSize] = useState(10);
     const [currentPage, setCurrentPage] = useState(0);
     const [selectedRegion, setSelectedRegion] = useState(defaultRegion);
+    // console.log("selectedFilterOption", selectedFilterOption);
+    // console.log("data", data);
+    if (!Array.isArray(data)) {
+      data = [];
+    }
 
     const handlePrint = () => {
       if (gridApi.current) {
@@ -42,33 +48,33 @@ const SalesTransactionsTable = forwardRef(
     useImperativeHandle(ref, () => ({
       handlePrint,
     }));
-    
+
     // extract region data dynamically
     const regionData = useMemo(() => {
       if (!data) return [];
-      if (selectedRegion === "overall") return data.overall || [];
+      if (selectedRegion === "overall") return data || [];
       return data.detail?.[selectedRegion] || [];
     }, [data, selectedRegion]);
-
+    // console.log("regionData", regionData);
     // build table data with totals
     const { tableData, columnDefs } = useMemo(() => {
       if (!regionData) return { tableData: [], columnDefs: [] };
 
-      const totals = {};
-      valueFields.forEach((field) => {
-        totals[field] = regionData.reduce((s, r) => s + (r[field] || 0), 0);
-        totals[`${field}_ly`] = regionData.reduce(
-          (s, r) => s + (r[`${field}_ly`] || 0),
-          0
-        );
-      });
+      // const totals = {};
+      // valueFields.forEach((field) => {
+      //   totals[field] = regionData.reduce((s, r) => s + (r[field] || 0), 0);
+      //   totals[`${field}_ly`] = regionData.reduce(
+      //     (s, r) => s + (r[`${field}_ly`] || 0),
+      //     0
+      //   );
+      // });
 
-      const totalRow = { identifier: "Total", ...totals };
+      // const totalRow = { identifier: "Total", ...totals };
 
       const tableData = [
-        totalRow,
-        ...regionData.map((r) => {
-          const obj = { identifier: r.period || r.identifier };
+        // totalRow,
+        ...regionData?.map((r) => {
+          const obj = { identifier: r.direction || r.identifier };
           valueFields.forEach((field) => {
             obj[field] = r[field];
             obj[`${field}_ly`] = r[`${field}_ly`];
@@ -80,7 +86,7 @@ const SalesTransactionsTable = forwardRef(
       // create dynamic column definitions
       const columnDefs = [
         { headerName: sectionName, field: "identifier", minWidth: 140 },
-        ...labelFields.map((label, idx) => ({
+        ...labelFields?.map((label, idx) => ({
           headerName: label,
           children: [
             {
@@ -153,38 +159,43 @@ const SalesTransactionsTable = forwardRef(
       gridApi.current.paginationGoToPage(page);
       setCurrentPage(page);
     };
-    useEffect(() => {
-      if (
-        gridApi.current &&
-        typeof gridApi.current.setFilterModel === "function"
-      ) {
-        if (searchText) {
-          const model = {};
-          columnDefs.forEach((col) => {
-            if (!col.children) {
-              model[col.field] = {
-                filterType: "text",
-                type: "contains",
-                filter: searchText,
-              };
-            } else {
-              col.children.forEach((child) => {
-                model[child.field] = {
-                  filterType: "text",
-                  type: "contains",
-                  filter: searchText,
-                };
-              });
-            }
-          });
-          gridApi.current.setFilterModel(model);
-        } else {
-          gridApi.current.setFilterModel(null);
-        }
-        gridApi.current.onFilterChanged();
-      }
-    }, [searchText, tableData, columnDefs]);
+    // useEffect(() => {
+    //   if (
+    //     gridApi.current &&
+    //     typeof gridApi.current.setFilterModel === "function"
+    //   ) {
+    //     if (searchText) {
+    //       const model = {};
+    //       columnDefs.forEach((col) => {
+    //         if (!col.children) {
+    //           model[col.field] = {
+    //             filterType: "text",
+    //             type: "contains",
+    //             filter: searchText,
+    //           };
+    //         } else {
+    //           col.children.forEach((child) => {
+    //             model[child.field] = {
+    //               filterType: "text",
+    //               type: "contains",
+    //               filter: searchText,
+    //             };
+    //           });
+    //         }
+    //       });
+    //       gridApi.current.setFilterModel(model);
+    //     } else {
+    //       gridApi.current.setFilterModel(null);
+    //     }
+    //     gridApi.current.onFilterChanged();
+    //   }
+    // }, [searchText, tableData, columnDefs]);
 
+    useEffect(() => {
+      if (gridApi.current) {
+        gridApi.current.setGridOption("quickFilterText", searchText || "");
+      }
+    }, [searchText]);
     return (
       <div>
         {/* Region Selector */}

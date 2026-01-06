@@ -19,6 +19,7 @@ import DynamicCategoryChart from "../../../Components/Charts/DynamicChart.jsx";
 import SalesTransactionsTable from "./SalesSnapshotTable.jsx";
 import { getSalesOrderTypeData } from "../../../API/reportsData.js";
 import { formatToYMD } from "../../../Utils/dateUtils.js";
+import { aggregateByEachOption } from "../../../Utils/commonFunction.js";
 
 const options = [
   { value: "profile", label: "Profile", icon: FaUser },
@@ -83,6 +84,11 @@ const OrderType = ({ userToken }) => {
     fetchSalesData();
   }, [filters?.dateRange?.startDate, filters?.dateRange?.endDate]);
 
+  let snapshotTableData;
+  if (salesData) {
+    snapshotTableData = aggregateByEachOption(salesData.detail);
+    // console.log("aggregateByEachOption(salesdata.detail)", snapshotTableData);
+  }
   return (
     <Box p={1} mt={1}>
       <Box mb={1}>
@@ -217,6 +223,11 @@ const OrderType = ({ userToken }) => {
                         ? selectedAreas?.map((el) => el.value)
                         : ["all"]
                     }
+                    searchText={
+                      filters?.searchedValue?.length > 0
+                        ? filters?.searchedValue
+                        : null
+                    }
                   />
                 </Box>
               ) : (
@@ -236,7 +247,7 @@ const OrderType = ({ userToken }) => {
             ) : (
               <Box>
                 <SalesTransactionsTable
-                  data={salesData}
+                  data={snapshotTableData ? snapshotTableData : []}
                   defaultRegion={region}
                   valueFields={valueFields}
                   labelFields={labelFields}

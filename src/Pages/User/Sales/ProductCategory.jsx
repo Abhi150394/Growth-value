@@ -22,7 +22,10 @@ import {
   getSalesProductCategoriesList,
   getSalesProductCategoryData,
 } from "../../../API/reportsData.js";
-import { convertToOptions } from "../../../Utils/commonFunction.js";
+import {
+  aggregateByEachOption,
+  convertToOptions,
+} from "../../../Utils/commonFunction.js";
 
 const options = [
   { value: "profile", label: "Profile", icon: FaUser },
@@ -107,6 +110,11 @@ const ProductCategory = ({ userToken }) => {
     fetchSalesData();
   }, [filters?.dateRange?.startDate, filters?.dateRange?.endDate]);
 
+  let snapshotTableData;
+  if (salesData) {
+    snapshotTableData = aggregateByEachOption(salesData.detail);
+    // console.log("aggregateByEachOption(salesdata.detail)", snapshotTableData);
+  }
   return (
     <Box p={1} mt={1}>
       <Box mb={1}>
@@ -236,6 +244,11 @@ const ProductCategory = ({ userToken }) => {
                         ? selectedCatogries?.map((el) => el.value)
                         : ["all"]
                     }
+                    searchText={
+                      filters?.searchedValue?.length > 0
+                        ? filters?.searchedValue
+                        : null
+                    }
                   />
                 </Box>
               ) : (
@@ -255,7 +268,7 @@ const ProductCategory = ({ userToken }) => {
             ) : (
               <Box>
                 <SalesTransactionsTable
-                  data={salesData}
+                  data={snapshotTableData ? snapshotTableData : []}
                   defaultRegion={region}
                   valueFields={valueFields}
                   labelFields={labelFields}

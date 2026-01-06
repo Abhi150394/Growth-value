@@ -136,7 +136,7 @@ const AutoCompleteDropdown = ({
         onChange={handleChange}
         placeholder={showLogoTitle ? null : placeholder}
         isClearable={true}
-        closeMenuOnSelect={!isMulti}
+        // closeMenuOnSelect={!isMulti}
         components={
           showLogoTitle ? { ValueContainer: CustomValueContainer } : {}
         }

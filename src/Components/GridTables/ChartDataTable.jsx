@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { AgGridReact } from "ag-grid-react";
 import Select from "react-select";
 import { Pagination } from "antd";
@@ -7,10 +7,12 @@ import "ag-grid-community/styles/ag-theme-quartz.css";
 import { COLORS } from "../../constants";
 import printAgGrid, { exportCSV } from "../../Pages/User/Sales/Utils.js"
 
-const ChartDataGroupedTable = ({ data, categories=["all"] }) => {
+const ChartDataGroupedTable = ({ data, categories=["all"] ,selectedFilterOption = null,searchText = "",  }) => {
   const gridApi = useRef(null);
   const [pageSize, setPageSize] = useState(10);
   const [currentPage, setCurrentPage] = useState(0);
+  console.log("selectedFilterOption", selectedFilterOption);
+
 
     const handlePrint = () => {
       if (gridApi.current) {
@@ -31,8 +33,37 @@ const ChartDataGroupedTable = ({ data, categories=["all"] }) => {
         const d = data.detail[cat]?.find((x) => x.period === date);
         if (!d) return;
 
-        const sales = d.total || 0;
-        const yoy = d.total_ly ? ((sales - d.total_ly) / d.total_ly) * 100 : 0;
+        
+        // const yoy = d.total_ly ? ((sales - d.total_ly) / d.total_ly) * 100 : 0;
+        let yoy = 0;
+        let sales = 0;
+        let v1 = Number(d.guest_count) || 0;
+        let v2 = Number(d.guest_count_ly) || 0;
+        if (selectedFilterOption === "guest") {
+          v1 = Number(d.guest_count) || 0;
+          v2 = Number(d.guest_count_ly) || 0;
+        } else if (selectedFilterOption === "transactions") {
+          v1 = Number(d.total) || 0;
+          v2 = Number(d.total_ly) || 0;
+        } else if (selectedFilterOption === "delivery") {
+          v1 = Number(d.time_to_serve) || 0;
+          v2 = Number(d.time_to_serve_ly) || 0;
+        } else if (selectedFilterOption === "sales") {
+          v1 = Number(d.guest_total) || 0;
+          v2 = Number(d.guest_total_ly) || 0;
+        }else{
+            v1 = Number(d.guest_count) || 0;
+          v2 = Number(d.guest_count_ly) || 0;
+        }
+
+        if (v1 !== 0 || v2 !== 0) {
+          yoy = ((v1 - v2) / ((v1 + v2) / 2)) * 100;
+        }
+
+        yoy = Number(yoy.toFixed(2));
+        // sales = d.count_ly ? d.count - d.count_ly : d.count || 0;
+        sales = v1;
+        console.log("sales", sales, "yoy", yoy);
 
         row[`${cat}_sales`] = sales;
         row[`${cat}_yoy`] = yoy.toFixed(1);
@@ -59,7 +90,7 @@ const ChartDataGroupedTable = ({ data, categories=["all"] }) => {
     ];
 
     return { tableData, columnDefs };
-  }, [data, categories]);
+  }, [data, categories,selectedFilterOption]);
 
   const pageSizeOptions = [
     { value: 5, label: "5" },
@@ -84,6 +115,14 @@ const ChartDataGroupedTable = ({ data, categories=["all"] }) => {
     setCurrentPage(page);
   };
 
+  useEffect(() => {
+  if (gridApi.current) {
+    gridApi.current.setGridOption(
+      "quickFilterText",
+      searchText || ""
+    );
+  }
+}, [searchText]);
   return (
     <div>
       <div style={{ marginBottom: "10px" }}>

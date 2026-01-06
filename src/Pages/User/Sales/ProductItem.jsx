@@ -23,7 +23,10 @@ import {
   getSalesProductItemData,
   getSalesProductItemList,
 } from "../../../API/reportsData.js";
-import { convertToOptions } from "../../../Utils/commonFunction.js";
+import {
+  aggregateByEachOption,
+  convertToOptions,
+} from "../../../Utils/commonFunction.js";
 
 const options = [
   { value: "guest", label: "Guest", icon: FaUser },
@@ -42,7 +45,7 @@ const ProductItem = ({ userToken }) => {
   const [selectedItems, setSelectedItems] = useState(null);
   const [productItems, setProductItems] = useState(null);
   const [salesdata, setSalesData] = useState(null);
-  const [selectedFilterOption,setSelectedFilterOption]=useState(null)
+  const [selectedFilterOption, setSelectedFilterOption] = useState(null);
   console.log("selectedFilterOptionselectedFilterOption", selectedFilterOption);
   const handlePrint = () => {
     // Call child function when button is clicked
@@ -109,6 +112,11 @@ const ProductItem = ({ userToken }) => {
 
     fetchSalesData();
   }, [filters?.dateRange?.startDate, filters?.dateRange?.endDate]);
+  let snapshotTableData;
+  if (salesdata) {
+    snapshotTableData = aggregateByEachOption(salesdata.detail);
+    // console.log("aggregateByEachOption(salesdata.detail)", snapshotTableData);
+  }
 
   return (
     <Box p={1} mt={1}>
@@ -237,6 +245,11 @@ const ProductItem = ({ userToken }) => {
                         ? selectedItems?.map((el) => el.value)
                         : ["all"]
                     }
+                    searchText={
+                      filters?.searchedValue?.length > 0
+                        ? filters?.searchedValue
+                        : null
+                    }
                   />
                 </Box>
               ) : (
@@ -258,7 +271,7 @@ const ProductItem = ({ userToken }) => {
               <Box>
                 <SalesTransactionsTable
                   ref={tablePrintRef}
-                  data={salesdata}
+                  data={snapshotTableData ? snapshotTableData : []}
                   defaultRegion={region}
                   valueFields={valueFields}
                   labelFields={labelFields}
@@ -268,7 +281,7 @@ const ProductItem = ({ userToken }) => {
                       ? filters?.searchedValue
                       : null
                   }
-                  sectionName="ProductItem"
+                  sectionName="Product Item"
                 />
               </Box>
             )}

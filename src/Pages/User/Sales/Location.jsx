@@ -19,17 +19,24 @@ import SalesTransactionsTable from "./SalesSnapshotTable.jsx";
 import { formatToYMD } from "../../../Utils/dateUtils.js";
 import { getFinancialDetailsData } from "../../../API/lightspeedAPI.js";
 import { getSalesLocationData } from "../../../API/reportsData.js";
+import { aggregateByEachOption } from "../../../Utils/commonFunction.js";
 
 const options = [
-  { value: "profile", label: "Profile", icon: FaUser },
-  { value: "settings", label: "Settings", icon: FaCog },
-  { value: "analytics", label: "Analytics", icon: FaChartLine },
+  { value: "guest", label: "Guest", icon: FaUser },
+  { value: "transactions", label: "Transactions", icon: FaCog },
+  {
+    value: "delivery",
+    label: "Delivery",
+    icon: FaChartLine,
+  },
+  { value: "sales", label: "Sales", icon: FaChartLine },
 ];
 
 const Location = ({ userToken }) => {
   const tablePrintRef = useRef();
   const { filters } = useContext(FilterContext);
   const [selectedAreas, setSelectedAreas] = useState(null);
+  const [selectedFilterOption, setSelectedFilterOption] = useState(null);
   const [salesdata, setSalesData] = useState(null);
   const handlePrint = () => {
     // Call child function when button is clicked
@@ -82,6 +89,11 @@ const Location = ({ userToken }) => {
 
     fetchSalesData();
   }, [filters?.dateRange?.startDate, filters?.dateRange?.endDate]);
+  let snapshotTableData;
+  if (salesdata) {
+    snapshotTableData = aggregateByEachOption(salesdata.detail);
+    // console.log("aggregateByEachOption(salesdata.detail)", snapshotTableData);
+  }
 
   console.log("salesdatasalesdata", salesdata);
   return (
@@ -211,6 +223,11 @@ const Location = ({ userToken }) => {
                         ? selectedAreas?.map((el) => el.value)
                         : ["all"]
                     }
+                    searchText={
+                      filters?.searchedValue?.length > 0
+                        ? filters?.searchedValue
+                        : null
+                    }
                   />
                 </Box>
               ) : (
@@ -231,7 +248,7 @@ const Location = ({ userToken }) => {
               <Box>
                 <SalesTransactionsTable
                   ref={tablePrintRef}
-                  data={salesdata}
+                  data={snapshotTableData ? snapshotTableData : []}
                   defaultRegion={region}
                   valueFields={valueFields}
                   labelFields={labelFields}

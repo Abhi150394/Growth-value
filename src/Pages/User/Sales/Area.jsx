@@ -25,7 +25,9 @@ import { formatToYMD } from "../../../Utils/dateUtils.js";
 import ProductSalesTable from "./NewGroupTable.jsx";
 import ProductPerformanceChart from "./NewChartCompo.jsx";
 import DynamicProductPerformanceChart from "../../../Components/Charts/BarChart.jsx";
-import getYOYComparison from "../../../Utils/commonFunction.js";
+import getYOYComparison, {
+  aggregateByEachOption,
+} from "../../../Utils/commonFunction.js";
 import SalesYoYChart from "../../../Components/Charts/AreaSalesChart.jsx";
 import DynamicSalesTrendsTable from "../../../Components/GridTables/SalesAreaTrendsTable.jsx";
 import DynamicSalesSnapshotTable from "./SalesAreaSnapshotTable.jsx";
@@ -42,13 +44,12 @@ const options = [
   { value: "sales", label: "Sales", icon: FaChartLine },
 ];
 
-
 const Area = ({ userToken }) => {
   const { filters } = useContext(FilterContext);
   const [selectedAreas, setSelectedAreas] = useState(null);
   const [salesdata, setSalesData] = useState(null);
-    const [selectedFilterOption,setSelectedFilterOption]=useState(null)
-  
+  const [selectedFilterOption, setSelectedFilterOption] = useState(null);
+
   // console.log("filtersfilters", filters);
   // console.log("salesdatasalesdata", salesdata);
   const buttonData = [
@@ -90,13 +91,18 @@ const Area = ({ userToken }) => {
 
     fetchSalesData();
   }, [filters?.dateRange?.startDate, filters?.dateRange?.endDate]);
+  let snapshotTableData;
+  if (salesdata) {
+    snapshotTableData = aggregateByEachOption(salesdata.detail);
+    // console.log("aggregateByEachOption(salesdata.detail)", snapshotTableData);
+  }
 
   // useEffect(() => {
   //   const fetchFinanceData = async () => {
   //     try {
   //       const fromDate = formatToYMD(filters?.dateRange?.startDate);
   //       const toDate = formatToYMD(filters?.dateRange?.endDate);
-        
+
   //       const data = await getFinancialDetailsData(userToken, fromDate, toDate);
   //       console.log(
   //         "getFinancialDetailsDatagetFinancialDetailsData------",
@@ -121,7 +127,7 @@ const Area = ({ userToken }) => {
       </Box>
       <Box>
         <Stack direction="row" spacing={0.5} width="100%">
-          <DateRangeSelector maxRange={25}/>
+          <DateRangeSelector maxRange={25} />
           {/* {filters?.topBarSelectedSection?.id === 1 ? (
             <DynamicDropdown
               icon={HourglassBottomOutlined}
@@ -212,7 +218,7 @@ const Area = ({ userToken }) => {
       </div>
 
       <Box>
-        {salesdata?.length < 1 || !salesdata? (
+        {salesdata?.length < 1 || !salesdata ? (
           <Box
             direction={{ xs: "column", md: "column", lg: "row" }}
             justifyContent="center"
@@ -238,11 +244,17 @@ const Area = ({ userToken }) => {
                   {/* <DynamicSalesTrendsTable data={salesdata}/> */}
                   <ChartDataGroupedTable
                     data={salesdata}
+                    selectedFilterOption={selectedFilterOption}
                     categories={
                       selectedAreas?.length > 0
                         ? selectedAreas?.map((el) => el.value)
                         : ["all"]
                     }
+                    searchText={
+                    filters?.searchedValue?.length > 0
+                      ? filters?.searchedValue
+                      : null
+                  }
                   />
                 </Box>
               ) : (
@@ -263,9 +275,8 @@ const Area = ({ userToken }) => {
               )
             ) : (
               <Box>
-                {/* <DynamicSalesSnapshotTable data={salesdata} /> */}
                 <SalesTransactionsTable
-                  data={salesdata}
+                  data={snapshotTableData ? snapshotTableData : []}
                   defaultRegion={region}
                   valueFields={valueFields}
                   labelFields={labelFields}
