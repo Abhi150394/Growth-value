@@ -22,14 +22,20 @@ import { formatToYMD } from "../../../Utils/dateUtils.js";
 import { aggregateByEachOption } from "../../../Utils/commonFunction.js";
 
 const options = [
-  { value: "profile", label: "Profile", icon: FaUser },
-  { value: "settings", label: "Settings", icon: FaCog },
-  { value: "analytics", label: "Analytics", icon: FaChartLine },
+  { value: "guest", label: "Guest", icon: FaUser },
+  { value: "transactions", label: "Transactions", icon: FaCog },
+  {
+    value: "delivery",
+    label: "Delivery",
+    icon: FaChartLine,
+  },
+  { value: "sales", label: "Sales", icon: FaChartLine },
 ];
 
 const OrderType = ({ userToken }) => {
   const { filters } = useContext(FilterContext);
   const [selectedAreas, setSelectedAreas] = useState(null);
+  const [selectedFilterOption, setSelectedFilterOption] = useState(null);
   const [salesData, setSalesData] = useState(null);
   console.log("filtersfilters", filters);
   const buttonData = [
@@ -184,11 +190,11 @@ const OrderType = ({ userToken }) => {
           </Stack>
 
           <Box width={{ xs: "100%", lg: "30%" }}>
-            {/* <DynamicDropdown
+            <DynamicDropdown
               options={options}
-              onChange={(opt) => console.log("Selected:", opt)}
+              onChange={(opt) => setSelectedFilterOption(opt.value)}
               width="100%"
-            /> */}
+            />
           </Box>
         </Stack>
       </Box>
@@ -218,6 +224,7 @@ const OrderType = ({ userToken }) => {
                 <Box id="grid-section">
                   <ChartDataGroupedTable
                     data={salesData}
+                    selectedFilterOption={selectedFilterOption}
                     categories={
                       selectedAreas?.length > 0
                         ? selectedAreas?.map((el) => el.value)
@@ -236,6 +243,7 @@ const OrderType = ({ userToken }) => {
                     data={salesData}
                     height={500}
                     showBar={filters?.chart2ndAxis}
+                    selectedFilterOption={selectedFilterOption}
                     categories={
                       selectedAreas?.length > 0
                         ? selectedAreas?.map((el) => el.value)

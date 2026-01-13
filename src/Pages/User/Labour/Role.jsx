@@ -10,21 +10,20 @@ import ToggleSwitchButton from "../../../Components/Buttons/Toggle2ndAxis.jsx";
 import PrintAndCSV from "../../../Components/Buttons/PrintAndDownloadCSV.jsx";
 import { Box, Stack } from "@mui/material";
 import { FaUser, FaCog, FaChartLine, FaMapMarkedAlt } from "react-icons/fa";
-import { HiLocationMarker } from "react-icons/hi";
+
 import SearchBar from "../../../Components/Buttons/SearchBar.jsx";
 import ChartDataGroupedTable from "../../../Components/GridTables/ChartDataTable.jsx";
-// import chartData from "./DummyData.js";
 import { HourglassBottomOutlined } from "@mui/icons-material";
 import DynamicCategoryChart from "../../../Components/Charts/DynamicChart.jsx";
 import SalesTransactionsTable from "../Sales/SalesSnapshotTable.jsx";
 import chartData from "../../../Components/Charts/dummyChartData.js";
-import { getLabourAreaData } from "../../../API/reportsData.js";
+import { getLabourRoleData } from "../../../API/reportsData.js";
 import { formatToYMD } from "../../../Utils/dateUtils.js";
 import LabourSnapshotTransactionsTable from "./SnapshotDynamicTable.jsx";
 import LabourDynamicCategoryChart from "../../../Components/Charts/labour/LabourDynamicChart.jsx";
 import LabourChartDataGroupedTable from "../../../Components/GridTables/labour/LabourChartDataTable.jsx";
 import { aggregateByEachOption, aggregateLabourByEachOption } from "../../../Utils/commonFunction.js";
-// import SalesTransactionsTable from "./SalesSnapshotTable.jsx";
+
 
 const options = [
   { value: "profile", label: "Profile", icon: FaUser },
@@ -32,26 +31,15 @@ const options = [
   { value: "analytics", label: "Analytics", icon: FaChartLine },
 ];
 
-const Area = ({ userToken }) => {
+const Role = ({ userToken }) => {
   const { filters } = useContext(FilterContext);
-  const [selectedAreas, setSelectedAreas] = useState(null);
+  const [selectedRoles, setSelectedRoles] = useState(null);
   const [labourData,setLabourData]=useState()
 
   console.log("filtersfilters", filters);
   const buttonData = [
     { id: 0, title: "Snapshot", type: "snapshot", phase: 1 },
     { id: 1, title: "Trends", type: "trends", phase: 2 },
-  ];
-  const areaOptions = [
-    { value: "north", label: "North" },
-    { value: "south", label: "South" },
-    { value: "east", label: "East" },
-    { value: "west", label: "West" },
-  ];
-  const locationOptions = [
-    { value: "boston", label: "Boston" },
-    { value: "chicago", label: "Chicago" },
-    { value: "new_york", label: "New York" },
   ];
   const timePeriod = [
     { value: "auto", label: "Auto" },
@@ -79,7 +67,7 @@ const Area = ({ userToken }) => {
         try {
           const fromDate = formatToYMD(filters?.dateRange?.startDate);
           const toDate = formatToYMD(filters?.dateRange?.endDate);
-          const data = await getLabourAreaData(userToken, fromDate, toDate);
+          const data = await getLabourRoleData(userToken, fromDate, toDate);
           setLabourData(data?.data);
         } catch (err) {
           console.error("Error fetching Shipday data:", err);
@@ -92,7 +80,6 @@ const Area = ({ userToken }) => {
   let snapshotTableData;
   if (labourData) {
     snapshotTableData = aggregateLabourByEachOption(labourData.detail);
-    console.log("aggregateByEachOption(labourData.detail)", snapshotTableData);
   }
   return (
     <Box p={1} mt={1}>
@@ -102,26 +89,6 @@ const Area = ({ userToken }) => {
       <Box>
         <Stack direction="row" spacing={0.5} width="100%">
           <DateRangeSelector />
-
-          <DynamicDropdown
-            title="Area"
-            icon={FaMapMarkedAlt}
-            options={areaOptions}
-            isClearable={true}
-          />
-
-          <DynamicDropdown
-            title="Location"
-            icon={HiLocationMarker}
-            options={locationOptions}
-          />
-
-          {filters?.topBarSelectedSection?.id === 1 ? (
-            <DynamicDropdown
-              icon={HourglassBottomOutlined}
-              options={timePeriod}
-            />
-          ) : null}
         </Stack>
 
         {filters?.topBarSelectedSection?.id === 1 ? (
@@ -129,13 +96,13 @@ const Area = ({ userToken }) => {
             <AutoCompleteDropdown
               showLogoTitle
               logo="https://cdn-icons-png.flaticon.com/512/25/25694.png"
-              title="Areas"
+              title="Roles"
               options={[
-                { value: "south", label: "South" },
-                { value: "east", label: "East" },
-                { value: "west", label: "West" },
+                { value: "hr", label: "HR" },
+                { value: "admin", label: "Admin" },
+                { value: "employee", label: "Employee" },
               ]}
-              onChange={(vals) => setSelectedAreas(vals)}
+              onChange={(vals) => setSelectedRoles(vals)}
               width="100%"
             />
           </Box>
@@ -188,11 +155,11 @@ const Area = ({ userToken }) => {
           </Stack>
 
           <Box width={{ xs: "100%", lg: "30%" }}>
-            {/* <DynamicDropdown
+            <DynamicDropdown
               options={options}
               onChange={(opt) => console.log("Selected:", opt)}
               width="100%"
-            /> */}
+            />
           </Box>
         </Stack>
       </Box>
@@ -209,8 +176,8 @@ const Area = ({ userToken }) => {
                 <LabourChartDataGroupedTable
                   data={labourData}
                   categories={
-                    selectedAreas?.length > 0
-                      ? selectedAreas?.map((el) => el.value)
+                    selectedRoles?.length > 0
+                      ? selectedRoles?.map((el) => el.value)
                       : ["all"]
                   }
                 />
@@ -222,8 +189,8 @@ const Area = ({ userToken }) => {
                   height={400}
                   showBar={filters?.chart2ndAxis}
                   categories={
-                    selectedAreas?.length > 0
-                      ? selectedAreas?.map((el) => el.value)
+                    selectedRoles?.length > 0
+                      ? selectedRoles?.map((el) => el.value)
                       : ["all"]
                   }
                 />
@@ -252,4 +219,4 @@ const Area = ({ userToken }) => {
   );
 };
 
-export default Area;
+export default Role;

@@ -164,7 +164,7 @@ const Location = ({ userToken }) => {
               </Stack>
             ) : null}
             <PrintAndCSV data={data} actions={["print"]} />
-            <button onClick={handlePrint}>Call Child Function</button>
+            {/* <button onClick={handlePrint}>Call Child Function</button> */}
 
             {!filters?.switchToChart ? null : (
               <PrintAndCSV

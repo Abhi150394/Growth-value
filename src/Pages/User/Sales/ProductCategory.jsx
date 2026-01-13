@@ -28,9 +28,14 @@ import {
 } from "../../../Utils/commonFunction.js";
 
 const options = [
-  { value: "profile", label: "Profile", icon: FaUser },
-  { value: "settings", label: "Settings", icon: FaCog },
-  { value: "analytics", label: "Analytics", icon: FaChartLine },
+  { value: "guest", label: "Guest", icon: FaUser },
+  { value: "transactions", label: "Transactions", icon: FaCog },
+  {
+    value: "delivery",
+    label: "Delivery",
+    icon: FaChartLine,
+  },
+  { value: "sales", label: "Sales", icon: FaChartLine },
 ];
 
 const ProductCategory = ({ userToken }) => {
@@ -38,6 +43,7 @@ const ProductCategory = ({ userToken }) => {
   const [selectedCatogries, setSelectedCatogries] = useState(null);
   const [salesData, setSalesData] = useState(null);
   const [productCategories, setProductCategories] = useState(null);
+  const [selectedFilterOption, setSelectedFilterOption] = useState(null);
   console.log("filtersfilters", filters);
   const buttonData = [
     { id: 0, title: "Snapshot", type: "snapshot", phase: 1 },
@@ -205,11 +211,11 @@ const ProductCategory = ({ userToken }) => {
           </Stack>
 
           <Box width={{ xs: "100%", lg: "30%" }}>
-            {/* <DynamicDropdown
+            <DynamicDropdown
               options={options}
-              onChange={(opt) => console.log("Selected:", opt)}
+              onChange={(opt) => setSelectedFilterOption(opt.value)}
               width="100%"
-            /> */}
+            />
           </Box>
         </Stack>
       </Box>
@@ -239,6 +245,7 @@ const ProductCategory = ({ userToken }) => {
                 <Box id="grid-section">
                   <ChartDataGroupedTable
                     data={salesData}
+                    selectedFilterOption={selectedFilterOption}
                     categories={
                       selectedCatogries?.length > 0
                         ? selectedCatogries?.map((el) => el.value)
@@ -257,6 +264,7 @@ const ProductCategory = ({ userToken }) => {
                     data={salesData}
                     height={500}
                     showBar={filters?.chart2ndAxis}
+                    selectedFilterOption={selectedFilterOption}
                     categories={
                       selectedCatogries?.length > 0
                         ? selectedCatogries?.map((el) => el.value)

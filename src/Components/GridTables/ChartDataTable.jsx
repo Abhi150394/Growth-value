@@ -63,7 +63,7 @@ const ChartDataGroupedTable = ({ data, categories=["all"] ,selectedFilterOption 
         yoy = Number(yoy.toFixed(2));
         // sales = d.count_ly ? d.count - d.count_ly : d.count || 0;
         sales = v1;
-        console.log("sales", sales, "yoy", yoy);
+        // console.log("sales", sales, "yoy", yoy);
 
         row[`${cat}_sales`] = sales;
         row[`${cat}_yoy`] = yoy.toFixed(1);

@@ -21,6 +21,8 @@ import PartOfDay from "./Pages/User/Operations/PartOfDay";
 import Hour from "./Pages/User/Operations/Hour";
 import LabourArea from "./Pages/User/Labour/Area";
 import LabourLocation from "./Pages/User/Labour/Location";
+import LabourRole from "./Pages/User/Labour/Role";
+import LabourHour from "./Pages/User/Labour/Hour";
 import Finance from "./Pages/User/Finance/Finance";
 import Forecast from "./Pages/User/Forecast/Forecast";
 import LaborDash from "./Pages/User/Labor Dash/LaborDash";
@@ -325,11 +327,11 @@ const APP_ROUTES = [
     render: ({ userToken }) => <ProductDivision userToken={userToken} />,
   },
   {
-    path:"/home/sales/product-item",
-    allowedRoles:["admin","bussiness_leader"],
-    render:({userToken})=><ProductItem userToken={userToken}/>
+    path: "/home/sales/product-item",
+    allowedRoles: ["admin", "bussiness_leader"],
+    render: ({ userToken }) => <ProductItem userToken={userToken} />,
   },
-  { 
+  {
     path: "/home/sales/revenue-center",
     allowedRoles: ["admin", "business_leader", "manager", "vendor"],
     render: ({ userToken }) => <RevenueCenter userToken={userToken} />,
@@ -369,12 +371,22 @@ const APP_ROUTES = [
   // This was only in manager's (unreachable) block earlier, but keeping for future
   {
     path: "/home/labour/location",
-    allowedRoles: ["manager"],
+    allowedRoles: ["admin", "manager"],
     render: ({ userToken }) => <LabourLocation userToken={userToken} />,
   },
   {
+    path: "/home/labour/role",
+    allowedRoles: ["admin", "manager"],
+    render: ({ userToken }) => <LabourRole userToken={userToken} />,
+  },
+  {
+    path:"/home/labour/hour",
+    allowedRoles:["admin","manager"],
+    render:({userToken})=><LabourHour userToken={userToken}/>
+  },
+  {
     path: "home/finance",
-    allowedRoles: ["admin"],
+    allowedRoles: ["admin", "admin"],
     render: ({ userToken }) => <Finance userToken={userToken} />,
   },
   {

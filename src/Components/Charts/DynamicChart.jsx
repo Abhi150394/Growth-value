@@ -64,7 +64,7 @@ const DynamicCategoryChart = ({
         yoy = Number(yoy.toFixed(2));
         // diff = d.count_ly ? d.count - d.count_ly : d.count || 0;
         diff = v1;
-        console.log("diff", diff, "yoy", yoy);
+        // console.log("diff", diff, "yoy", yoy);
         allYoy.push(yoy);
         allDiff.push(diff);
 

@@ -156,3 +156,72 @@ export function aggregateByEachOption(data = {}) {
     ...aggregateSection(rows)
   }));
 }
+
+
+
+function aggregateLabourSection(rows = []) {
+  const sumKeys = [
+    "actual_base_cost",
+    "actual_base_cost_ly",
+    "actual_fully_loaded_cost",
+    "actual_fully_loaded_cost_ly",
+    "actual_shift_num_mins",
+    "actual_shift_num_mins_ly",
+    "forecast_base_cost",
+    "forecast_base_cost_ly",
+    "forecast_fully_loaded_cost",
+    "forecast_fully_loaded_cost_ly",
+    "forecast_shift_num_mins",
+    "forecast_shift_num_mins_ly"
+  ];
+
+  const avgKeys = [
+    "total_employee",
+    "total_employee_ly"
+  ];
+
+  const result = {};
+  const avgCount = {};
+
+  [...sumKeys, ...avgKeys].forEach(k => {
+    result[k] = 0;
+    avgCount[k] = 0;
+  });
+
+  for (const row of rows) {
+    // SUM fields
+    for (const key of sumKeys) {
+      result[key] += Number(row[key] || 0);
+    }
+
+    // AVG fields
+    for (const key of avgKeys) {
+      if (row[key] > 0) {
+        result[key] += Number(row[key]);
+        avgCount[key]++;
+      }
+    }
+  }
+
+  // finalize SUM fields
+  for (const key of sumKeys) {
+    result[key] = +result[key].toFixed(2);
+  }
+
+  // finalize AVG fields
+  for (const key of avgKeys) {
+    result[key] = avgCount[key]
+      ? +(result[key] / avgCount[key]).toFixed(2)
+      : 0;
+  }
+
+  return result;
+}
+
+
+export function aggregateLabourByEachOption(data = {}) {
+  return Object.entries(data).map(([direction, rows]) => ({
+    direction: capitalize(direction),
+    ...aggregateLabourSection(rows)
+  }));
+}
