@@ -361,7 +361,7 @@ const APP_ROUTES = [
   {
     path: "home/operations/hour",
     allowedRoles: ["admin", "regional_manager", "manager"],
-    render: ({ userToken }) => <SalesDashboard userToken={userToken} />,
+    render: ({ userToken }) => <Hour userToken={userToken} />,
   },
   {
     path: "home/labour/area",

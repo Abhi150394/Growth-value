@@ -22,7 +22,8 @@ const DynamicCategoryChart = ({
   height = 600,
   selectedFilterOption = null,
 }) => {
-  //   console.log("categories", categories);
+    console.log("categories", categories);
+    console.log("datadata",data)
   console.log("selectedFilterOption", selectedFilterOption);
   const { chartData, yoyMin, yoyMax, diffMin, diffMax } = useMemo(() => {
     if (!data?.detail) {
@@ -64,7 +65,7 @@ const DynamicCategoryChart = ({
         yoy = Number(yoy.toFixed(2));
         // diff = d.count_ly ? d.count - d.count_ly : d.count || 0;
         diff = v1;
-        // console.log("diff", diff, "yoy", yoy);
+        console.log("diff", diff, "yoy", yoy);
         allYoy.push(yoy);
         allDiff.push(diff);
 
@@ -84,6 +85,7 @@ const DynamicCategoryChart = ({
   }, [data, categories, selectedFilterOption]);
 
   console.log("yoy", yoyMin, yoyMax, "diff", diffMin, diffMax);
+  console.log("chartDatachartData",chartData)
   // Dynamically build series
   const singleCategory = categories.length === 1;
   const series = [];

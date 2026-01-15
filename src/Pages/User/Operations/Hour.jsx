@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ButtonGroup from "../../../Components/Buttons/TopBarControls.jsx";
 import { FilterContext } from "../../../Contexts/FilterContext.js";
 import DateRangeSelector from "../../../Components/DateRange/DateRangeModalViewer.jsx";
@@ -17,16 +17,27 @@ import chartData from "../Sales/DummyData.js";
 import { HourglassBottomOutlined } from "@mui/icons-material";
 import DynamicCategoryChart from "../../../Components/Charts/DynamicChart.jsx";
 import SalesTransactionsTable from "../Sales/SalesSnapshotTable.jsx";
+import { getOperationHoursData } from "../../../API/reportsData.js";
+import { aggregateByEachOption } from "../../../Utils/commonFunction.js";
+import { formatToYMD } from "../../../Utils/dateUtils.js";
+import OperationsHourDynamicCategoryChart from "../../../Components/Charts/Operation/OperationHourChart.jsx";
 
 const options = [
-  { value: "profile", label: "Profile", icon: FaUser },
-  { value: "settings", label: "Settings", icon: FaCog },
-  { value: "analytics", label: "Analytics", icon: FaChartLine },
+  { value: "guest", label: "Guest", icon: FaUser },
+  { value: "guest_total", label: "Guest Total", icon: FaCog },
+  {
+    value: "delivery",
+    label: "Delivery",
+    icon: FaChartLine,
+  },
+  { value: "sales", label: "Sales", icon: FaChartLine },
 ];
 
-const Hour = () => {
+const Hour = ({ userToken }) => {
   const { filters } = useContext(FilterContext);
-  const [selectedAreas, setSelectedAreas] = useState(null);
+  const [selectedDays, setSelectedDays] = useState(null);
+  const [operationsData, setOperationsData] = useState(null);
+  const [selectedFilterOption, setSelectedFilterOption] = useState(null);
   console.log("filtersfilters", filters);
   const buttonData = [
     { id: 0, title: "Snapshot", type: "snapshot", phase: 1 },
@@ -63,6 +74,26 @@ const Hour = () => {
     if (btn.type === "report")
       alert(`Opening ${btn.title} for Phase ${btn.phase}`);
   };
+  useEffect(() => {
+    const fetchOperationsData = async () => {
+      setOperationsData(null);
+      try {
+        const fromDate = formatToYMD(filters?.dateRange?.startDate);
+        const toDate = formatToYMD(filters?.dateRange?.endDate);
+        const data = await getOperationHoursData(userToken, fromDate, toDate);
+        setOperationsData(data?.data);
+      } catch (err) {
+        console.error("Error fetching Shipday data:", err);
+      }
+    };
+
+    fetchOperationsData();
+  }, [filters?.dateRange?.startDate, filters?.dateRange?.endDate]);
+
+  let snapshotTableData;
+  if (operationsData) {
+    snapshotTableData = aggregateByEachOption(operationsData.detail);
+  }
 
   return (
     <Box p={1} mt={1}>
@@ -73,7 +104,7 @@ const Hour = () => {
         <Stack direction="row" spacing={0.5} width="100%">
           <DateRangeSelector />
 
-          <DynamicDropdown
+          {/* <DynamicDropdown
             title="Area"
             icon={FaMapMarkedAlt}
             options={areaOptions}
@@ -91,7 +122,7 @@ const Hour = () => {
               icon={HourglassBottomOutlined}
               options={timePeriod}
             />
-          ) : null}
+          ) : null} */}
         </Stack>
 
         {filters?.topBarSelectedSection?.id === 1 ? (
@@ -101,11 +132,15 @@ const Hour = () => {
               logo="https://cdn-icons-png.flaticon.com/512/25/25694.png"
               title="Areas"
               options={[
-                { value: "south", label: "South" },
-                { value: "east", label: "East" },
-                { value: "west", label: "West" },
+                { value: "monday", label: "Monday" },
+                { value: "tuesday", label: "Tuesday" },
+                { value: "wednesday", label: "Wednesday" },
+                { value: "thursday", label: "Thursday" },
+                { value: "friday", label: "Friday" },
+                { value: "saturday", label: "Saturday" },
+                { value: "sunday", label: "Sunday" },
               ]}
-              onChange={(vals) => setSelectedAreas(vals)}
+              onChange={(vals) => setSelectedDays(vals)}
               width="100%"
             />
           </Box>
@@ -160,7 +195,7 @@ const Hour = () => {
           <Box width={{ xs: "100%", lg: "30%" }}>
             <DynamicDropdown
               options={options}
-              onChange={(opt) => console.log("Selected:", opt)}
+              onChange={(opt) => setSelectedFilterOption(opt.value)}
               width="100%"
             />
           </Box>
@@ -177,23 +212,25 @@ const Hour = () => {
             filters?.switchToChart ? (
               <Box id="grid-section">
                 <ChartDataGroupedTable
-                  data={chartData}
+                  data={operationsData}
+                  selectedFilterOption={selectedFilterOption}
                   categories={
-                    selectedAreas?.length > 0
-                      ? selectedAreas?.map((el) => el.value)
+                    selectedDays?.length > 0
+                      ? selectedDays?.map((el) => el.value)
                       : ["all"]
                   }
                 />
               </Box>
             ) : (
               <Box id="chart-section">
-                <DynamicCategoryChart
-                  data={chartData}
+                <OperationsHourDynamicCategoryChart
+                  data={operationsData}
                   height={500}
+                  selectedFilterOption={selectedFilterOption}
                   showBar={filters?.chart2ndAxis}
                   categories={
-                    selectedAreas?.length > 0
-                      ? selectedAreas?.map((el) => el.value)
+                    selectedDays?.length > 0
+                      ? selectedDays?.map((el) => el.value)
                       : ["all"]
                   }
                 />
@@ -202,7 +239,7 @@ const Hour = () => {
           ) : (
             <Box>
               <SalesTransactionsTable
-                data={chartData}
+                data={snapshotTableData ? snapshotTableData : []}
                 defaultRegion={region}
                 valueFields={valueFields}
                 labelFields={labelFields}

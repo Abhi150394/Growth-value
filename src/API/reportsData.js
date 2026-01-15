@@ -180,6 +180,46 @@ export const getLabourHourData=async (token,fromDate,toDate)=>{
   }
 }
 
+// ======================Operation section=================================================
+export const getOperationDayOfWeekData=async (token,fromDate,toDate)=>{
+  try {
+    const res = await axios.get(
+      `${process.env.REACT_APP_BACKEND_URL}/api/reports/lightspeed/operation-dayOfWeek/`,
+      {
+        headers: {
+          Authorization: `Bearer ${token?.access}`,
+        },
+        params: {
+          start_date: fromDate,
+          end_date: toDate,
+        },
+      }
+    );
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const getOperationHoursData=async (token,fromDate,toDate)=>{
+  try {
+    const res = await axios.get(
+      `${process.env.REACT_APP_BACKEND_URL}/api/reports/lightspeed/operation-hour/`,
+      {
+        headers: {
+          Authorization: `Bearer ${token?.access}`,
+        },
+        params: {
+          start_date: fromDate,
+          end_date: toDate,
+        },
+      }
+    );
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 // ======================Lookup table data=================================================
 export const getSalesProductItemList = async (token) => {

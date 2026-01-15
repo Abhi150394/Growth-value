@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ButtonGroup from "../../../Components/Buttons/TopBarControls.jsx";
 import { FilterContext } from "../../../Contexts/FilterContext.js";
 import DateRangeSelector from "../../../Components/DateRange/DateRangeModalViewer.jsx";
@@ -17,16 +17,26 @@ import chartData from "../Sales/DummyData.js";
 import { HourglassBottomOutlined } from "@mui/icons-material";
 import DynamicCategoryChart from "../../../Components/Charts/DynamicChart.jsx";
 import SalesTransactionsTable from "../Sales/SalesSnapshotTable.jsx";
+import { getOperationDayOfWeekData } from "../../../API/reportsData.js";
+import { formatToYMD } from "../../../Utils/dateUtils.js";
+import { aggregateByEachOption } from "../../../Utils/commonFunction.js";
 
 const options = [
-  { value: "profile", label: "Profile", icon: FaUser },
-  { value: "settings", label: "Settings", icon: FaCog },
-  { value: "analytics", label: "Analytics", icon: FaChartLine },
+  { value: "guest", label: "Guest", icon: FaUser },
+  { value: "transactions", label: "Transactions", icon: FaCog },
+  {
+    value: "delivery",
+    label: "Delivery",
+    icon: FaChartLine,
+  },
+  { value: "sales", label: "Sales", icon: FaChartLine },
 ];
 
-const DayOfWeek = () => {
+const DayOfWeek = ({ userToken }) => {
   const { filters } = useContext(FilterContext);
-  const [selectedAreas, setSelectedAreas] = useState(null);
+  const [selectedDays, setSelectedDays] = useState(null);
+  const [operationsData, setOperationsData] = useState(null);
+  const [selectedFilterOption, setSelectedFilterOption] = useState(null);
   console.log("filtersfilters", filters);
   const buttonData = [
     { id: 0, title: "Snapshot", type: "snapshot", phase: 1 },
@@ -63,6 +73,31 @@ const DayOfWeek = () => {
     if (btn.type === "report")
       alert(`Opening ${btn.title} for Phase ${btn.phase}`);
   };
+
+  useEffect(() => {
+    const fetchOperationsData = async () => {
+      setOperationsData(null);
+      try {
+        const fromDate = formatToYMD(filters?.dateRange?.startDate);
+        const toDate = formatToYMD(filters?.dateRange?.endDate);
+        const data = await getOperationDayOfWeekData(
+          userToken,
+          fromDate,
+          toDate
+        );
+        setOperationsData(data?.data);
+      } catch (err) {
+        console.error("Error fetching Shipday data:", err);
+      }
+    };
+
+    fetchOperationsData();
+  }, [filters?.dateRange?.startDate, filters?.dateRange?.endDate]);
+
+  let snapshotTableData;
+  if (operationsData) {
+    snapshotTableData = aggregateByEachOption(operationsData.detail);
+  }
 
   return (
     <Box p={1} mt={1}>
@@ -101,11 +136,15 @@ const DayOfWeek = () => {
               logo="https://cdn-icons-png.flaticon.com/512/25/25694.png"
               title="Areas"
               options={[
-                { value: "south", label: "South" },
-                { value: "east", label: "East" },
-                { value: "west", label: "West" },
+                { value: "monday", label: "Monday" },
+                { value: "tuesday", label: "Tuesday" },
+                { value: "wednesday", label: "Wednesday" },
+                { value: "thursday", label: "Thursday" },
+                { value: "friday", label: "Friday" },
+                { value: "saturday", label: "Saturday" },
+                { value: "sunday", label: "Sunday" },
               ]}
-              onChange={(vals) => setSelectedAreas(vals)}
+              onChange={(vals) => setSelectedDays(vals)}
               width="100%"
             />
           </Box>
@@ -160,7 +199,7 @@ const DayOfWeek = () => {
           <Box width={{ xs: "100%", lg: "30%" }}>
             <DynamicDropdown
               options={options}
-              onChange={(opt) => console.log("Selected:", opt)}
+              onChange={(opt) => setSelectedFilterOption(opt.value)}
               width="100%"
             />
           </Box>
@@ -177,10 +216,11 @@ const DayOfWeek = () => {
             filters?.switchToChart ? (
               <Box id="grid-section">
                 <ChartDataGroupedTable
-                  data={chartData}
+                  data={operationsData}
+                  selectedFilterOption={selectedFilterOption}
                   categories={
-                    selectedAreas?.length > 0
-                      ? selectedAreas?.map((el) => el.value)
+                    selectedDays?.length > 0
+                      ? selectedDays?.map((el) => el.value)
                       : ["all"]
                   }
                 />
@@ -188,12 +228,13 @@ const DayOfWeek = () => {
             ) : (
               <Box id="chart-section">
                 <DynamicCategoryChart
-                  data={chartData}
+                  data={operationsData}
                   height={500}
+                  selectedFilterOption={selectedFilterOption}
                   showBar={filters?.chart2ndAxis}
                   categories={
-                    selectedAreas?.length > 0
-                      ? selectedAreas?.map((el) => el.value)
+                    selectedDays?.length > 0
+                      ? selectedDays?.map((el) => el.value)
                       : ["all"]
                   }
                 />
@@ -202,7 +243,7 @@ const DayOfWeek = () => {
           ) : (
             <Box>
               <SalesTransactionsTable
-                data={chartData}
+                data={snapshotTableData ? snapshotTableData : []}
                 defaultRegion={region}
                 valueFields={valueFields}
                 labelFields={labelFields}
