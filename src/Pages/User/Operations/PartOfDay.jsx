@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ButtonGroup from "../../../Components/Buttons/TopBarControls.jsx";
 import { FilterContext } from "../../../Contexts/FilterContext.js";
 import DateRangeSelector from "../../../Components/DateRange/DateRangeModalViewer.jsx";
@@ -17,16 +17,26 @@ import chartData from "../Sales/DummyData.js";
 import { HourglassBottomOutlined } from "@mui/icons-material";
 import DynamicCategoryChart from "../../../Components/Charts/DynamicChart.jsx";
 import SalesTransactionsTable from "../Sales/SalesSnapshotTable.jsx";
+import { getOperationPartOfDayData } from "../../../API/reportsData.js";
+import { formatToYMD } from "../../../Utils/dateUtils.js";
+import { aggregateByEachOption } from "../../../Utils/commonFunction.js";
 
 const options = [
-  { value: "profile", label: "Profile", icon: FaUser },
-  { value: "settings", label: "Settings", icon: FaCog },
-  { value: "analytics", label: "Analytics", icon: FaChartLine },
+  { value: "guest", label: "Guest", icon: FaUser },
+  { value: "guest_total", label: "Guest Total", icon: FaCog },
+  {
+    value: "delivery",
+    label: "Delivery",
+    icon: FaChartLine,
+  },
+  { value: "sales", label: "Sales", icon: FaChartLine },
 ];
 
-const PartOfDay = () => {
+const PartOfDay = ({userToken}) => {
   const { filters } = useContext(FilterContext);
   const [selectedAreas, setSelectedAreas] = useState(null);
+  const [operationsData, setOperationsData] = useState(null);
+  const [selectedFilterOption, setSelectedFilterOption] = useState(null);
   console.log("filtersfilters", filters);
   const buttonData = [
     { id: 0, title: "Snapshot", type: "snapshot", phase: 1 },
@@ -64,6 +74,31 @@ const PartOfDay = () => {
       alert(`Opening ${btn.title} for Phase ${btn.phase}`);
   };
 
+  useEffect(() => {
+    const fetchOperationsData = async () => {
+      setOperationsData(null);
+      try {
+        const fromDate = formatToYMD(filters?.dateRange?.startDate);
+        const toDate = formatToYMD(filters?.dateRange?.endDate);
+        const data = await getOperationPartOfDayData(
+          userToken,
+          fromDate,
+          toDate
+        );
+        setOperationsData(data?.data);
+      } catch (err) {
+        console.error("Error fetching Shipday data:", err);
+      }
+    };
+
+    fetchOperationsData();
+  }, [filters?.dateRange?.startDate, filters?.dateRange?.endDate]);
+
+  let snapshotTableData;
+  if (operationsData) {
+    snapshotTableData = aggregateByEachOption(operationsData.detail);
+  }
+
   return (
     <Box p={1} mt={1}>
       <Box mb={1}>
@@ -73,7 +108,7 @@ const PartOfDay = () => {
         <Stack direction="row" spacing={0.5} width="100%">
           <DateRangeSelector />
 
-          <DynamicDropdown
+          {/* <DynamicDropdown
             title="Area"
             icon={FaMapMarkedAlt}
             options={areaOptions}
@@ -91,7 +126,7 @@ const PartOfDay = () => {
               icon={HourglassBottomOutlined}
               options={timePeriod}
             />
-          ) : null}
+          ) : null} */}
         </Stack>
 
         {filters?.topBarSelectedSection?.id === 1 ? (
@@ -101,9 +136,10 @@ const PartOfDay = () => {
               logo="https://cdn-icons-png.flaticon.com/512/25/25694.png"
               title="Areas"
               options={[
-                { value: "south", label: "South" },
-                { value: "east", label: "East" },
-                { value: "west", label: "West" },
+                { value: "breakfast", label: "Breakfast" },
+                { value: "dinner", label: "Dinner" },
+                { value: "lunch", label: "Lunch" },
+                { value: "late_night", label: "Late night" },
               ]}
               onChange={(vals) => setSelectedAreas(vals)}
               width="100%"
@@ -160,7 +196,7 @@ const PartOfDay = () => {
           <Box width={{ xs: "100%", lg: "30%" }}>
             <DynamicDropdown
               options={options}
-              onChange={(opt) => console.log("Selected:", opt)}
+              onChange={(opt) => setSelectedFilterOption(opt.value)}
               width="100%"
             />
           </Box>
@@ -177,7 +213,8 @@ const PartOfDay = () => {
             filters?.switchToChart ? (
               <Box id="grid-section">
                 <ChartDataGroupedTable
-                  data={chartData}
+                  data={operationsData}
+                  selectedFilterOption={selectedFilterOption}
                   categories={
                     selectedAreas?.length > 0
                       ? selectedAreas?.map((el) => el.value)
@@ -188,8 +225,9 @@ const PartOfDay = () => {
             ) : (
               <Box id="chart-section">
                 <DynamicCategoryChart
-                  data={chartData}
+                  data={operationsData}
                   height={500}
+                  selectedFilterOption={selectedFilterOption}
                   showBar={filters?.chart2ndAxis}
                   categories={
                     selectedAreas?.length > 0
@@ -202,7 +240,7 @@ const PartOfDay = () => {
           ) : (
             <Box>
               <SalesTransactionsTable
-                data={chartData}
+                data={snapshotTableData}
                 defaultRegion={region}
                 valueFields={valueFields}
                 labelFields={labelFields}
@@ -212,7 +250,7 @@ const PartOfDay = () => {
                     ? filters?.searchedValue
                     : null
                 }
-                sectionName="Division"
+                sectionName="Part of day"
               />
             </Box>
           )}

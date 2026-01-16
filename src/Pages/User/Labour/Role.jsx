@@ -26,14 +26,20 @@ import { aggregateByEachOption, aggregateLabourByEachOption } from "../../../Uti
 
 
 const options = [
-  { value: "profile", label: "Profile", icon: FaUser },
-  { value: "settings", label: "Settings", icon: FaCog },
-  { value: "analytics", label: "Analytics", icon: FaChartLine },
+  { value: "actual_hours", label: "Guest", icon: FaUser },
+  { value: "labour", label: "Employee", icon: FaCog },
+  {
+    value: "base_cost",
+    label: "Base cost",
+    icon: FaChartLine,
+  },
+  { value: "fully_loaded_cost", label: "Fully loaded cost", icon: FaChartLine },
 ];
 
 const Role = ({ userToken }) => {
   const { filters } = useContext(FilterContext);
   const [selectedRoles, setSelectedRoles] = useState(null);
+  const [selectedFilterOption, setSelectedFilterOption] = useState(null);
   const [labourData,setLabourData]=useState()
 
   console.log("filtersfilters", filters);
@@ -157,7 +163,7 @@ const Role = ({ userToken }) => {
           <Box width={{ xs: "100%", lg: "30%" }}>
             <DynamicDropdown
               options={options}
-              onChange={(opt) => console.log("Selected:", opt)}
+              onChange={(opt) => setSelectedFilterOption(opt.value)}
               width="100%"
             />
           </Box>
@@ -175,6 +181,7 @@ const Role = ({ userToken }) => {
               <Box id="grid-section">
                 <LabourChartDataGroupedTable
                   data={labourData}
+                  selectedFilterOption={selectedFilterOption}
                   categories={
                     selectedRoles?.length > 0
                       ? selectedRoles?.map((el) => el.value)
@@ -187,6 +194,7 @@ const Role = ({ userToken }) => {
                 <LabourDynamicCategoryChart
                   data={labourData}
                   height={400}
+                  selectedFilterOption={selectedFilterOption}
                   showBar={filters?.chart2ndAxis}
                   categories={
                     selectedRoles?.length > 0
@@ -209,7 +217,7 @@ const Role = ({ userToken }) => {
                     ? filters?.searchedValue
                     : null
                 }
-                sectionName="Division"
+                sectionName="Role"
               />
             </Box>
           )}

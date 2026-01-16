@@ -9,9 +9,6 @@
                 "menuName": "Location"
             },
             {
-                "menuName": "Product Division"
-            },
-            {
                 "menuName": "Product Category"
             },
             {
@@ -19,9 +16,6 @@
             },
             {
                 "menuName": "Order Type"
-            },
-            {
-                "menuName": "Revenue Center"
             }
         ],
         "menuName": "Sales"
@@ -49,9 +43,6 @@
             },
             {
                 "menuName": "Location"
-            },
-            {
-                "menuName": "House Part"
             },
             {
                 "menuName": "Role"

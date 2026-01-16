@@ -11,7 +11,7 @@ const LabourDynamicCategoryChart = ({
   height = 600,
   selectedFilterOption = null,
 }) => {
-  
+  console.log("datadata",data)
   console.log("selectedFilterOption", selectedFilterOption);
   const { chartData, yoyMin, yoyMax, diffMin, diffMax } = useMemo(() => {
     if (!data?.detail) {

@@ -253,7 +253,7 @@ const DayOfWeek = ({ userToken }) => {
                     ? filters?.searchedValue
                     : null
                 }
-                sectionName="Division"
+                sectionName="Day of Week"
               />
             </Box>
           )}

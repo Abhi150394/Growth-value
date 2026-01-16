@@ -28,14 +28,20 @@ import LabourHourChartDataGroupedTable from "../../../Components/GridTables/labo
 
 
 const options = [
-  { value: "profile", label: "Profile", icon: FaUser },
-  { value: "settings", label: "Settings", icon: FaCog },
-  { value: "analytics", label: "Analytics", icon: FaChartLine },
+  { value: "actual_hours", label: "Guest", icon: FaUser },
+  { value: "labour", label: "Employee", icon: FaCog },
+  {
+    value: "base_cost",
+    label: "Base cost",
+    icon: FaChartLine,
+  },
+  { value: "fully_loaded_cost", label: "Fully loaded cost", icon: FaChartLine },
 ];
 
 const Hour = ({ userToken }) => {
   const { filters } = useContext(FilterContext);
   const [selectedHours, setSelectedHours] = useState(null);
+  const [selectedFilterOption, setSelectedFilterOption] = useState(null);
   const [labourData,setLabourData]=useState()
 
   console.log("filtersfilters", filters);
@@ -161,11 +167,11 @@ console.log("labourDatalabourData",labourData)
           </Stack>
 
           <Box width={{ xs: "100%", lg: "30%" }}>
-            {/* <DynamicDropdown
+            <DynamicDropdown
               options={options}
-              onChange={(opt) => console.log("Selected:", opt)}
+              onChange={(opt) => setSelectedFilterOption(opt.value)}
               width="100%"
-            /> */}
+            />
           </Box>
         </Stack>
       </Box>
@@ -181,6 +187,7 @@ console.log("labourDatalabourData",labourData)
               <Box id="grid-section">
                 <LabourHourChartDataGroupedTable
                   data={labourData}
+                  selectedFilterOption={selectedFilterOption}
                   categories={
                     selectedHours?.length > 0
                       ? selectedHours?.map((el) => el.value)
@@ -194,6 +201,7 @@ console.log("labourDatalabourData",labourData)
                   data={labourData}
                   height={400}
                   showBar={filters?.chart2ndAxis}
+                  selectedFilterOption={selectedFilterOption}
                   categories={
                     selectedHours?.length > 0
                       ? selectedHours?.map((el) => el.value)
@@ -215,7 +223,7 @@ console.log("labourDatalabourData",labourData)
                     ? filters?.searchedValue
                     : null
                 }
-                sectionName="Division"
+                sectionName="Hour"
               />
             </Box>
           )}

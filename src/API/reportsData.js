@@ -221,6 +221,25 @@ export const getOperationHoursData=async (token,fromDate,toDate)=>{
   }
 }
 
+export const getOperationPartOfDayData=async (token,fromDate,toDate)=>{
+  try {
+    const res = await axios.get(
+      `${process.env.REACT_APP_BACKEND_URL}/api/reports/lightspeed/operation-partOfDay/`,
+      {
+        headers: {
+          Authorization: `Bearer ${token?.access}`,
+        },
+        params: {
+          start_date: fromDate,
+          end_date: toDate,
+        },
+      }
+    );
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
+}
 // ======================Lookup table data=================================================
 export const getSalesProductItemList = async (token) => {
   try {

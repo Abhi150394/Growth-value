@@ -27,14 +27,20 @@ import { aggregateByEachOption, aggregateLabourByEachOption } from "../../../Uti
 // import SalesTransactionsTable from "./SalesSnapshotTable.jsx";
 
 const options = [
-  { value: "profile", label: "Profile", icon: FaUser },
-  { value: "settings", label: "Settings", icon: FaCog },
-  { value: "analytics", label: "Analytics", icon: FaChartLine },
+  { value: "actual_hours", label: "Guest", icon: FaUser },
+  { value: "labour", label: "Employee", icon: FaCog },
+  {
+    value: "base_cost",
+    label: "Base cost",
+    icon: FaChartLine,
+  },
+  { value: "fully_loaded_cost", label: "Fully loaded cost", icon: FaChartLine },
 ];
 
 const Area = ({ userToken }) => {
   const { filters } = useContext(FilterContext);
   const [selectedAreas, setSelectedAreas] = useState(null);
+    const [selectedFilterOption, setSelectedFilterOption] = useState(null);
   const [labourData,setLabourData]=useState()
 
   console.log("filtersfilters", filters);
@@ -188,11 +194,11 @@ const Area = ({ userToken }) => {
           </Stack>
 
           <Box width={{ xs: "100%", lg: "30%" }}>
-            {/* <DynamicDropdown
+            <DynamicDropdown
               options={options}
-              onChange={(opt) => console.log("Selected:", opt)}
+              onChange={(opt) => setSelectedFilterOption(opt.value)}
               width="100%"
-            /> */}
+            />
           </Box>
         </Stack>
       </Box>
@@ -208,6 +214,7 @@ const Area = ({ userToken }) => {
               <Box id="grid-section">
                 <LabourChartDataGroupedTable
                   data={labourData}
+                  selectedFilterOption={selectedFilterOption}
                   categories={
                     selectedAreas?.length > 0
                       ? selectedAreas?.map((el) => el.value)
@@ -220,6 +227,7 @@ const Area = ({ userToken }) => {
                 <LabourDynamicCategoryChart
                   data={labourData}
                   height={400}
+                  selectedFilterOption={selectedFilterOption}
                   showBar={filters?.chart2ndAxis}
                   categories={
                     selectedAreas?.length > 0
@@ -242,7 +250,7 @@ const Area = ({ userToken }) => {
                     ? filters?.searchedValue
                     : null
                 }
-                sectionName="Division"
+                sectionName="Area"
               />
             </Box>
           )}

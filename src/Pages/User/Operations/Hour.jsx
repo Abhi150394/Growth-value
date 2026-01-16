@@ -249,7 +249,7 @@ const Hour = ({ userToken }) => {
                     ? filters?.searchedValue
                     : null
                 }
-                sectionName="Division"
+                sectionName="Hour"
               />
             </Box>
           )}
