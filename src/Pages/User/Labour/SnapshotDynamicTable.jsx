@@ -30,6 +30,24 @@ const LabourSnapshotTransactionsTable = forwardRef(
     },
     ref
   ) => {
+    console.log("selectedFilterOption", selectedFilterOption);
+    console.log("datadata", data);
+
+    if (selectedFilterOption === "guest") {
+      valueFields = ["guest_total", "guest_count"];
+      labelFields = ["Total Customer, $", "Sales"];
+    } else if (selectedFilterOption === "delivery") {
+      valueFields = ["guest_total", "time_to_serve"];
+      labelFields = ["Sales, $", "Delivery"];
+    } else if (selectedFilterOption === "sales") {
+      valueFields = ["guest_total", "total"];
+      labelFields = ["Sales, $", "Delivery"];
+    } else {
+      valueFields = ["actual_base_cost", "actual_shift_num_mins"];
+      labelFields = ["Sales, $", "Transactions"]
+      labelFields = ["Sales, $", "Total Orders"];
+    }
+    
     const gridApi = useRef(null);
     const [pageSize, setPageSize] = useState(10);
     const [currentPage, setCurrentPage] = useState(0);
@@ -142,7 +160,7 @@ const LabourSnapshotTransactionsTable = forwardRef(
       { value: 10, label: "10" },
       { value: 20, label: "20" },
     ];
-console.log("tableData, columnDefs ",tableData, columnDefs )
+    console.log("tableData, columnDefs ", tableData, columnDefs);
     const onGridReady = (params) => {
       gridApi.current = params.api;
       params.api.setGridOption("paginationPageSize", pageSize);

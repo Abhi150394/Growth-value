@@ -22,10 +22,12 @@ import { formatToYMD } from "../../../Utils/dateUtils.js";
 import LabourSnapshotTransactionsTable from "./SnapshotDynamicTable.jsx";
 import LabourDynamicCategoryChart from "../../../Components/Charts/labour/LabourDynamicChart.jsx";
 import LabourChartDataGroupedTable from "../../../Components/GridTables/labour/LabourChartDataTable.jsx";
-import { aggregateByEachOption, aggregateLabourByEachOption } from "../../../Utils/commonFunction.js";
+import {
+  aggregateByEachOption,
+  aggregateLabourByEachOption,
+} from "../../../Utils/commonFunction.js";
 import LabourHourDynamicCategoryChart from "../../../Components/Charts/labour/LabourHourChart.jsx";
 import LabourHourChartDataGroupedTable from "../../../Components/GridTables/labour/LabourHourDataTable.jsx";
-
 
 const options = [
   { value: "actual_hours", label: "Guest", icon: FaUser },
@@ -42,7 +44,7 @@ const Hour = ({ userToken }) => {
   const { filters } = useContext(FilterContext);
   const [selectedHours, setSelectedHours] = useState(null);
   const [selectedFilterOption, setSelectedFilterOption] = useState(null);
-  const [labourData,setLabourData]=useState()
+  const [labourData, setLabourData] = useState();
 
   console.log("filtersfilters", filters);
   const buttonData = [
@@ -70,21 +72,21 @@ const Hour = ({ userToken }) => {
       alert(`Opening ${btn.title} for Phase ${btn.phase}`);
   };
   useEffect(() => {
-      const fetchLabourData = async () => {
-        setLabourData(null);
-        try {
-          const fromDate = formatToYMD(filters?.dateRange?.startDate);
-          const toDate = formatToYMD(filters?.dateRange?.endDate);
-          const data = await getLabourHourData(userToken, fromDate, toDate);
-          setLabourData(data?.data);
-        } catch (err) {
-          console.error("Error fetching Shipday data:", err);
-        }
-      };
-  
-      fetchLabourData();
-    }, [filters?.dateRange?.startDate, filters?.dateRange?.endDate]);
-console.log("labourDatalabourData",labourData)
+    const fetchLabourData = async () => {
+      setLabourData(null);
+      try {
+        const fromDate = formatToYMD(filters?.dateRange?.startDate);
+        const toDate = formatToYMD(filters?.dateRange?.endDate);
+        const data = await getLabourHourData(userToken, fromDate, toDate);
+        setLabourData(data?.data);
+      } catch (err) {
+        console.error("Error fetching Shipday data:", err);
+      }
+    };
+
+    fetchLabourData();
+  }, [filters?.dateRange?.startDate, filters?.dateRange?.endDate]);
+  console.log("labourDatalabourData", labourData);
   let snapshotTableData;
   if (labourData) {
     snapshotTableData = aggregateLabourByEachOption(labourData.detail);
@@ -147,15 +149,19 @@ console.log("labourDatalabourData",labourData)
                 {!filters?.switchToChart ? <ToggleSwitchButton /> : null}
               </Stack>
             ) : null}
-            <PrintAndCSV data={data} actions={["print"]} />
+            {filters?.topBarSelectedSection?.id === 1 &&
+              !filters?.switchToChart && (
+                <PrintAndCSV data={data} actions={["print"]} />
+              )}
 
-            {!filters?.switchToChart ? null : (
-              <PrintAndCSV
-                data={[chartData.detail]}
-                contentId="print-section"
-                actions={["csv"]}
-              />
-            )}
+            {filters?.topBarSelectedSection?.id === 1 &&
+              !filters?.switchToChart && (
+                <PrintAndCSV
+                  data={[chartData.detail]}
+                  contentId="print-section"
+                  actions={["csv"]}
+                />
+              )}
 
             {filters?.switchToChart &&
             filters?.topBarSelectedSection?.id === 1 ? (
@@ -176,58 +182,74 @@ console.log("labourDatalabourData",labourData)
         </Stack>
       </Box>
       <Box>
-        <Box
-          style={{
-            width: "100%",
-            marginTop: "10px",
-          }}
-        >
-          {filters?.topBarSelectedSection?.id === 1 ? (
-            filters?.switchToChart ? (
-              <Box id="grid-section">
-                <LabourHourChartDataGroupedTable
-                  data={labourData}
-                  selectedFilterOption={selectedFilterOption}
-                  categories={
-                    selectedHours?.length > 0
-                      ? selectedHours?.map((el) => el.value)
-                      : ["all"]
-                  }
-                />
-              </Box>
+        {labourData?.length < 1 || !labourData ? (
+          <Box
+            direction={{ xs: "column", md: "column", lg: "row" }}
+            justifyContent="center"
+            alignItems="center"
+            sx={{ width: "100%", height: "100%", textAlign: "center" }}
+          >
+            <img
+              src="/gif/growthValue_animated_loader.gif"
+              style={{ width: "200px", height: "200px" }}
+              alt="Loading..."
+            />
+          </Box>
+        ) : (
+          <Box
+            style={{
+              width: "100%",
+              marginTop: "10px",
+            }}
+          >
+            {filters?.topBarSelectedSection?.id === 1 ? (
+              filters?.switchToChart ? (
+                <Box id="grid-section">
+                  <LabourHourChartDataGroupedTable
+                    data={labourData}
+                    selectedFilterOption={selectedFilterOption}
+                    categories={
+                      selectedHours?.length > 0
+                        ? selectedHours?.map((el) => el.value)
+                        : ["all"]
+                    }
+                  />
+                </Box>
+              ) : (
+                <Box id="chart-section">
+                  <LabourHourDynamicCategoryChart
+                    data={labourData}
+                    height={400}
+                    showBar={filters?.chart2ndAxis}
+                    selectedFilterOption={selectedFilterOption}
+                    categories={
+                      selectedHours?.length > 0
+                        ? selectedHours?.map((el) => el.value)
+                        : ["all"]
+                    }
+                  />
+                </Box>
+              )
             ) : (
-              <Box id="chart-section">
-                <LabourHourDynamicCategoryChart
-                  data={labourData}
-                  height={400}
-                  showBar={filters?.chart2ndAxis}
+              <Box>
+                <LabourSnapshotTransactionsTable
+                  data={snapshotTableData ? snapshotTableData : []}
+                  defaultRegion={region}
+                  valueFields={valueFields}
+                  labelFields={labelFields}
                   selectedFilterOption={selectedFilterOption}
-                  categories={
-                    selectedHours?.length > 0
-                      ? selectedHours?.map((el) => el.value)
-                      : ["all"]
+                  COLORS={{ green: "#2ecc71", red: "#e74c3c" }}
+                  searchText={
+                    filters?.searchedValue?.length > 0
+                      ? filters?.searchedValue
+                      : null
                   }
+                  sectionName="Hour"
                 />
               </Box>
-            )
-          ) : (
-            <Box>
-              <LabourSnapshotTransactionsTable
-                data={snapshotTableData?snapshotTableData:[]}
-                defaultRegion={region}
-                valueFields={valueFields}
-                labelFields={labelFields}
-                COLORS={{ green: "#2ecc71", red: "#e74c3c" }}
-                searchText={
-                  filters?.searchedValue?.length > 0
-                    ? filters?.searchedValue
-                    : null
-                }
-                sectionName="Hour"
-              />
-            </Box>
-          )}
-        </Box>
+            )}
+          </Box>
+        )}
       </Box>
     </Box>
   );

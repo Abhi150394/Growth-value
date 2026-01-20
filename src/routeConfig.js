@@ -33,6 +33,10 @@ import Plans from "./Pages/User/Payment/Plans";
 import Success from "./Pages/User/Payment/Success";
 import SalesDashboard from "./Pages/User/Sales/TestingWithRealData";
 import ProductItem from "./Pages/User/Sales/ProductItem";
+import InventoryLocation from "./Pages/User/Inventory/Location";
+import InventoryCategory from "./Pages/User/Inventory/Category";
+import InventoryItem from "./Pages/User/Inventory/Item";
+import InventoryVendor from "./Pages/User/Inventory/Vendor";
 
 /**
  * Route config:
@@ -384,6 +388,26 @@ const APP_ROUTES = [
     allowedRoles:["admin","manager"],
     render:({userToken})=><LabourHour userToken={userToken}/>
   },
+  {
+    path:"/home/inventory/location",
+    allowedRoles:["admin","manager"],
+    render:({userToken})=><InventoryLocation userToken={userToken}/>
+  },
+  // {
+  //   path:"/home/inventory/category",
+  //   allowedRoles:["admin","manager"],
+  //   render:({userToken})=><InventoryCategory userToken={userToken}/>
+  // },
+  // {
+  //   path:"/home/inventory/item",
+  //   allowedRoles:["admin","manager"],
+  //   render:({userToken})=><InventoryItem userToken={userToken}/>
+  // },
+  // {
+  //   path:"/home/inventory/vendor",
+  //   allowedRoles:["admin","manager"],
+  //   render:({userToken})=><InventoryVendor userToken={userToken}/>
+  // },
   {
     path: "home/finance",
     allowedRoles: ["admin", "admin"],

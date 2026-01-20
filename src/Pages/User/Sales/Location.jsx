@@ -163,16 +163,19 @@ const Location = ({ userToken }) => {
                 {!filters?.switchToChart ? <ToggleSwitchButton /> : null}
               </Stack>
             ) : null}
-            <PrintAndCSV data={data} actions={["print"]} />
-            {/* <button onClick={handlePrint}>Call Child Function</button> */}
+            {filters?.topBarSelectedSection?.id === 1 &&
+              !filters?.switchToChart && (
+                <PrintAndCSV data={data} actions={["print"]} />
+              )}
 
-            {!filters?.switchToChart ? null : (
-              <PrintAndCSV
-                data={[chartData.detail]}
-                contentId="print-section"
-                actions={["csv"]}
-              />
-            )}
+            {filters?.topBarSelectedSection?.id === 1 &&
+              !filters?.switchToChart && (
+                <PrintAndCSV
+                  data={[chartData.detail]}
+                  contentId="print-section"
+                  actions={["csv"]}
+                />
+              )}
 
             {filters?.switchToChart &&
             filters?.topBarSelectedSection?.id === 1 ? (
@@ -186,7 +189,7 @@ const Location = ({ userToken }) => {
           <Box width={{ xs: "100%", lg: "30%" }}>
             <DynamicDropdown
               options={options}
-              onChange={(opt) => console.log("Selected:", opt)}
+              onChange={(opt) => setSelectedFilterOption(opt.value)}
               width="100%"
             />
           </Box>
@@ -218,6 +221,7 @@ const Location = ({ userToken }) => {
                 <Box id="grid-section">
                   <ChartDataGroupedTable
                     data={salesdata}
+                    selectedFilterOption={selectedFilterOption}
                     categories={
                       selectedAreas?.length > 0
                         ? selectedAreas?.map((el) => el.value)
@@ -235,6 +239,7 @@ const Location = ({ userToken }) => {
                   <DynamicCategoryChart
                     data={salesdata}
                     height={500}
+                    selectedFilterOption={selectedFilterOption}
                     showBar={filters?.chart2ndAxis}
                     categories={
                       selectedAreas?.length > 0
@@ -252,6 +257,7 @@ const Location = ({ userToken }) => {
                   defaultRegion={region}
                   valueFields={valueFields}
                   labelFields={labelFields}
+                  selectedFilterOption={selectedFilterOption}
                   COLORS={{ green: "#2ecc71", red: "#e74c3c" }}
                   searchText={
                     filters?.searchedValue?.length > 0

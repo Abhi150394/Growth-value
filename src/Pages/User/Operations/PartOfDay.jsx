@@ -32,7 +32,7 @@ const options = [
   { value: "sales", label: "Sales", icon: FaChartLine },
 ];
 
-const PartOfDay = ({userToken}) => {
+const PartOfDay = ({ userToken }) => {
   const { filters } = useContext(FilterContext);
   const [selectedAreas, setSelectedAreas] = useState(null);
   const [operationsData, setOperationsData] = useState(null);
@@ -174,15 +174,19 @@ const PartOfDay = ({userToken}) => {
                 {!filters?.switchToChart ? <ToggleSwitchButton /> : null}
               </Stack>
             ) : null}
-            <PrintAndCSV data={data} actions={["print"]} />
+            {filters?.topBarSelectedSection?.id === 1 &&
+              !filters?.switchToChart && (
+                <PrintAndCSV data={data} actions={["print"]} />
+              )}
 
-            {!filters?.switchToChart ? null : (
-              <PrintAndCSV
-                data={[chartData.detail]}
-                contentId="print-section"
-                actions={["csv"]}
-              />
-            )}
+            {filters?.topBarSelectedSection?.id === 1 &&
+              !filters?.switchToChart && (
+                <PrintAndCSV
+                  data={[chartData.detail]}
+                  contentId="print-section"
+                  actions={["csv"]}
+                />
+              )}
 
             {filters?.switchToChart &&
             filters?.topBarSelectedSection?.id === 1 ? (
@@ -203,58 +207,73 @@ const PartOfDay = ({userToken}) => {
         </Stack>
       </Box>
       <Box>
-        <Box
-          style={{
-            width: "100%",
-            marginTop: "10px",
-          }}
-        >
-          {filters?.topBarSelectedSection?.id === 1 ? (
-            filters?.switchToChart ? (
-              <Box id="grid-section">
-                <ChartDataGroupedTable
-                  data={operationsData}
-                  selectedFilterOption={selectedFilterOption}
-                  categories={
-                    selectedAreas?.length > 0
-                      ? selectedAreas?.map((el) => el.value)
-                      : ["all"]
-                  }
-                />
-              </Box>
+        {operationsData?.length < 1 || !operationsData ? (
+          <Box
+            direction={{ xs: "column", md: "column", lg: "row" }}
+            justifyContent="center"
+            alignItems="center"
+            sx={{ width: "100%", height: "100%", textAlign: "center" }}
+          >
+            <img
+              src="/gif/growthValue_animated_loader.gif"
+              style={{ width: "200px", height: "200px" }}
+              alt="Loading..."
+            />
+          </Box>
+        ) : (
+          <Box
+            style={{
+              width: "100%",
+              marginTop: "10px",
+            }}
+          >
+            {filters?.topBarSelectedSection?.id === 1 ? (
+              filters?.switchToChart ? (
+                <Box id="grid-section">
+                  <ChartDataGroupedTable
+                    data={operationsData}
+                    selectedFilterOption={selectedFilterOption}
+                    categories={
+                      selectedAreas?.length > 0
+                        ? selectedAreas?.map((el) => el.value)
+                        : ["all"]
+                    }
+                  />
+                </Box>
+              ) : (
+                <Box id="chart-section">
+                  <DynamicCategoryChart
+                    data={operationsData}
+                    height={500}
+                    selectedFilterOption={selectedFilterOption}
+                    showBar={filters?.chart2ndAxis}
+                    categories={
+                      selectedAreas?.length > 0
+                        ? selectedAreas?.map((el) => el.value)
+                        : ["all"]
+                    }
+                  />
+                </Box>
+              )
             ) : (
-              <Box id="chart-section">
-                <DynamicCategoryChart
-                  data={operationsData}
-                  height={500}
-                  selectedFilterOption={selectedFilterOption}
-                  showBar={filters?.chart2ndAxis}
-                  categories={
-                    selectedAreas?.length > 0
-                      ? selectedAreas?.map((el) => el.value)
-                      : ["all"]
+              <Box>
+                <SalesTransactionsTable
+                  data={snapshotTableData}
+                  defaultRegion={region}
+                  valueFields={valueFields}
+                  labelFields={labelFields}
+                  COLORS={{ green: "#2ecc71", red: "#e74c3c" }}
+                  searchText={
+                    filters?.searchedValue?.length > 0
+                      ? filters?.searchedValue
+                      : null
                   }
+                  sectionName="Part of day"
                 />
               </Box>
-            )
-          ) : (
-            <Box>
-              <SalesTransactionsTable
-                data={snapshotTableData}
-                defaultRegion={region}
-                valueFields={valueFields}
-                labelFields={labelFields}
-                COLORS={{ green: "#2ecc71", red: "#e74c3c" }}
-                searchText={
-                  filters?.searchedValue?.length > 0
-                    ? filters?.searchedValue
-                    : null
-                }
-                sectionName="Part of day"
-              />
-            </Box>
-          )}
-        </Box>
+            )}
+          </Box>
+        )}
       </Box>
     </Box>
   );

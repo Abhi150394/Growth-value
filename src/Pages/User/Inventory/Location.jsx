@@ -13,37 +13,45 @@ import { FaUser, FaCog, FaChartLine, FaMapMarkedAlt } from "react-icons/fa";
 import { HiLocationMarker } from "react-icons/hi";
 import SearchBar from "../../../Components/Buttons/SearchBar.jsx";
 import ChartDataGroupedTable from "../../../Components/GridTables/ChartDataTable.jsx";
-import chartData from "../Sales/DummyData.js";
+// import chartData from "./DummyData.js";
 import { HourglassBottomOutlined } from "@mui/icons-material";
 import DynamicCategoryChart from "../../../Components/Charts/DynamicChart.jsx";
 import SalesTransactionsTable from "../Sales/SalesSnapshotTable.jsx";
-import { getOperationHoursData } from "../../../API/reportsData.js";
-import { aggregateByEachOption } from "../../../Utils/commonFunction.js";
+import chartData from "../../../Components/Charts/dummyChartData.js";
+import { getLabourLocationData } from "../../../API/reportsData.js";
 import { formatToYMD } from "../../../Utils/dateUtils.js";
-import OperationsHourDynamicCategoryChart from "../../../Components/Charts/Operation/OperationHourChart.jsx";
+import LabourDynamicCategoryChart from "../../../Components/Charts/labour/LabourDynamicChart.jsx";
+import LabourChartDataGroupedTable from "../../../Components/GridTables/labour/LabourChartDataTable.jsx";
+import {
+  aggregateByEachOption,
+  aggregateLabourByEachOption,
+} from "../../../Utils/commonFunction.js";
+import LabourSnapshotTransactionsTable from "../Labour/SnapshotDynamicTable.jsx";
+// import SalesTransactionsTable from "./SalesSnapshotTable.jsx";
 
 const options = [
-  { value: "guest", label: "Guest", icon: FaUser },
-  { value: "guest_total", label: "Guest Total", icon: FaCog },
+  { value: "actual_hours", label: "Guest", icon: FaUser },
+  { value: "labour", label: "Employee", icon: FaCog },
   {
-    value: "delivery",
-    label: "Delivery",
+    value: "base_cost",
+    label: "Base cost",
     icon: FaChartLine,
   },
-  { value: "sales", label: "Sales", icon: FaChartLine },
+  { value: "fully_loaded_cost", label: "Fully loaded cost", icon: FaChartLine },
 ];
 
-const Hour = ({ userToken }) => {
+const InventoryLocation = ({ userToken }) => {
   const { filters } = useContext(FilterContext);
-  const [selectedDays, setSelectedDays] = useState(null);
-  const [operationsData, setOperationsData] = useState(null);
+  const [selectedLocations, setSelectedLocations] = useState(null);
   const [selectedFilterOption, setSelectedFilterOption] = useState(null);
+  const [labourData, setLabourData] = useState();
+
   console.log("filtersfilters", filters);
   const buttonData = [
     { id: 0, title: "Snapshot", type: "snapshot", phase: 1 },
     { id: 1, title: "Trends", type: "trends", phase: 2 },
   ];
-  const areaOptions = [
+  const LocationOptions = [
     { value: "north", label: "North" },
     { value: "south", label: "South" },
     { value: "east", label: "East" },
@@ -66,8 +74,8 @@ const Hour = ({ userToken }) => {
   ];
 
   const [region, setRegion] = useState("overall");
-  const valueFields = ["guest_total", "count"]; // fields to show
-  const labelFields = ["Sales, $", "Transactions"];
+  const valueFields = ["actual_base_cost", "actual_shift_num_mins"]; // fields to show
+  const labelFields = ["Acctual Cost, $", "Working minutes"];
   let dummyText = `Lorem ipsum, dolor sit amet consectetur...`;
 
   const handleButtonClick = (btn) => {
@@ -75,26 +83,25 @@ const Hour = ({ userToken }) => {
       alert(`Opening ${btn.title} for Phase ${btn.phase}`);
   };
   useEffect(() => {
-    const fetchOperationsData = async () => {
-      setOperationsData(null);
+    const fetchLabourData = async () => {
+      setLabourData(null);
       try {
         const fromDate = formatToYMD(filters?.dateRange?.startDate);
         const toDate = formatToYMD(filters?.dateRange?.endDate);
-        const data = await getOperationHoursData(userToken, fromDate, toDate);
-        setOperationsData(data?.data);
+        const data = await getLabourLocationData(userToken, fromDate, toDate);
+        setLabourData(data?.data);
       } catch (err) {
         console.error("Error fetching Shipday data:", err);
       }
     };
 
-    fetchOperationsData();
+    fetchLabourData();
   }, [filters?.dateRange?.startDate, filters?.dateRange?.endDate]);
 
   let snapshotTableData;
-  if (operationsData) {
-    snapshotTableData = aggregateByEachOption(operationsData.detail);
+  if (labourData) {
+    snapshotTableData = aggregateLabourByEachOption(labourData.detail);
   }
-
   return (
     <Box p={1} mt={1}>
       <Box mb={1}>
@@ -104,10 +111,10 @@ const Hour = ({ userToken }) => {
         <Stack direction="row" spacing={0.5} width="100%">
           <DateRangeSelector />
 
-          {/* <DynamicDropdown
-            title="Area"
+          <DynamicDropdown
+            title="Location"
             icon={FaMapMarkedAlt}
-            options={areaOptions}
+            options={LocationOptions}
             isClearable={true}
           />
 
@@ -122,7 +129,7 @@ const Hour = ({ userToken }) => {
               icon={HourglassBottomOutlined}
               options={timePeriod}
             />
-          ) : null} */}
+          ) : null}
         </Stack>
 
         {filters?.topBarSelectedSection?.id === 1 ? (
@@ -130,17 +137,13 @@ const Hour = ({ userToken }) => {
             <AutoCompleteDropdown
               showLogoTitle
               logo="https://cdn-icons-png.flaticon.com/512/25/25694.png"
-              title="Areas"
+              title="Locations"
               options={[
-                { value: "monday", label: "Monday" },
-                { value: "tuesday", label: "Tuesday" },
-                { value: "wednesday", label: "Wednesday" },
-                { value: "thursday", label: "Thursday" },
-                { value: "friday", label: "Friday" },
-                { value: "saturday", label: "Saturday" },
-                { value: "sunday", label: "Sunday" },
+                { value: "south", label: "South" },
+                { value: "east", label: "East" },
+                { value: "west", label: "West" },
               ]}
-              onChange={(vals) => setSelectedDays(vals)}
+              onChange={(vals) => setSelectedLocations(vals)}
               width="100%"
             />
           </Box>
@@ -173,19 +176,15 @@ const Hour = ({ userToken }) => {
                 {!filters?.switchToChart ? <ToggleSwitchButton /> : null}
               </Stack>
             ) : null}
-            {filters?.topBarSelectedSection?.id === 1 &&
-              !filters?.switchToChart && (
-                <PrintAndCSV data={data} actions={["print"]} />
-              )}
+            <PrintAndCSV data={data} actions={["print"]} />
 
-            {filters?.topBarSelectedSection?.id === 1 &&
-              !filters?.switchToChart && (
-                <PrintAndCSV
-                  data={[chartData.detail]}
-                  contentId="print-section"
-                  actions={["csv"]}
-                />
-              )}
+            {!filters?.switchToChart ? null : (
+              <PrintAndCSV
+                data={[chartData.detail]}
+                contentId="print-section"
+                actions={["csv"]}
+              />
+            )}
 
             {filters?.switchToChart &&
             filters?.topBarSelectedSection?.id === 1 ? (
@@ -206,7 +205,7 @@ const Hour = ({ userToken }) => {
         </Stack>
       </Box>
       <Box>
-        {operationsData?.length < 1 || !operationsData ? (
+        {labourData?.length < 1 || !labourData ? (
           <Box
             direction={{ xs: "column", md: "column", lg: "row" }}
             justifyContent="center"
@@ -229,26 +228,26 @@ const Hour = ({ userToken }) => {
             {filters?.topBarSelectedSection?.id === 1 ? (
               filters?.switchToChart ? (
                 <Box id="grid-section">
-                  <ChartDataGroupedTable
-                    data={operationsData}
+                  <LabourChartDataGroupedTable
+                    data={labourData}
                     selectedFilterOption={selectedFilterOption}
                     categories={
-                      selectedDays?.length > 0
-                        ? selectedDays?.map((el) => el.value)
+                      selectedLocations?.length > 0
+                        ? selectedLocations?.map((el) => el.value)
                         : ["all"]
                     }
                   />
                 </Box>
               ) : (
                 <Box id="chart-section">
-                  <OperationsHourDynamicCategoryChart
-                    data={operationsData}
-                    height={500}
+                  <LabourDynamicCategoryChart
+                    data={labourData}
+                    height={400}
                     selectedFilterOption={selectedFilterOption}
                     showBar={filters?.chart2ndAxis}
                     categories={
-                      selectedDays?.length > 0
-                        ? selectedDays?.map((el) => el.value)
+                      selectedLocations?.length > 0
+                        ? selectedLocations?.map((el) => el.value)
                         : ["all"]
                     }
                   />
@@ -256,18 +255,19 @@ const Hour = ({ userToken }) => {
               )
             ) : (
               <Box>
-                <SalesTransactionsTable
+                <LabourSnapshotTransactionsTable
                   data={snapshotTableData ? snapshotTableData : []}
                   defaultRegion={region}
                   valueFields={valueFields}
                   labelFields={labelFields}
+                  selectedFilterOption={selectedFilterOption}
                   COLORS={{ green: "#2ecc71", red: "#e74c3c" }}
                   searchText={
                     filters?.searchedValue?.length > 0
                       ? filters?.searchedValue
                       : null
                   }
-                  sectionName="Hour"
+                  sectionName="Location"
                 />
               </Box>
             )}
@@ -278,4 +278,4 @@ const Hour = ({ userToken }) => {
   );
 };
 
-export default Hour;
+export default InventoryLocation;

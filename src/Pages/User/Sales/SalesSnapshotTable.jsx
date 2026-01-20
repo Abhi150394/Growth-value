@@ -30,6 +30,22 @@ const SalesTransactionsTable = forwardRef(
     },
     ref
   ) => {
+    console.log("selectedFilterOption", selectedFilterOption);
+    console.log("datadata", data);
+
+    if (selectedFilterOption === "guest") {
+      valueFields = ["guest_total", "guest_count"];
+      labelFields = ["Total Customer, $", "Sales"];
+    } else if (selectedFilterOption === "delivery") {
+      valueFields = ["guest_total", "time_to_serve"];
+      labelFields = ["Sales, $", "Delivery"];
+    } else if (selectedFilterOption === "sales") {
+      valueFields = ["guest_total", "total"];
+      labelFields = ["Sales, $", "Delivery"];
+    } else {
+      valueFields = ["guest_total", "count"];
+      labelFields = ["Sales, $", "Total Orders"];
+    }
     const gridApi = useRef(null);
     const [pageSize, setPageSize] = useState(10);
     const [currentPage, setCurrentPage] = useState(0);
@@ -134,7 +150,7 @@ const SalesTransactionsTable = forwardRef(
       ];
 
       return { tableData, columnDefs };
-    }, [regionData, valueFields, labelFields, COLORS]);
+    }, [regionData, valueFields, labelFields, selectedFilterOption]);
 
     // pagination
     const pageSizeOptions = [

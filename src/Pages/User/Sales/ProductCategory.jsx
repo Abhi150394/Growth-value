@@ -191,15 +191,19 @@ const ProductCategory = ({ userToken }) => {
                 {!filters?.switchToChart ? <ToggleSwitchButton /> : null}
               </Stack>
             ) : null}
-            <PrintAndCSV data={data} actions={["print"]} />
+            {filters?.topBarSelectedSection?.id === 1 &&
+              !filters?.switchToChart && (
+                <PrintAndCSV data={data} actions={["print"]} />
+              )}
 
-            {!filters?.switchToChart ? null : (
-              <PrintAndCSV
-                data={[chartData.detail]}
-                contentId="print-section"
-                actions={["csv"]}
-              />
-            )}
+            {filters?.topBarSelectedSection?.id === 1 &&
+              !filters?.switchToChart && (
+                <PrintAndCSV
+                  data={[chartData.detail]}
+                  contentId="print-section"
+                  actions={["csv"]}
+                />
+              )}
 
             {filters?.switchToChart &&
             filters?.topBarSelectedSection?.id === 1 ? (
@@ -280,6 +284,7 @@ const ProductCategory = ({ userToken }) => {
                   defaultRegion={region}
                   valueFields={valueFields}
                   labelFields={labelFields}
+                  selectedFilterOption={selectedFilterOption}
                   COLORS={{ green: "#2ecc71", red: "#e74c3c" }}
                   searchText={
                     filters?.searchedValue?.length > 0

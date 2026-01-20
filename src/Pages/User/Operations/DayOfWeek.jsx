@@ -108,7 +108,7 @@ const DayOfWeek = ({ userToken }) => {
         <Stack direction="row" spacing={0.5} width="100%">
           <DateRangeSelector />
 
-          <DynamicDropdown
+          {/* <DynamicDropdown
             title="Area"
             icon={FaMapMarkedAlt}
             options={areaOptions}
@@ -126,7 +126,7 @@ const DayOfWeek = ({ userToken }) => {
               icon={HourglassBottomOutlined}
               options={timePeriod}
             />
-          ) : null}
+          ) : null} */}
         </Stack>
 
         {filters?.topBarSelectedSection?.id === 1 ? (
@@ -177,15 +177,19 @@ const DayOfWeek = ({ userToken }) => {
                 {!filters?.switchToChart ? <ToggleSwitchButton /> : null}
               </Stack>
             ) : null}
-            <PrintAndCSV data={data} actions={["print"]} />
+            {filters?.topBarSelectedSection?.id === 1 &&
+              !filters?.switchToChart && (
+                <PrintAndCSV data={data} actions={["print"]} />
+              )}
 
-            {!filters?.switchToChart ? null : (
-              <PrintAndCSV
-                data={[chartData.detail]}
-                contentId="print-section"
-                actions={["csv"]}
-              />
-            )}
+            {filters?.topBarSelectedSection?.id === 1 &&
+              !filters?.switchToChart && (
+                <PrintAndCSV
+                  data={[chartData.detail]}
+                  contentId="print-section"
+                  actions={["csv"]}
+                />
+              )}
 
             {filters?.switchToChart &&
             filters?.topBarSelectedSection?.id === 1 ? (
@@ -206,58 +210,73 @@ const DayOfWeek = ({ userToken }) => {
         </Stack>
       </Box>
       <Box>
-        <Box
-          style={{
-            width: "100%",
-            marginTop: "10px",
-          }}
-        >
-          {filters?.topBarSelectedSection?.id === 1 ? (
-            filters?.switchToChart ? (
-              <Box id="grid-section">
-                <ChartDataGroupedTable
-                  data={operationsData}
-                  selectedFilterOption={selectedFilterOption}
-                  categories={
-                    selectedDays?.length > 0
-                      ? selectedDays?.map((el) => el.value)
-                      : ["all"]
-                  }
-                />
-              </Box>
+        {operationsData?.length < 1 || !operationsData ? (
+          <Box
+            direction={{ xs: "column", md: "column", lg: "row" }}
+            justifyContent="center"
+            alignItems="center"
+            sx={{ width: "100%", height: "100%", textAlign: "center" }}
+          >
+            <img
+              src="/gif/growthValue_animated_loader.gif"
+              style={{ width: "200px", height: "200px" }}
+              alt="Loading..."
+            />
+          </Box>
+        ) : (
+          <Box
+            style={{
+              width: "100%",
+              marginTop: "10px",
+            }}
+          >
+            {filters?.topBarSelectedSection?.id === 1 ? (
+              filters?.switchToChart ? (
+                <Box id="grid-section">
+                  <ChartDataGroupedTable
+                    data={operationsData}
+                    selectedFilterOption={selectedFilterOption}
+                    categories={
+                      selectedDays?.length > 0
+                        ? selectedDays?.map((el) => el.value)
+                        : ["all"]
+                    }
+                  />
+                </Box>
+              ) : (
+                <Box id="chart-section">
+                  <DynamicCategoryChart
+                    data={operationsData}
+                    height={500}
+                    selectedFilterOption={selectedFilterOption}
+                    showBar={filters?.chart2ndAxis}
+                    categories={
+                      selectedDays?.length > 0
+                        ? selectedDays?.map((el) => el.value)
+                        : ["all"]
+                    }
+                  />
+                </Box>
+              )
             ) : (
-              <Box id="chart-section">
-                <DynamicCategoryChart
-                  data={operationsData}
-                  height={500}
-                  selectedFilterOption={selectedFilterOption}
-                  showBar={filters?.chart2ndAxis}
-                  categories={
-                    selectedDays?.length > 0
-                      ? selectedDays?.map((el) => el.value)
-                      : ["all"]
+              <Box>
+                <SalesTransactionsTable
+                  data={snapshotTableData ? snapshotTableData : []}
+                  defaultRegion={region}
+                  valueFields={valueFields}
+                  labelFields={labelFields}
+                  COLORS={{ green: "#2ecc71", red: "#e74c3c" }}
+                  searchText={
+                    filters?.searchedValue?.length > 0
+                      ? filters?.searchedValue
+                      : null
                   }
+                  sectionName="Day of Week"
                 />
               </Box>
-            )
-          ) : (
-            <Box>
-              <SalesTransactionsTable
-                data={snapshotTableData ? snapshotTableData : []}
-                defaultRegion={region}
-                valueFields={valueFields}
-                labelFields={labelFields}
-                COLORS={{ green: "#2ecc71", red: "#e74c3c" }}
-                searchText={
-                  filters?.searchedValue?.length > 0
-                    ? filters?.searchedValue
-                    : null
-                }
-                sectionName="Day of Week"
-              />
-            </Box>
-          )}
-        </Box>
+            )}
+          </Box>
+        )}
       </Box>
     </Box>
   );

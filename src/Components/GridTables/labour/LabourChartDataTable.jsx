@@ -6,6 +6,8 @@ import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-quartz.css";
 import { COLORS } from "../../../constants";
 import printAgGrid, { exportCSV } from "../../../Pages/User/Sales/Utils.js"
+import PrintButton from "../../Buttons/PrintButton.jsx";
+import ExportButton from "../../Buttons/ExportToCSVButton.jsx";
 
 const LabourChartDataGroupedTable = ({ data, categories=["all"] ,selectedFilterOption = null,searchText = "",  }) => {
   const gridApi = useRef(null);
@@ -121,10 +123,15 @@ const LabourChartDataGroupedTable = ({ data, categories=["all"] ,selectedFilterO
 }, [searchText]);
   return (
     <div>
-      <div style={{ marginBottom: "10px" }}>
+      {/* <div style={{ marginBottom: "10px" }}>
               <button onClick={handlePrint}>Print Table</button>
             </div>
-            <button onClick={() => exportCSV(gridApi)}>Export CSV</button>
+            <button onClick={() => exportCSV(gridApi)}>Export CSV</button> */}
+             <div style={{ marginBottom: "10px", display: "flex" }}>
+                      <PrintButton handlePrint={handlePrint} />
+                      <ExportButton handleCSV={() => exportCSV(gridApi)} />
+                    </div>
+            
       <div
         className="ag-theme-quartz"
         style={{

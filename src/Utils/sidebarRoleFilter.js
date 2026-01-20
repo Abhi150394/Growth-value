@@ -23,7 +23,7 @@ const SIDEBAR_ROLE_CONFIG = {
   sales: ["admin", "manager", "business_leader", "vendor", "user"],
 
   // Operations section - available to admin, manager
-  operations: ["admin", "manager", "regional_manager"],
+  operations: ["admin", "manager", "regional_manager","user"],
 
   // Labour section - available to admin, manager
   labour_cost: ["admin"],
@@ -53,7 +53,7 @@ const SIDEBAR_ROLE_CONFIG = {
   6666: ["admin"],
 
   // Advanced section - only for admin (superadmin handled globally)
-  advanced: ["admin", "vendor"],
+  advanced: ["admin", "vendor","user"],
 
   // Advanced submenu items - normalized keys
   "advanced.scraping": ["admin"],

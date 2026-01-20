@@ -181,15 +181,19 @@ const Area = ({ userToken }) => {
                 {!filters?.switchToChart ? <ToggleSwitchButton /> : null}
               </Stack>
             ) : null}
-            <PrintAndCSV data={data} actions={["print"]} />
+            {filters?.topBarSelectedSection?.id === 1 &&
+              !filters?.switchToChart && (
+                <PrintAndCSV data={data} actions={["print"]} />
+              )}
 
-            {!filters?.switchToChart ? null : (
-              <PrintAndCSV
-                data={[chartData.detail]}
-                contentId="print-section"
-                actions={["csv"]}
-              />
-            )}
+            {filters?.topBarSelectedSection?.id === 1 &&
+              !filters?.switchToChart && (
+                <PrintAndCSV
+                  data={[chartData.detail]}
+                  contentId="print-section"
+                  actions={["csv"]}
+                />
+              )}
 
             {filters?.switchToChart &&
             filters?.topBarSelectedSection?.id === 1 ? (
@@ -241,7 +245,6 @@ const Area = ({ userToken }) => {
             {filters?.topBarSelectedSection?.id === 1 ? (
               filters?.switchToChart ? (
                 <Box id="grid-section">
-                  {/* <DynamicSalesTrendsTable data={salesdata}/> */}
                   <ChartDataGroupedTable
                     data={salesdata}
                     selectedFilterOption={selectedFilterOption}
@@ -251,15 +254,14 @@ const Area = ({ userToken }) => {
                         : ["all"]
                     }
                     searchText={
-                    filters?.searchedValue?.length > 0
-                      ? filters?.searchedValue
-                      : null
-                  }
+                      filters?.searchedValue?.length > 0
+                        ? filters?.searchedValue
+                        : null
+                    }
                   />
                 </Box>
               ) : (
                 <Box id="chart-section">
-                  {/* <SalesYoYChart data={salesdata} height={500} showBar={filters?.chart2ndAxis}/> */}
                   <DynamicCategoryChart
                     data={salesdata}
                     height={500}
@@ -280,6 +282,7 @@ const Area = ({ userToken }) => {
                   defaultRegion={region}
                   valueFields={valueFields}
                   labelFields={labelFields}
+                  selectedFilterOption={selectedFilterOption}
                   COLORS={{ green: "#2ecc71", red: "#e74c3c" }}
                   searchText={
                     filters?.searchedValue?.length > 0
