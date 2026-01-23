@@ -34,10 +34,23 @@ const SidebarMui = ({ drawerWidth = 300, visible, setVisible, hamburger, userDat
         [normalizePathPart]
     );
 
+    // const filteredSidebarData = useMemo(() => {
+    //     if (!userData?.role) return sidebarData;
+    //     return filterSidebarByRole(sidebarData, userData.role);
+    // }, [userData?.role]);
+    
     const filteredSidebarData = useMemo(() => {
-        if (!userData?.role) return sidebarData;
-        return filterSidebarByRole(sidebarData, userData.role);
-    }, [userData?.role]);
+    if (!userData?.role) return sidebarData;
+
+    let data = filterSidebarByRole(sidebarData, userData.role);
+
+    if (userData.role === "user" && !userData.paid) {
+        data = data.filter(menu => menu.id !== "operations");
+    }
+
+    return data;
+    }, [userData]);
+
 
     // detect current route ,expand submenu
     useEffect(() => {

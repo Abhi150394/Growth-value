@@ -227,7 +227,7 @@ const APP_ROUTES = [
   },
   {
     path: "home/advanced/dashboard",
-    allowedRoles: ["admin", "vendor"],
+    allowedRoles: ["admin", "vendor","user"],
     render: ({ userToken, userData, search, setSearch, user }) => (
       <Dashboard
         userToken={userToken}
@@ -282,28 +282,28 @@ const APP_ROUTES = [
   },
   {
     path: "home/advanced/faqs",
-    allowedRoles: ["admin", "vendor"],
+    allowedRoles: ["admin", "vendor","user"],
     render: ({ userToken, userData }) => (
       <FAQs userToken={userToken} userData={userData} />
     ),
   },
   {
     path: "home/advanced/wishlist",
-    allowedRoles: ["admin", "vendor"],
+    allowedRoles: ["admin", "vendor","user"],
     render: ({ userToken, userData }) => (
       <Wishlist userToken={userToken} userData={userData} />
     ),
   },
   {
     path: "home/advanced/checkoutForm",
-    allowedRoles: ["admin"],
+    allowedRoles: ["admin","user"],
     render: ({ userToken, userData }) => (
       <Payment userToken={userToken} userData={userData} />
     ),
   },
   {
     path: "home/advanced/demo",
-    allowedRoles: ["admin", "vendor"],
+    allowedRoles: ["admin", "vendor","user"],
     render: ({ userToken, userData }) => (
       <Demo userToken={userToken} userData={userData} />
     ),
@@ -312,27 +312,31 @@ const APP_ROUTES = [
   // ==== Sales routes (Admin, Business leader, Manager, Vendor) ====
   {
     path: "/home/sales/tenzo-dummy",
-    allowedRoles: ["admin", "business_leader", "manager", "vendor"],
+    allowedRoles: ["admin", "business_leader", "manager", "vendor","user"],
     render: ({ userToken }) => <SalesPage userToken={userToken} />,
   },
   {
     path: "/home/sales/area",
-    allowedRoles: ["admin", "business_leader", "manager", "vendor"],
+    allowedRoles: ["admin", "business_leader", "manager", "vendor","user"],
+    requiresPaidForUser: true,
     render: ({ userToken }) => <Area userToken={userToken} />,
   },
   {
     path: "/home/sales/location",
-    allowedRoles: ["admin", "business_leader", "manager", "vendor"],
+    allowedRoles: ["admin", "business_leader", "manager", "vendor","user"],
+    requiresPaidForUser: true,
     render: ({ userToken }) => <Location userToken={userToken} />,
   },
   {
     path: "/home/sales/product-division",
-    allowedRoles: ["admin", "business_leader", "manager", "vendor"],
+    allowedRoles: ["admin", "business_leader", "manager", "vendor","user"],
+    requiresPaidForUser: true,
     render: ({ userToken }) => <ProductDivision userToken={userToken} />,
   },
   {
     path: "/home/sales/product-item",
-    allowedRoles: ["admin", "bussiness_leader"],
+    allowedRoles: ["admin", "bussiness_leader","user"],
+    requiresPaidForUser: true,
     render: ({ userToken }) => <ProductItem userToken={userToken} />,
   },
   {
@@ -342,50 +346,50 @@ const APP_ROUTES = [
   },
   {
     path: "/home/sales/product-category",
-    allowedRoles: ["admin", "business_leader", "manager", "vendor"],
+    allowedRoles: ["admin", "business_leader", "manager", "vendor","user"],
     render: ({ userToken }) => <ProductCategory userToken={userToken} />,
   },
   {
     path: "/home/sales/order-type",
-    allowedRoles: ["admin", "business_leader", "manager", "vendor"],
+    allowedRoles: ["admin", "business_leader", "manager", "vendor","user"],
     render: ({ userToken }) => <OrderType userToken={userToken} />,
   },
 
   // ==== Operations / Labour / Finance / Forecast / etc. ====
   {
     path: "home/operations/day-of-week",
-    allowedRoles: ["admin", "regional_manager", "manager"],
+    allowedRoles: ["admin", "regional_manager", "manager","user"],
     render: ({ userToken }) => <DayOfWeek userToken={userToken} />,
   },
   {
     path: "home/operations/part-of-day",
-    allowedRoles: ["admin", "regional_manager", "manager"],
+    allowedRoles: ["admin", "regional_manager", "manager","user"],
     render: ({ userToken }) => <PartOfDay userToken={userToken} />,
   },
   {
     path: "home/operations/hour",
-    allowedRoles: ["admin", "regional_manager", "manager"],
+    allowedRoles: ["admin", "regional_manager", "manager","user"],
     render: ({ userToken }) => <Hour userToken={userToken} />,
   },
   {
     path: "home/labour/area",
-    allowedRoles: ["admin"],
+    allowedRoles: ["admin","user"],
     render: ({ userToken }) => <LabourArea userToken={userToken} />,
   },
   // This was only in manager's (unreachable) block earlier, but keeping for future
   {
     path: "/home/labour/location",
-    allowedRoles: ["admin", "manager"],
+    allowedRoles: ["admin", "manager","user"],
     render: ({ userToken }) => <LabourLocation userToken={userToken} />,
   },
   {
     path: "/home/labour/role",
-    allowedRoles: ["admin", "manager"],
+    allowedRoles: ["admin", "manager","user"],
     render: ({ userToken }) => <LabourRole userToken={userToken} />,
   },
   {
     path:"/home/labour/hour",
-    allowedRoles:["admin","manager"],
+    allowedRoles:["admin","manager","user"],
     render:({userToken})=><LabourHour userToken={userToken}/>
   },
   {

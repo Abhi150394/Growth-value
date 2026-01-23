@@ -26,6 +26,7 @@ import {
 import {
   aggregateByEachOption,
   convertToOptions,
+  subtractYearsUTC,
 } from "../../../Utils/commonFunction.js";
 
 const options = [
@@ -76,7 +77,29 @@ const ProductItem = ({ userToken }) => {
   const [region, setRegion] = useState("overall");
   const valueFields = ["guest_total", "count"]; // fields to show
   const labelFields = ["Sales, $", "Transactions"];
-  let dummyText = `Lorem ipsum, dolor sit amet consectetur...`;
+  let infoTooltipText = (
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "140px 1fr",
+        rowGap: "8px",
+      }}
+    >
+      <strong>YoY Date Range:</strong>
+      <span>
+        {subtractYearsUTC(filters?.dateRange?.startDate)} to{" "}
+        {subtractYearsUTC(filters?.dateRange?.endDate)}
+      </span>
+
+      <strong>Sales:</strong>
+      <ul style={{ margin: 0, paddingLeft: "18px" }}>
+        <li>Excludes VAT</li>
+        <li>Excludes service charge</li>
+        <li>After deducting promos/discounts</li>
+        <li>After deducting comps/staff meals</li>
+      </ul>
+    </div>
+  );
 
   const handleButtonClick = (btn) => {
     if (btn.type === "report")
@@ -173,7 +196,7 @@ const ProductItem = ({ userToken }) => {
             width={{ xs: "100%", lg: "70%" }}
             flexWrap="wrap"
           >
-            <InfoTooltip text={dummyText} />
+            <InfoTooltip text={infoTooltipText} />
             {filters?.topBarSelectedSection?.id === 1 ? (
               <Stack
                 direction="row"

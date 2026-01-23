@@ -53,7 +53,7 @@ const SearchBar = ({
       onChange={handleChange}
       // allowClear={{ clearIcon: <CloseCircleOutlined onClick={clearSearch} /> }}
       size={size}
-      style={{ width, display: "block", margin: "2px" }}
+      style={{ width, display: "block", margin: "2px" ,marginLeft:"10px"}}
     />
   );
 };

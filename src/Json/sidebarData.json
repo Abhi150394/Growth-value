@@ -72,21 +72,6 @@
         "menuName": "Inventory"
     },
     {
-        "id": "planning",
-        "subMenu": [
-            {
-                "menuName": "Sales by Location"
-            },
-            {
-                "menuName": "Labour Planner"
-            },
-            {
-                "menuName": "Accuracy"
-            }
-        ],
-        "menuName": "Planning"
-    },
-    {
         "id": 3959,
         "type": "dashboard",
         "menuName": "Budgeting Review"

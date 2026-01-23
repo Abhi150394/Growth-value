@@ -21,7 +21,7 @@ import { ConfigProvider } from "antd";
 import ResetPassword from "./Pages/ResetPassword";
 import APP_ROUTES from "./routeConfig";
 const ROLE_ACCESS_MAP = Object.freeze({
-  superadmin: "admin",
+  superadmin: "superadmin",
   admin: "admin",
   business_leader: "business_leader",
   regional_manager: "regional_manager",
@@ -60,8 +60,10 @@ function App() {
   const isManagerBucket = resolvedRole === "manager";
   const isVendor = resolvedRole === "vendor";
 
-  const RoleGate = ({ allowedRoles, fallback = null, children }) => {
+  const RoleGate = ({ allowedRoles, fallback = null, children,route }) => {
+    console.log("routerouterouteroute",route)
     const roles = Array.isArray(allowedRoles) ? allowedRoles : [allowedRoles];
+    console.log("rolesroles",roles)
     if (!roles.includes(resolvedRole)) {
       return fallback;
     }
@@ -200,7 +202,7 @@ function App() {
     if (resolvedRole === "vendor") return "/home/advanced/faqs";
     return "/faqs";
   };
-
+console.log("userDatauserData",userData)
   return (
     <div>
       <ConfigProvider
@@ -305,6 +307,7 @@ function App() {
                       element={
                         <RoleGate
                           allowedRoles={route.allowedRoles}
+                          route={route}
                           fallback={
                             <Navigate to={getDefaultRedirect()} replace />
                           }

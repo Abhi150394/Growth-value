@@ -225,3 +225,10 @@ export function aggregateLabourByEachOption(data = {}) {
     ...aggregateLabourSection(rows)
   }));
 }
+
+export const subtractYearsUTC = (iso, years = 1) =>
+  new Date(
+    new Date(iso).setUTCFullYear(
+      new Date(iso).getUTCFullYear() - years
+    )
+  ).toISOString().slice(0, 10);
