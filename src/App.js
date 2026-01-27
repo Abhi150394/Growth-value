@@ -199,8 +199,8 @@ function App() {
     if (!resolvedRole) return "/sign-in";
     if (resolvedRole === "admin") return "/home";
     if (resolvedRole === "user") return userData.paid ? "/dashboard" : "/plans";
-    if (resolvedRole === "vendor") return "/home/advanced/faqs";
-    return "/faqs";
+    if (resolvedRole === "vendor") return userData.paid ? "/dashboard" : "/plans";
+    return "/plans";
   };
 console.log("userDatauserData",userData)
   return (

@@ -57,7 +57,7 @@ const ProductDivision = () => {
 
   const [region, setRegion] = useState("overall");
   const valueFields = ["guest_total", "count"]; // fields to show
-  const labelFields = ["Sales, $", "Transactions"];
+  const labelFields = ["Sales, €", "Transactions"];
   let infoTooltipText = (
     <div
       style={{

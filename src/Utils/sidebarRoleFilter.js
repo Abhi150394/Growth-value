@@ -55,15 +55,15 @@ const SIDEBAR_ROLE_CONFIG = {
   // Advanced section - only for admin (superadmin handled globally)
   advanced: ["admin", "vendor","user"],
 
-  // Advanced submenu items - normalized keys
+  // Advanced submenu items - normalized k, "user"eys
   "advanced.scraping": ["admin"],
-  "advanced.user-management": ["admin"],
-  "advanced.usermanagement": ["admin"], // alternative format
+  "advanced.user-management": ["admin", "user"],
+  "advanced.usermanagement": ["admin", "user"], // alternative format
   "advanced.dashboard": ["admin", "manager", "vendor", "user"],
-  "advanced.searchcompare": ["admin", "manager"],
-  "advanced.summary": ["admin", "manager"],
-  "advanced.subscription": ["admin", "manager"],
-  "advanced.helpsupport": ["admin", "manager"],
+  "advanced.searchcompare": ["admin", "manager", "user"],
+  "advanced.summary": ["admin", "manager", "user"],
+  "advanced.subscription": ["admin", "manager", "user"],
+  "advanced.helpsupport": ["admin", "manager", "user"],
   "advanced.faqs": ["admin", "manager", "vendor", "user"],
   "advanced.demo": ["admin", "manager", "vendor", "user"],
   "advanced.wishlist": ["admin", "manager", "vendor", "user"],

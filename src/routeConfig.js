@@ -156,7 +156,7 @@ const APP_ROUTES = [
   },
   {
     path: "/plans",
-    allowedRoles: ["user"],
+    allowedRoles: ["user","admin"],
     requiresPaidForUser: false,
     render: ({ userToken, userData }) => (
       <Plans userToken={userToken} userData={userData} />
@@ -164,7 +164,7 @@ const APP_ROUTES = [
   },
   {
     path: "/success/:checkout_id",
-    allowedRoles: ["user"],
+    allowedRoles: ["user","admin"],
     requiresPaidForUser: false,
     render: ({ userToken, userData, setUserData }) => (
       <Success
@@ -220,7 +220,7 @@ const APP_ROUTES = [
   },
   {
     path: "home/advanced/user-management",
-    allowedRoles: ["admin"],
+    allowedRoles: ["admin", "user"],
     render: ({ userToken, userData }) => (
       <UserManagement userToken={userToken} userData={userData} />
     ),
@@ -240,7 +240,7 @@ const APP_ROUTES = [
   },
   {
     path: "home/advanced/search&compare",
-    allowedRoles: ["admin"],
+    allowedRoles: ["admin", "user"],
     render: ({ userToken, userData, search, setSearch }) => (
       <SearchandCompare
         userToken={userToken}
@@ -252,7 +252,7 @@ const APP_ROUTES = [
   },
   {
     path: "home/advanced/summary",
-    allowedRoles: ["admin"],
+    allowedRoles: ["admin", "user"],
     render: ({ userToken, userData, search, setSearch }) => (
       <Summary
         userToken={userToken}
@@ -264,7 +264,7 @@ const APP_ROUTES = [
   },
   {
     path: "home/advanced/subscription",
-    allowedRoles: ["admin"],
+    allowedRoles: ["admin", "user"],
     render: ({ userToken, userData, setUserData }) => (
       <Subscription
         userToken={userToken}
@@ -275,7 +275,7 @@ const APP_ROUTES = [
   },
   {
     path: "/home/advanced/help&support",
-    allowedRoles: ["admin"],
+    allowedRoles: ["admin", "user"],
     render: ({ userToken, userData }) => (
       <HelpandSupport userToken={userToken} userData={userData} />
     ),

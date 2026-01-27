@@ -22,7 +22,7 @@ const SalesTransactionsTable = forwardRef(
       defaultRegion = "overall",
       regionMapKey = "id_name_map",
       valueFields = ["guest_total", "count"],
-      labelFields = ["Sales, $", "Transactions"],
+      labelFields = ["Sales, €", "Transactions"],
       COLORS = { green: "#2ecc71", red: "#e74c3c" },
       searchText = "",
       sectionName = "Area",
@@ -35,16 +35,16 @@ const SalesTransactionsTable = forwardRef(
 
     if (selectedFilterOption === "guest") {
       valueFields = ["guest_total", "guest_count"];
-      labelFields = ["Total Customer, $", "Sales"];
+      labelFields = ["Total Customer, €", "Sales"];
     } else if (selectedFilterOption === "delivery") {
       valueFields = ["guest_total", "time_to_serve"];
-      labelFields = ["Sales, $", "Delivery"];
+      labelFields = ["Sales, €", "Delivery"];
     } else if (selectedFilterOption === "sales") {
       valueFields = ["guest_total", "total"];
-      labelFields = ["Sales, $", "Delivery"];
+      labelFields = ["Sales, €", "Delivery"];
     } else {
       valueFields = ["guest_total", "count"];
-      labelFields = ["Sales, $", "Total Orders"];
+      labelFields = ["Sales, €", "Total Orders"];
     }
     const gridApi = useRef(null);
     const [pageSize, setPageSize] = useState(10);
