@@ -81,12 +81,6 @@
         "type": "dashboard",
         "menuName": "Finance"
     },
-    
-    {
-        "id": 5983,
-        "type": "dashboard",
-        "menuName": "Quick Social"
-    },
     {
         "id": 6187,
         "type": "dashboard",

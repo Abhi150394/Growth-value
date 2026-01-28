@@ -9,6 +9,7 @@ const LanguageSwitcher = () => {
     const [isModalVisible, setIsModalVisible] = useState(false);
 
     const handleChange = (value) => {
+        localStorage.setItem('preferredLanguage', value);
         changeLanguage(value);
         setIsModalVisible(false); 
     };

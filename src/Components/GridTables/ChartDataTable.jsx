@@ -5,28 +5,38 @@ import { Pagination } from "antd";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-quartz.css";
 import { COLORS } from "../../constants";
-import printAgGrid, { exportCSV } from "../../Pages/User/Sales/Utils.js"
+import printAgGrid, { exportCSV } from "../../Pages/User/Sales/Utils.js";
 import PrintButton from "../Buttons/PrintButton.jsx";
 import ExportButton from "../Buttons/ExportToCSVButton.jsx";
+import { useTranslation } from "../CustomHook/useTranslation.js";
 
-const ChartDataGroupedTable = ({ data, categories=["all"] ,selectedFilterOption = null,searchText = "",  }) => {
+const ChartDataGroupedTable = ({
+  data,
+  categories = ["all"],
+  selectedFilterOption = null,
+  searchText = "",
+}) => {
   const gridApi = useRef(null);
   const [pageSize, setPageSize] = useState(10);
   const [currentPage, setCurrentPage] = useState(0);
   console.log("selectedFilterOption", selectedFilterOption);
 
+  console.log("datadatadata", data);
+  const { t, tSync, language } = useTranslation();
 
-    const handlePrint = () => {
-      if (gridApi.current) {
-        printAgGrid(gridApi, "Sales Table");
-      }
-    };
+  const handlePrint = () => {
+    if (gridApi.current) {
+      printAgGrid(gridApi, "Sales Table");
+    }
+  };
   // transform JSON → table rows
   const { tableData, columnDefs } = useMemo(() => {
     if (!data?.detail) return { tableData: [], columnDefs: [] };
 
     // extract rows
-    const periods = [...new Set(data.detail[categories[0]]?.map((d) => d.period))];
+    const periods = [
+      ...new Set(data.detail[categories[0]]?.map((d) => d.period)),
+    ];
 
     const tableData = periods.map((date) => {
       const row = { date };
@@ -53,8 +63,8 @@ const ChartDataGroupedTable = ({ data, categories=["all"] ,selectedFilterOption 
         } else if (selectedFilterOption === "sales") {
           v1 = Number(d.guest_total) || 0;
           v2 = Number(d.guest_total_ly) || 0;
-        }else{
-            v1 = Number(d.guest_count) || 0;
+        } else {
+          v1 = Number(d.guest_count) || 0;
           v2 = Number(d.guest_count_ly) || 0;
         }
 
@@ -76,14 +86,24 @@ const ChartDataGroupedTable = ({ data, categories=["all"] ,selectedFilterOption 
 
     // dynamic columnDefs
     const columnDefs = [
-      { headerName: "Date", field: "date", minWidth: 140 },
+      { headerName: tSync("Date"), field: "date", minWidth: 140 },
       ...categories.map((cat) => ({
         // headerName: cat?cat.charAt(0).toUpperCase() + cat.slice(1):cat,
-        headerName:cat==='all'?'Overall':!cat.includes(" ")?cat.charAt(0).toUpperCase() + cat.slice(1):cat.split(" ").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" "),
+        headerName:
+          cat === "all"
+            ? tSync("Overall")
+            : !cat.includes(" ")
+            ? tSync(cat.charAt(0).toUpperCase() + cat.slice(1))
+            : cat
+                .split(" ")
+                .map((word) =>
+                  tSync(word.charAt(0).toUpperCase() + word.slice(1))
+                )
+                .join(" "),
         children: [
-          { headerName: "Sales, $", field: `${cat}_sales` },
+          { headerName: tSync("Sales, $"), field: `${cat}_sales` },
           {
-            headerName: "YoY Growth %",
+            headerName: tSync("YoY Growth %"),
             field: `${cat}_yoy`,
             valueFormatter: (p) => (p.value !== undefined ? `${p.value}%` : ""),
           },
@@ -92,7 +112,7 @@ const ChartDataGroupedTable = ({ data, categories=["all"] ,selectedFilterOption 
     ];
 
     return { tableData, columnDefs };
-  }, [data, categories,selectedFilterOption]);
+  }, [data, categories, selectedFilterOption, language]);
 
   const pageSizeOptions = [
     { value: 5, label: "5" },
@@ -118,13 +138,29 @@ const ChartDataGroupedTable = ({ data, categories=["all"] ,selectedFilterOption 
   };
 
   useEffect(() => {
-  if (gridApi.current) {
-    gridApi.current.setGridOption(
-      "quickFilterText",
-      searchText || ""
-    );
-  }
-}, [searchText]);
+    if (gridApi.current) {
+      gridApi.current.setGridOption("quickFilterText", searchText || "");
+    }
+  }, [searchText]);
+
+  useEffect(() => {
+    const preload = async () => {
+      await Promise.all([
+        t("YoY Growth %"),
+        t("Sales, $"),
+        t("Overall"),
+        t("Date"),
+      ]);
+    };
+
+    preload();
+  }, [language]);
+
+  useEffect(() => {
+    if (gridApi.current) {
+      gridApi.current.refreshHeader();
+    }
+  }, [language]);
   return (
     <div>
       {/* <div style={{ marginBottom: "10px" }}>
@@ -132,10 +168,10 @@ const ChartDataGroupedTable = ({ data, categories=["all"] ,selectedFilterOption 
             </div>
             <button onClick={() => exportCSV(gridApi)}>Export CSV</button> */}
 
-           <div style={{ marginBottom: "10px", display: "flex" }}>
-          <PrintButton handlePrint={handlePrint} />
-          <ExportButton handleCSV={() => exportCSV(gridApi)} />
-        </div>
+      <div style={{ marginBottom: "10px", display: "flex" }}>
+        <PrintButton handlePrint={handlePrint} />
+        <ExportButton handleCSV={() => exportCSV(gridApi)} />
+      </div>
       <div
         className="ag-theme-quartz"
         style={{
@@ -144,7 +180,7 @@ const ChartDataGroupedTable = ({ data, categories=["all"] ,selectedFilterOption 
         }}
       >
         <AgGridReact
-        theme="legacy"
+          theme="legacy"
           rowData={tableData}
           columnDefs={columnDefs}
           pagination={true}

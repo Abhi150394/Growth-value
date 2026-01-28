@@ -75,29 +75,7 @@ const ProductCategory = ({ userToken }) => {
   const [region, setRegion] = useState("overall");
   const valueFields = ["guest_total", "count"]; // fields to show
   const labelFields = ["Sales, €", "Transactions"];
-  let infoTooltipText = (
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "140px 1fr",
-        rowGap: "8px",
-      }}
-    >
-      <strong>YoY Date Range:</strong>
-      <span>
-        {subtractYearsUTC(filters?.dateRange?.startDate)} to{" "}
-        {subtractYearsUTC(filters?.dateRange?.endDate)}
-      </span>
-
-      <strong>Sales:</strong>
-      <ul style={{ margin: 0, paddingLeft: "18px" }}>
-        <li>Excludes VAT</li>
-        <li>Excludes service charge</li>
-        <li>After deducting promos/discounts</li>
-        <li>After deducting comps/staff meals</li>
-      </ul>
-    </div>
-  );
+ 
 
   const handleButtonClick = (btn) => {
     if (btn.type === "report")
@@ -202,7 +180,7 @@ const ProductCategory = ({ userToken }) => {
             width={{ xs: "100%", lg: "70%" }}
             flexWrap="wrap"
           >
-            <InfoTooltip text={infoTooltipText} />
+            <InfoTooltip />
             {filters?.topBarSelectedSection?.id === 1 ? (
               <Stack
                 direction="row"
@@ -314,7 +292,7 @@ const ProductCategory = ({ userToken }) => {
                       ? filters?.searchedValue
                       : null
                   }
-                  sectionName="Division"
+                  sectionName="Product Category"
                 />
               </Box>
             )}

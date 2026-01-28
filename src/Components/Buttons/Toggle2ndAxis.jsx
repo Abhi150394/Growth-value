@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Switch } from "antd";
 import { FilterContext } from "../../Contexts/FilterContext";
+import TranslatedText from "../Controls/TranslatedText";
 
 const ToggleSwitchButton = ({ onToggle }) => {
   const { filters, updateFilter } = useContext(FilterContext);
@@ -26,7 +27,7 @@ const ToggleSwitchButton = ({ onToggle }) => {
         onChange={handleChange}
         style={{ backgroundColor: filters?.chart2ndAxis ? "black" : undefined,tabSize:10 }}
       />
-      <span>Toggle 2nd Axis</span>
+      <TranslatedText>Toggle 2nd Axis</TranslatedText>
     </div>
   );
 };

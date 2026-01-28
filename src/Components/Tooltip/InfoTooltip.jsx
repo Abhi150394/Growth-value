@@ -1,5 +1,8 @@
-import React, { useState, useRef, useLayoutEffect } from "react";
+import React, { useState, useRef, useLayoutEffect, useContext } from "react";
 import { createPortal } from "react-dom";
+import TranslatedText from "../Controls/TranslatedText";
+import { FilterContext } from "../../Contexts/FilterContext";
+import { subtractYearsUTC } from "../../Utils/commonFunction";
 
 const InfoTooltip = ({ text, size = 15, className = "" }) => {
   const [visible, setVisible] = useState(false);
@@ -8,7 +11,42 @@ const InfoTooltip = ({ text, size = 15, className = "" }) => {
   const [arrowDirection, setArrowDirection] = useState("down"); // arrow direction
   const wrapperRef = useRef(null);
   const tooltipRef = useRef(null);
+  const { filters } = useContext(FilterContext);
+  text = (
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "140px 1fr",
+        rowGap: "8px",
+      }}
+    >
+      <strong>
+        <TranslatedText>YoY Date Range:</TranslatedText>
+      </strong>
+      <span>
+        {subtractYearsUTC(filters?.dateRange?.startDate)} to{" "}
+        {subtractYearsUTC(filters?.dateRange?.endDate)}
+      </span>
 
+      <strong>
+        <TranslatedText>Sales:</TranslatedText>
+      </strong>
+      <ul style={{ margin: 0, paddingLeft: "18px" }}>
+        <li>
+          <TranslatedText>Excludes VAT</TranslatedText>
+        </li>
+        <li>
+          <TranslatedText>Excludes service charge</TranslatedText>
+        </li>
+        <li>
+          <TranslatedText>After deducting promos/discounts</TranslatedText>
+        </li>
+        <li>
+          <TranslatedText>After deducting comps/staff meals</TranslatedText>
+        </li>
+      </ul>
+    </div>
+  );
   useLayoutEffect(() => {
     if (visible && wrapperRef.current && tooltipRef.current) {
       const wrapperRect = wrapperRef.current.getBoundingClientRect();

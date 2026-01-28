@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Button } from "antd";
 import { TableChartOutlined, BarChartOutlined } from "@mui/icons-material";
 import { FilterContext } from "../../Contexts/FilterContext";
+import TranslatedText from "../Controls/TranslatedText";
 
 const ToggleViewButton = ({ onToggle }) => {
       const { filters, updateFilter } = useContext(FilterContext);
@@ -26,7 +27,7 @@ const ToggleViewButton = ({ onToggle }) => {
         fontWeight: 400,
       }}
     >
-      {filters?.switchToChart ? "Switch to Chart" : "Switch to Table"}
+      <TranslatedText>{filters?.switchToChart ? "Switch to Chart" : "Switch to Table"}</TranslatedText>
     </Button>
   );
 };

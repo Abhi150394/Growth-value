@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Select, { components } from "react-select";
 import { BORDER_RADIUS, COLORS } from "../../constants";
+import TranslatedText from "../Controls/TranslatedText";
 
 const AutoCompleteDropdown = ({
   options = [],
@@ -18,8 +19,8 @@ const AutoCompleteDropdown = ({
 
   const enhancedOptions = showLogoTitle
     ? [
-        { value: "all", label: "Overall" },
-        { value: "__selectAll", label: "Select All" },
+        { value: "all", label: <TranslatedText>Overall</TranslatedText> },
+        { value: "__selectAll", label: <TranslatedText>Select All</TranslatedText> },
         ...options,
       ]
     : options;
@@ -33,12 +34,12 @@ const AutoCompleteDropdown = ({
       );
       if (!selected) {
         setSelectedOptions([]);
-        onChange?.([{ value: "all", label: "Overall" }]);
+        onChange?.([{ value: "all", label: <TranslatedText>Overall</TranslatedText> }]);
         return;
       }
       if (selected.length === 0) {
-        setSelectedOptions([{ value: "all", label: "Overall" }]);
-        onChange?.([{ value: "all", label: "Overall" }]);
+        setSelectedOptions([{ value: "all", label: <TranslatedText>Overall</TranslatedText> }]);
+        onChange?.([{ value: "all", label: <TranslatedText>Overall</TranslatedText> }]);
         return;
       }
       if (
@@ -65,7 +66,7 @@ const AutoCompleteDropdown = ({
       }
 
       if (selected.some((opt) => opt.value === "all")) {
-        setSelectedOptions([{ value: "all", label: "Overall" }]);
+        setSelectedOptions([{ value: "all", label: <TranslatedText>Overall</TranslatedText> }]);
         onChange?.([]);
         return;
       }
@@ -121,7 +122,11 @@ const AutoCompleteDropdown = ({
             style={{ width: 20, height: 20, marginRight: 6 }}
           />
         )}
-        {showLogoTitle && <strong style={{ marginRight: 6 }}>{title}:</strong>}
+        {showLogoTitle && (
+          <strong style={{ marginRight: 6 }}>
+            <TranslatedText>{title}</TranslatedText>:
+          </strong>
+        )}
         {children}
       </components.ValueContainer>
     );
@@ -134,7 +139,7 @@ const AutoCompleteDropdown = ({
         options={enhancedOptions}
         value={selectedOptions}
         onChange={handleChange}
-        placeholder={showLogoTitle ? null : placeholder}
+        placeholder={showLogoTitle ? null : <TranslatedText>{placeholder}</TranslatedText>}
         isClearable={true}
         // closeMenuOnSelect={!isMulti}
         components={

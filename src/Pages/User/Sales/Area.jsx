@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import ButtonGroup from "../../../Components/Buttons/TopBarControls";
+import TranslatedText from "../../../Components/Controls/TranslatedText";
 import { FilterContext } from "../../../Contexts/FilterContext";
 import DateRangeSelector from "../../../Components/DateRange/DateRangeModalViewer";
 import DynamicDropdown from "../../../Components/Dropdowns/Dropdown";
@@ -72,26 +73,7 @@ const Area = ({ userToken }) => {
   const valueFields = ["guest_total", "count"]; // fields to show.
   const labelFields = ["Sales, $", "Transactions"];
 
-  let infoTooltipText = (
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "140px 1fr",
-        rowGap: "8px",
-      }}
-    >
-      <strong>YoY Date Range:</strong>
-      <span>{subtractYearsUTC(filters?.dateRange?.startDate)} to {subtractYearsUTC(filters?.dateRange?.endDate)}</span>
-
-      <strong>Sales:</strong>
-      <ul style={{ margin: 0, paddingLeft: "18px" }}>
-        <li>Excludes VAT</li>
-        <li>Excludes service charge</li>
-        <li>After deducting promos/discounts</li>
-        <li>After deducting comps/staff meals</li>
-      </ul>
-    </div>
-  );
+  
   
   const handleButtonClick = (btn) => {
     if (btn.type === "report")
@@ -166,9 +148,9 @@ const Area = ({ userToken }) => {
               title="Areas"
               options={[
                 // { value: "north", label: "North" },
-                { value: "south", label: "South" },
-                { value: "east", label: "East" },
-                { value: "west", label: "West" },
+                { value: "south", label: <TranslatedText>South</TranslatedText> },
+                { value: "east", label: <TranslatedText>East</TranslatedText> },
+                { value: "west", label: <TranslatedText>West</TranslatedText> },
               ]}
               onChange={(vals) => setSelectedAreas(vals)}
               width="100%"
@@ -191,7 +173,7 @@ const Area = ({ userToken }) => {
             width={{ xs: "100%", lg: "70%" }}
             flexWrap="wrap"
           >
-            <InfoTooltip text={infoTooltipText} />
+            <InfoTooltip />
             {filters?.topBarSelectedSection?.id === 1 ? (
               <Stack
                 direction="row"

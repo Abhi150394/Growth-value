@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Select, { components } from "react-select";
 import { Box } from "@mui/material";
 import { BORDER_RADIUS, COLORS, FONT_WEIGHT } from "../../constants";
+import TranslatedText from "../Controls/TranslatedText";
 
 const DynamicDropdown = ({
   title,
@@ -88,7 +89,7 @@ const DynamicDropdown = ({
         {props.data.icon && (
           <props.data.icon style={{ fontSize: SZ.icon, color: COLORS?.textBase || "#111" }} />
         )}
-        <span>{props.data.label}</span>
+        <span><TranslatedText>{props.data.label}</TranslatedText></span>
       </Box>
     </components.Option>
   );
@@ -105,13 +106,13 @@ const DynamicDropdown = ({
         {TitleIcon && <TitleIcon style={{ color: "#000", fontSize: SZ.titleIcon }} />}
         {title && (
           <span style={{ color: "#000", fontWeight: FONT_WEIGHT?.lg || 600, marginRight: 4 }}>
-            {title}:
+            <TranslatedText>{title}</TranslatedText>:
           </span>
         )}
         {props.data.icon && (
           <props.data.icon style={{ fontSize: SZ.icon, color: COLORS?.textBase || "#111" }} />
         )}
-        <span>{props.data.label}</span>
+        <span><TranslatedText>{props.data.label}</TranslatedText></span>
       </Box>
     </components.SingleValue>
   );
@@ -119,7 +120,7 @@ const DynamicDropdown = ({
   // Chip renderer for multi-select (smaller chips in small mode)
   const CustomMultiValueLabel = (props) => (
     <components.MultiValueLabel {...props}>
-      <span style={{ fontSize: SZ.chipFont }}>{props.data.label}</span>
+      <span style={{ fontSize: SZ.chipFont }}><TranslatedText>{props.data.label}</TranslatedText></span>
     </components.MultiValueLabel>
   );
 

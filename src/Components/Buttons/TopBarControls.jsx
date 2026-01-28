@@ -3,6 +3,7 @@ import { Button } from "antd";
 import { BORDER_RADIUS, COLORS } from "../../constants";
 import { FilterContext } from "../../Contexts/FilterContext";
 import { useSearchParams } from "react-router-dom";
+import TranslatedText from "../Controls/TranslatedText";
 
 const ButtonGroup = ({ buttons = [], onButtonClick }) => {
   const { filters, updateFilter } = useContext(FilterContext);
@@ -77,7 +78,7 @@ const ButtonGroup = ({ buttons = [], onButtonClick }) => {
             fontWeight: 500,
           }}
         >
-          {btn.title}
+          <TranslatedText>{btn.title}</TranslatedText>
           {rippleVisible && btn?.id === filters?.topBarSelectedSection?.id && (
             <span style={rippleStyle} />
           )}

@@ -4,13 +4,13 @@ import Select from "react-select";
 import { Pagination } from "antd";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-quartz.css";
-import { COLORS } from "../../../constants";
-import printAgGrid, { exportCSV } from "../../../Pages/User/Sales/Utils.js";
-import ExportButton from "../../Buttons/ExportToCSVButton.jsx";
-import PrintButton from "../../Buttons/PrintButton.jsx";
-import { useTranslation } from "../../CustomHook/useTranslation.js";
+import { COLORS } from "../../constants";
+import printAgGrid, { exportCSV } from "../../Pages/User/Sales/Utils.js";
+import ExportButton from "../Buttons/ExportToCSVButton.jsx";
+import PrintButton from "../Buttons/PrintButton.jsx";
+import { useTranslation } from "../CustomHook/useTranslation.js";
 
-const LabourHourChartDataGroupedTable = ({
+const OperationsHourGroupedTable = ({
   data,
   categories = ["all"],
   selectedFilterOption = null,
@@ -46,8 +46,8 @@ const { t, tSync, language } = useTranslation();
         // const yoy = d.total_ly ? ((sales - d.total_ly) / d.total_ly) * 100 : 0;
         let yoy = 0;
         let sales = 0;
-        let v1 = Number(d.actual_base_cost) || 0;
-        let v2 = Number(d.actual_base_cost_ly) || 0;
+        let v1 = Number(d.total) || 0;
+        let v2 = Number(d.total_ly) || 0;
         if (selectedFilterOption === "actual_hours") {
           v1 = Number(d.actual_shift_num_mins) || 0;
           v2 = Number(d.actual_shift_num_mins_ly) || 0;
@@ -58,8 +58,8 @@ const { t, tSync, language } = useTranslation();
           v1 = Number(d.actual_fully_loaded_cost) || 0;
           v2 = Number(d.actual_fully_loaded_cost_ly) || 0;
         } else {
-          v1 = Number(d.actual_base_cost) || 0;
-          v2 = Number(d.actual_base_cost_ly) || 0;
+          v1 = Number(d.total) || 0;
+          v2 = Number(d.total_ly) || 0;
         }
 
         if (v1 !== 0 || v2 !== 0) {
@@ -135,6 +135,7 @@ const { t, tSync, language } = useTranslation();
     }
   }, [searchText]);
 
+
     useEffect(() => {
       const preload = async () => {
         await Promise.all([
@@ -155,10 +156,6 @@ const { t, tSync, language } = useTranslation();
     }, [language]);
   return (
     <div>
-      {/* <div style={{ marginBottom: "10px" }}>
-              <button onClick={handlePrint}>Print Table</button>
-            </div>
-            <button onClick={() => exportCSV(gridApi)}>Export CSV</button> */}
       <PrintButton handlePrint={handlePrint} />
       <ExportButton handleCSV={() => exportCSV(gridApi)} />
       <div
@@ -246,4 +243,6 @@ const { t, tSync, language } = useTranslation();
   );
 };
 
-export default LabourHourChartDataGroupedTable;
+
+
+export default OperationsHourGroupedTable;

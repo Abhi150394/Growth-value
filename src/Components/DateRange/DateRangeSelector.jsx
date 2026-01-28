@@ -14,26 +14,27 @@ import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import "./DashboardDateRangePicker.css";
 import { FilterContext } from "../../Contexts/FilterContext";
+import TranslatedText from "../Controls/TranslatedText";
 
 const predefinedRanges = [
-  { label: "Today", range: () => ({ startDate: new Date(), endDate: new Date() }) },
+  { label: <TranslatedText>Today</TranslatedText>, range: () => ({ startDate: new Date(), endDate: new Date() }) },
   {
-    label: "Yesterday",
+    label: <TranslatedText>Yesterday</TranslatedText>,
     range: () => {
       const yesterday = subDays(new Date(), 1);
       return { startDate: yesterday, endDate: yesterday };
     },
   },
-  { label: "Week to Date", range: () => ({ startDate: subDays(new Date(), 6), endDate: new Date() }) },
-  { label: "Month to Date", range: () => ({ startDate: startOfMonth(new Date()), endDate: new Date() }) },
-  { label: "Quarter to Date", range: () => ({ startDate: startOfQuarter(new Date()), endDate: new Date() }) },
-  { label: "Year to Date", range: () => ({ startDate: startOfYear(new Date()), endDate: new Date() }) },
+  { label: <TranslatedText>Week to Date</TranslatedText>, range: () => ({ startDate: subDays(new Date(), 6), endDate: new Date() }) },
+  { label: <TranslatedText>Month to Date</TranslatedText>, range: () => ({ startDate: startOfMonth(new Date()), endDate: new Date() }) },
+  { label: <TranslatedText>Quarter to Date</TranslatedText>, range: () => ({ startDate: startOfQuarter(new Date()), endDate: new Date() }) },
+  { label: <TranslatedText>Year to Date</TranslatedText>, range: () => ({ startDate: startOfYear(new Date()), endDate: new Date() }) },
   // All past 12 months
   ...Array.from({ length: 12 }, (_, i) => {
     const today = new Date();
     const monthDate = new Date(today.getFullYear(), today.getMonth() - i, 1);
     return {
-      label: monthDate.toLocaleString("default", { month: "long" }),
+      label: <TranslatedText>{monthDate.toLocaleString("default", { month: "long" })}</TranslatedText>,
       range: () => ({
         startDate: startOfMonth(monthDate),
         endDate: endOfMonth(monthDate),
@@ -148,7 +149,7 @@ const DashboardDateRangePicker = ({ onChange, maxRange }) => {
             fontSize: 13,
           }}
         >
-          {warning.message}
+          <TranslatedText>{warning.message}</TranslatedText>
         </div>
       )}
 
@@ -183,7 +184,7 @@ const DashboardDateRangePicker = ({ onChange, maxRange }) => {
           >
             <div style={{ fontWeight: "300", fontSize: "12px" }}>{r.label}</div>
             <div style={{ fontSize: "10px", color: "#555" }}>
-              {format(r.range().startDate, "MMM dd, yyyy")} - {format(r.range().endDate, "MMM dd, yyyy")}
+              <TranslatedText>{format(r.range().startDate, "MMM dd, yyyy")}</TranslatedText> - <TranslatedText>{format(r.range().endDate, "MMM dd, yyyy")}</TranslatedText>
             </div>
           </button>
         ))}
@@ -200,7 +201,7 @@ const DashboardDateRangePicker = ({ onChange, maxRange }) => {
               cursor: "pointer",
             }}
           >
-            Clear
+            <TranslatedText>Clear</TranslatedText>
           </button>
         </div>
       </div>
@@ -219,7 +220,7 @@ const DashboardDateRangePicker = ({ onChange, maxRange }) => {
         {/* Optional small helper text */}
         {maxRange && (
           <div style={{ marginTop: 8, fontSize: 12, color: "#666" }}>
-            Maximum selectable range: {maxRange} {maxRange === 1 ? "day" : "days"}
+          <TranslatedText>Maximum selectable range: {maxRange} {maxRange === 1 ? "day" : "days"}</TranslatedText>
           </div>
         )}
       </div>

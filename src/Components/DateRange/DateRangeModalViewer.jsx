@@ -5,6 +5,7 @@ import { FaCalendar } from "react-icons/fa";
 import CloseIcon from "@mui/icons-material/Close";
 import { Box, Stack, Typography, IconButton } from "@mui/material";
 import DashboardDateRangePicker from "./DateRangeSelector";
+import TranslatedText from "../Controls/TranslatedText";
 
 /**
  * Props:
@@ -81,7 +82,7 @@ const DateRangeSelector = ({ size = "default", maxRange }) => {
           fontWeight={400}
           sx={{ fontSize: isSmall ? "0.75rem" : "0.9rem" }}
         >
-          Custom
+          <TranslatedText>Custom</TranslatedText>
         </Typography>
 
         <Typography variant="body2" mx={0.5} fontWeight={500}>

@@ -20,6 +20,7 @@ import SalesTransactionsTable from "../Sales/SalesSnapshotTable.jsx";
 import { getOperationDayOfWeekData } from "../../../API/reportsData.js";
 import { formatToYMD } from "../../../Utils/dateUtils.js";
 import { aggregateByEachOption, subtractYearsUTC } from "../../../Utils/commonFunction.js";
+import TranslatedText from "../../../Components/Controls/TranslatedText";
 
 const options = [
   { value: "guest", label: "Guest", icon: FaUser },
@@ -67,29 +68,29 @@ const DayOfWeek = ({ userToken }) => {
   const [region, setRegion] = useState("overall");
   const valueFields = ["guest_total", "count"]; // fields to show
   const labelFields = ["Sales, $", "Transactions"];
-  let infoTooltipText = (
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "140px 1fr",
-        rowGap: "8px",
-      }}
-    >
-      <strong>YoY Date Range:</strong>
-      <span>
-        {subtractYearsUTC(filters?.dateRange?.startDate)} to{" "}
-        {subtractYearsUTC(filters?.dateRange?.endDate)}
-      </span>
+  // let infoTooltipText = (
+  //   <div
+  //     style={{
+  //       display: "grid",
+  //       gridTemplateColumns: "140px 1fr",
+  //       rowGap: "8px",
+  //     }}
+  //   >
+  //     <strong><TranslatedText>YoY Date Range:</TranslatedText></strong>
+  //     <span>
+  //       {subtractYearsUTC(filters?.dateRange?.startDate)} to{" "}
+  //       {subtractYearsUTC(filters?.dateRange?.endDate)}
+  //     </span>
 
-      <strong>Sales:</strong>
-      <ul style={{ margin: 0, paddingLeft: "18px" }}>
-        <li>Excludes VAT</li>
-        <li>Excludes service charge</li>
-        <li>After deducting promos/discounts</li>
-        <li>After deducting comps/staff meals</li>
-      </ul>
-    </div>
-  );
+  //     <strong><TranslatedText>Sales:</TranslatedText></strong>
+  //     <ul style={{ margin: 0, paddingLeft: "18px" }}>
+  //       <li><TranslatedText>Excludes VAT</TranslatedText></li>
+  //       <li><TranslatedText>Excludes service charge</TranslatedText></li>
+  //       <li><TranslatedText>After deducting promos/discounts</TranslatedText></li>
+  //       <li><TranslatedText>After deducting comps/staff meals</TranslatedText></li>
+  //     </ul>
+  //   </div>
+  // );
 
   const handleButtonClick = (btn) => {
     if (btn.type === "report")
@@ -187,7 +188,7 @@ const DayOfWeek = ({ userToken }) => {
             width={{ xs: "100%", lg: "70%" }}
             flexWrap="wrap"
           >
-            <InfoTooltip text={infoTooltipText} />
+            <InfoTooltip />
             {filters?.topBarSelectedSection?.id === 1 ? (
               <Stack
                 direction="row"

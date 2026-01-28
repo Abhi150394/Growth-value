@@ -14,6 +14,7 @@ import "ag-grid-community/styles/ag-theme-quartz.css";
 import printAgGrid, { exportCSV } from "./Utils";
 import PrintButton from "../../../Components/Buttons/PrintButton";
 import ExportButton from "../../../Components/Buttons/ExportToCSVButton";
+import { useTranslation } from "../../../Components/CustomHook/useTranslation";
 
 const LabourSnapshotTransactionsTable = forwardRef(
   (
@@ -32,20 +33,19 @@ const LabourSnapshotTransactionsTable = forwardRef(
   ) => {
     console.log("selectedFilterOption", selectedFilterOption);
     console.log("datadata", data);
-
+const { t, tSync, language } = useTranslation();
     if (selectedFilterOption === "guest") {
       valueFields = ["guest_total", "guest_count"];
-      labelFields = ["Total Customer, $", "Sales"];
+      labelFields = [tSync("Total Customer, $"), tSync("Sales")];
     } else if (selectedFilterOption === "delivery") {
       valueFields = ["guest_total", "time_to_serve"];
-      labelFields = ["Sales, $", "Delivery"];
+      labelFields = [tSync("Sales, $"), tSync("Delivery")];
     } else if (selectedFilterOption === "sales") {
       valueFields = ["guest_total", "total"];
-      labelFields = ["Sales, $", "Delivery"];
+      labelFields = [tSync("Sales, $"), tSync("Delivery")];
     } else {
       valueFields = ["actual_base_cost", "actual_shift_num_mins"];
-      labelFields = ["Sales, $", "Transactions"]
-      labelFields = ["Sales, $", "Total Orders"];
+      labelFields = [tSync("Sales, $"), tSync("Total Orders")];
     }
     
     const gridApi = useRef(null);
@@ -75,6 +75,22 @@ const LabourSnapshotTransactionsTable = forwardRef(
     }, [data, selectedRegion]);
     // console.log("regionData", regionData);
     // build table data with totals
+        useEffect(() => {
+          if (!regionData?.length) return;
+    
+          const preloadIdentifiers = async () => {
+            const uniqueTexts = new Set();
+    
+            regionData.forEach((r) => {
+              if (r.direction) uniqueTexts.add(r.direction);
+              else if (r.identifier) uniqueTexts.add(r.identifier);
+            });
+    
+            await Promise.all([...uniqueTexts].map((text) => t(text)));
+          };
+    
+          preloadIdentifiers();
+        }, [regionData, language]);
     const { tableData, columnDefs } = useMemo(() => {
       if (!regionData) return { tableData: [], columnDefs: [] };
 
@@ -92,7 +108,7 @@ const LabourSnapshotTransactionsTable = forwardRef(
       const tableData = [
         // totalRow,
         ...regionData?.map((r) => {
-          const obj = { identifier: r.direction || r.identifier };
+          const obj = { identifier: tSync(r.direction || r.identifier) };
           valueFields.forEach((field) => {
             obj[field] = r[field];
             obj[`${field}_ly`] = r[`${field}_ly`];
@@ -103,12 +119,12 @@ const LabourSnapshotTransactionsTable = forwardRef(
 
       // create dynamic column definitions
       const columnDefs = [
-        { headerName: sectionName, field: "identifier", minWidth: 140 },
+        { headerName: tSync(sectionName), field: "identifier", minWidth: 140 },
         ...labelFields?.map((label, idx) => ({
-          headerName: label,
+          headerName: tSync(label),
           children: [
             {
-              headerName: "This Year",
+              headerName: tSync("This Year"),
               field: valueFields[idx],
               valueFormatter: (p) =>
                 p.value?.toLocaleString(undefined, {
@@ -116,7 +132,7 @@ const LabourSnapshotTransactionsTable = forwardRef(
                 }),
             },
             {
-              headerName: "Last Year",
+              headerName: tSync("Last Year"),
               field: `${valueFields[idx]}_ly`,
               valueFormatter: (p) =>
                 p.value?.toLocaleString(undefined, {
@@ -124,7 +140,7 @@ const LabourSnapshotTransactionsTable = forwardRef(
                 }),
             },
             {
-              headerName: "YoY, %",
+              headerName: tSync("YoY, %"),
               valueGetter: (p) =>
                 p.data[`${valueFields[idx]}_ly`]
                   ? ((p.data[valueFields[idx]] -
@@ -214,6 +230,21 @@ const LabourSnapshotTransactionsTable = forwardRef(
         gridApi.current.setGridOption("quickFilterText", searchText || "");
       }
     }, [searchText]);
+
+
+        useEffect(() => {
+          const preload = async () => {
+            await Promise.all([t("This Year"), t("Last Year"), t("YoY, %")]);
+          };
+    
+          preload();
+        }, [language]);
+    
+        useEffect(() => {
+          if (gridApi.current) {
+            gridApi.current.refreshHeader();
+          }
+        }, [language]);
     return (
       <div>
         {/* Region Selector */}

@@ -163,7 +163,7 @@ const SidebarMui = ({ drawerWidth = 300, visible, setVisible, hamburger, userDat
                                                     onClick={handleItemClick}
 
                                                 >
-                                                    <ListItemText primary={sub.menuName} />
+                                                    <ListItemText primary={<TranslatedText>{sub.menuName}</TranslatedText>} />
                                                 </ListItemButton>
                                             );
                                         })}

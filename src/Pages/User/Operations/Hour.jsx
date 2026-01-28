@@ -21,6 +21,8 @@ import { getOperationHoursData } from "../../../API/reportsData.js";
 import { aggregateByEachOption, subtractYearsUTC } from "../../../Utils/commonFunction.js";
 import { formatToYMD } from "../../../Utils/dateUtils.js";
 import OperationsHourDynamicCategoryChart from "../../../Components/Charts/Operation/OperationHourChart.jsx";
+import TranslatedText from "../../../Components/Controls/TranslatedText";
+import OperationsHourGroupedTable from "../../../Components/GridTables/OperationsHourGroupedTable.jsx";
 
 const options = [
   { value: "guest", label: "Guest", icon: FaUser },
@@ -68,29 +70,29 @@ const Hour = ({ userToken }) => {
   const [region, setRegion] = useState("overall");
   const valueFields = ["guest_total", "count"]; // fields to show
   const labelFields = ["Sales, $", "Transactions"];
-  let infoTooltipText = (
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "140px 1fr",
-        rowGap: "8px",
-      }}
-    >
-      <strong>YoY Date Range:</strong>
-      <span>
-        {subtractYearsUTC(filters?.dateRange?.startDate)} to{" "}
-        {subtractYearsUTC(filters?.dateRange?.endDate)}
-      </span>
+  // let infoTooltipText = (
+  //   <div
+  //     style={{
+  //       display: "grid",
+  //       gridTemplateColumns: "140px 1fr",
+  //       rowGap: "8px",
+  //     }}
+  //   >
+  //     <strong>YoY Date Range:</strong>
+  //     <span>
+  //       {subtractYearsUTC(filters?.dateRange?.startDate)} to{" "}
+  //       {subtractYearsUTC(filters?.dateRange?.endDate)}
+  //     </span>
 
-      <strong>Sales:</strong>
-      <ul style={{ margin: 0, paddingLeft: "18px" }}>
-        <li>Excludes VAT</li>
-        <li>Excludes service charge</li>
-        <li>After deducting promos/discounts</li>
-        <li>After deducting comps/staff meals</li>
-      </ul>
-    </div>
-  );
+  //     <strong><TranslatedText>Sales:</TranslatedText></strong>
+  //     <ul style={{ margin: 0, paddingLeft: "18px" }}>
+  //       <li><TranslatedText>Excludes VAT</TranslatedText></li>
+  //       <li><TranslatedText>Excludes service charge</TranslatedText></li>
+  //       <li><TranslatedText>After deducting promos/discounts</TranslatedText></li>
+  //       <li><TranslatedText>After deducting comps/staff meals</TranslatedText></li>
+  //     </ul>
+  //   </div>
+  // );
 
   const handleButtonClick = (btn) => {
     if (btn.type === "report")
@@ -183,7 +185,7 @@ const Hour = ({ userToken }) => {
             width={{ xs: "100%", lg: "70%" }}
             flexWrap="wrap"
           >
-            <InfoTooltip text={infoTooltipText} />
+            <InfoTooltip />
             {filters?.topBarSelectedSection?.id === 1 ? (
               <Stack
                 direction="row"
@@ -251,7 +253,7 @@ const Hour = ({ userToken }) => {
             {filters?.topBarSelectedSection?.id === 1 ? (
               filters?.switchToChart ? (
                 <Box id="grid-section">
-                  <ChartDataGroupedTable
+                  <OperationsHourGroupedTable
                     data={operationsData}
                     selectedFilterOption={selectedFilterOption}
                     categories={
