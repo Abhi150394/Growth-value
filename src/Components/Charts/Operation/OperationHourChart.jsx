@@ -1,5 +1,6 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { AgCharts } from "ag-charts-react";
+import { useTranslation } from "../../CustomHook/useTranslation";
 
 const OperationsHourDynamicCategoryChart = ({
   data,
@@ -11,8 +12,9 @@ const OperationsHourDynamicCategoryChart = ({
   height = 600,
   selectedFilterOption = null,
 }) => {
-  console.log("datadata",data)
+  console.log("datadata", data);
   console.log("selectedFilterOption", selectedFilterOption);
+  const { t, tSync, language } = useTranslation();
   const { chartData, yoyMin, yoyMax, diffMin, diffMax } = useMemo(() => {
     if (!data?.detail) {
       return { chartData: {}, yoyMin: 0, yoyMax: 0, diffMin: 0, diffMax: 0 };
@@ -41,8 +43,8 @@ const OperationsHourDynamicCategoryChart = ({
         } else if (selectedFilterOption === "sales") {
           v1 = Number(d.guest_total) || 0;
           v2 = Number(d.guest_total_ly) || 0;
-        }else{
-            v1 = Number(d.guest_count) || 0;
+        } else {
+          v1 = Number(d.guest_count) || 0;
           v2 = Number(d.guest_count_ly) || 0;
         }
 
@@ -72,7 +74,7 @@ const OperationsHourDynamicCategoryChart = ({
     };
   }, [data, categories, selectedFilterOption]);
 
-  console.log("chartDatachartData",chartData)
+  console.log("chartDatachartData", chartData);
   // Dynamically build series
   const singleCategory = categories.length === 1;
   const series = [];
@@ -102,12 +104,14 @@ const OperationsHourDynamicCategoryChart = ({
         yKey: "diff",
         yName:
           cat === "all"
-            ? "Overall"
+            ? tSync("Overall")
             : !cat.includes(" ")
-            ? cat.charAt(0).toUpperCase() + cat.slice(1)
+            ? tSync(cat.charAt(0).toUpperCase() + cat.slice(1))
             : cat
                 .split(" ")
-                .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                .map((word) =>
+                  tSync(word.charAt(0).toUpperCase() + word.slice(1))
+                )
                 .join(" "),
         data: values,
         marker: { enabled: true, size: 5 },
@@ -123,14 +127,14 @@ const OperationsHourDynamicCategoryChart = ({
       {
         type: "category",
         position: "bottom",
-        title: { text: "Date" },
+        title: { text: tSync("Date") },
       },
       ...(showBar
         ? [
             {
               type: "number",
               position: "right",
-              title: { text: "YoY Growth" },
+              title: { text: tSync("YoY Growth") },
               nice: true,
               keys: ["yoy"],
               min: yoyMin * 1.2,
@@ -143,7 +147,7 @@ const OperationsHourDynamicCategoryChart = ({
             {
               type: "number",
               position: "left",
-              title: { text: "Δ Quantity vs LY" },
+              title: { text: tSync("Δ Quantity vs LY") },
               nice: true,
               keys: ["diff"],
               min: diffMin * 1.2,
@@ -170,6 +174,13 @@ const OperationsHourDynamicCategoryChart = ({
     background: { fill: "#fafafa" },
     navigator: { enabled: true },
   };
+  useEffect(() => {
+    const preload = async () => {
+      await Promise.all([t("YoY Growth"), t("Δ Quantity vs LY"), t("Date")]);
+    };
+
+    preload();
+  }, [language]);
 
   return (
     <div style={{ width: "100%", height: "auto" }}>
