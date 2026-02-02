@@ -53,50 +53,7 @@
         ],
         "menuName": "Labour"
     },
-    {
-        "id": "inventory",
-        "subMenu": [
-            {
-                "menuName": "Location"
-            },
-            {
-                "menuName": "Category"
-            },
-            {
-                "menuName": "Item"
-            },
-            {
-                "menuName": "Vendor"
-            }
-        ],
-        "menuName": "Inventory"
-    },
-    {
-        "id": 3959,
-        "type": "dashboard",
-        "menuName": "Budgeting Review"
-    },
-    {
-        "id": 3996,
-        "type": "dashboard",
-        "menuName": "Finance"
-    },
-    {
-        "id": 6187,
-        "type": "dashboard",
-        "menuName": "Ops. Manager"
-    },
-    {
-        "id": 6332,
-        "type": "dashboard",
-        "menuName": "Forecast"
-    },
-    {
-        "id":6666,
-        "type":"dashboard",
-        "menuName":"Labor Dash"
-    },
-    {
+     {
         "id": "advanced",
         "subMenu": [
             {
@@ -125,5 +82,26 @@
             {"menuName":"wishlist"}
         ],
         "menuName": "Advanced"
+    },
+    {
+        "id": 3996,
+        "type": "dashboard",
+        "menuName": "Finance"
+    },
+    {
+        "id": 6187,
+        "type": "dashboard",
+        "menuName": "Ops. Manager"
+    },
+    {
+        "id": 6332,
+        "type": "dashboard",
+        "menuName": "Forecast"
+    },
+    {
+        "id":6666,
+        "type":"dashboard",
+        "menuName":"Labor Dash"
     }
+   
 ]

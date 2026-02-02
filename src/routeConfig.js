@@ -341,16 +341,19 @@ const APP_ROUTES = [
   },
   {
     path: "/home/sales/revenue-center",
+    requiresPaidForUser: true,
     allowedRoles: ["admin", "business_leader", "manager", "vendor"],
     render: ({ userToken }) => <RevenueCenter userToken={userToken} />,
   },
   {
     path: "/home/sales/product-category",
+    requiresPaidForUser: true,
     allowedRoles: ["admin", "business_leader", "manager", "vendor","user"],
     render: ({ userToken }) => <ProductCategory userToken={userToken} />,
   },
   {
     path: "/home/sales/order-type",
+    requiresPaidForUser: true,
     allowedRoles: ["admin", "business_leader", "manager", "vendor","user"],
     render: ({ userToken }) => <OrderType userToken={userToken} />,
   },

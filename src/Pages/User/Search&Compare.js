@@ -97,7 +97,7 @@ const SearchandCompare = ({ userToken, search, setSearch, userData }) => {
 
       setLoading(false);
     };
-    func();
+    paid && func();
   }, [search]);
 
   const sortedProducts = useMemo(() => {
