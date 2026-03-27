@@ -1,20 +1,19 @@
 [
-    { "value": "en", "label": "English" },
-    { "value": "fr", "label": "French" },
-    { "value": "es", "label": "Spanish" },
-    { "value": "de", "label": "German" },
-    { "value": "zh", "label": "Chinese" },
-    { "value": "du", "label": "Dutch" },
-    { "value": "ko", "label": "Korean" },
-    { "value": "hi", "label": "Hindi" },
-    { "value": "ja", "label": "Japanese" },
-    { "value": "pt", "label": "Portuguese" },
-    { "value": "ru", "label": "Russian" },
-    { "value": "ar", "label": "Arabic" },
-    { "value": "it", "label": "Italian" },
-    { "value": "tr", "label": "Turkish" },
-    { "value": "vi", "label": "Vietnamese" },
-    { "value": "pl", "label": "Polish" },
-    { "value": "th", "label": "Thai" }
-  ]
-  
+  { "value": "en", "label": "English", "nativeLabel": "English" },
+  { "value": "fr", "label": "French", "nativeLabel": "Français" },
+  { "value": "es", "label": "Spanish", "nativeLabel": "Español" },
+  { "value": "de", "label": "German", "nativeLabel": "Deutsch" },
+  { "value": "zh-CN", "label": "Chinese (Simplified)", "nativeLabel": "中文（简体）" },
+  { "value": "nl", "label": "Dutch", "nativeLabel": "Nederlands" },
+  { "value": "ko", "label": "Korean", "nativeLabel": "한국어" },
+  { "value": "hi", "label": "Hindi", "nativeLabel": "हिन्दी" },
+  { "value": "ja", "label": "Japanese", "nativeLabel": "日本語" },
+  { "value": "pt", "label": "Portuguese", "nativeLabel": "Português" },
+  { "value": "ru", "label": "Russian", "nativeLabel": "Русский" },
+  { "value": "ar", "label": "Arabic", "nativeLabel": "العربية" },
+  { "value": "it", "label": "Italian", "nativeLabel": "Italiano" },
+  { "value": "tr", "label": "Turkish", "nativeLabel": "Türkçe" },
+  { "value": "vi", "label": "Vietnamese", "nativeLabel": "Tiếng Việt" },
+  { "value": "pl", "label": "Polish", "nativeLabel": "Polski" },
+  { "value": "th", "label": "Thai", "nativeLabel": "ไทย" }
+]

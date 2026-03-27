@@ -9,6 +9,7 @@ const LanguageSwitcher = () => {
     const [isModalVisible, setIsModalVisible] = useState(false);
 
     const handleChange = (value) => {
+        localStorage.setItem('preferredLanguage', value);
         changeLanguage(value);
         setIsModalVisible(false); 
     };
@@ -42,7 +43,7 @@ const LanguageSwitcher = () => {
 
             <Modal
                 title="Select Language"
-                visible={isModalVisible}
+                open={isModalVisible}
                 onCancel={handleCancel}
                 footer={null}
             >

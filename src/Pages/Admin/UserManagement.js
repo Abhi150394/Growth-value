@@ -42,6 +42,11 @@ const UserManagement = ({ userToken }) => {
       key: "email",
     },
     {
+      title: <TranslatedText>Role</TranslatedText>,
+      dataIndex: "role",
+      key: "role",
+    },
+    {
       title: <TranslatedText>Contact No</TranslatedText>,
       dataIndex: "phone",
       key: "phone",

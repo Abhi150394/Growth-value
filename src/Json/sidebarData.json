@@ -1,0 +1,107 @@
+[
+    {
+        "id": "sales",
+        "subMenu": [
+            {
+                "menuName": "Area"
+            },
+            {
+                "menuName": "Location"
+            },
+            {
+                "menuName": "Product Category"
+            },
+            {
+                "menuName": "Product Item"
+            },
+            {
+                "menuName": "Order Type"
+            }
+        ],
+        "menuName": "Sales"
+    },
+    {
+        "id": "operations",
+        "subMenu": [
+            {
+                "menuName": "Day of Week"
+            },
+            {
+                "menuName": "Part of Day"
+            },
+            {
+                "menuName": "Hour"
+            }
+        ],
+        "menuName": "Operations"
+    },
+    {
+        "id": "labour_cost",
+        "subMenu": [
+            {
+                "menuName": "Area"
+            },
+            {
+                "menuName": "Location"
+            },
+            {
+                "menuName": "Role"
+            },
+            {
+                "menuName": "Hour"
+            }
+        ],
+        "menuName": "Labour"
+    },
+     {
+        "id": "advanced",
+        "subMenu": [
+            {
+                "menuName": "Scraping"
+            },
+            {
+                "menuName": "User Management"
+            },
+            { "menuName":"Dashboard"},
+            {
+                "menuName": "Search&compare"
+            },
+            {
+                "menuName": "Summary"
+            },{
+                "menuName": "Subscription"
+            },{
+                "menuName": "Help&support"
+            },{
+                "menuName": "Faqs"
+            },
+            
+            {
+                "menuName":"demo"
+            },
+            {"menuName":"wishlist"}
+        ],
+        "menuName": "Advanced"
+    },
+    {
+        "id": 3996,
+        "type": "dashboard",
+        "menuName": "Finance"
+    },
+    {
+        "id": 6187,
+        "type": "dashboard",
+        "menuName": "Ops. Manager"
+    },
+    {
+        "id": 6332,
+        "type": "dashboard",
+        "menuName": "Forecast"
+    },
+    {
+        "id":6666,
+        "type":"dashboard",
+        "menuName":"Labor Dash"
+    }
+   
+]

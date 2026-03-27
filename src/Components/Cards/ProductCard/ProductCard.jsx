@@ -183,7 +183,9 @@ const ProductCard = (props) => {
                             <p style={ProductTitle}>{item?.product_name}</p>
                     </Tooltip>
                 </div>
-
+                <div>
+                    ID : {item.id}
+                </div>
                 <div style={priceBox}>
                     <Tooltip placement="bottom" title={paid ? item.price : "Subscribe to see Price"}>
                         <TranslatedText>

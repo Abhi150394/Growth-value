@@ -4,14 +4,33 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { LanguageProvider } from "./API/LanguageContext";
-// import { LanguageProvider } from "./context/LanguageContext";
+import { FilterProvider } from "./Contexts/FilterContext";
+import { ModuleRegistry } from "ag-grid-community";
+import { AllCommunityModule } from "ag-grid-community";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { registerComponent } from "./Utils/dynamicRouteService";
+import ItemSalesbyEmployee from "./Pages/User/Ops Manager/ItemSalesbyEmployee";
+import { LookupProvider } from "./Contexts/LookupContext";
 
+// Register all community modules
+ModuleRegistry.registerModules([AllCommunityModule]);
+
+// import { LanguageProvider } from "./context/LanguageContext";
+const theme = createTheme();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+registerComponent("ItemSalesbyEmployee",ItemSalesbyEmployee );
+
 root.render(
-    <LanguageProvider>
+  <ThemeProvider theme={theme}>
+    <LookupProvider>
+    <FilterProvider>
+      <LanguageProvider>
         <App />
-    </LanguageProvider>
+      </LanguageProvider>
+    </FilterProvider>
+    </LookupProvider>
+  </ThemeProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -13,6 +13,68 @@
   }
 }
 
+.ag-theme-quartz .ag-row-hover {
+    background-color: #ffe6cc !important; /* light orange hover */
+    transition: background-color 0.2s;
+}
+.ag-theme-quartz .ag-root-wrapper,
+/* .ag-theme-quartz .ag-header, */
+/* .ag-theme-quartz .ag-row, */
+.ag-theme-quartz .ag-cell {
+    border: none !important;
+    box-shadow: none !important;
+    z-index: 0;
+}
+.ag-header-cell-label {
+  font-weight: 500 !important;   /* bold */
+  font-size: 14px !important;    /* bigger font */
+  color: #222;                   /* darker text for clarity */
+}
+.ag-theme-quartz .ag-header-group-cell-label {
+  font-weight: 500;
+  margin-left: 30%;
+}
+
+.custom-modal .ant-modal-header {
+  background-color: #ffffff; 
+  color: white; 
+}
+
+
+.custom-modal .ant-modal-content {
+  background-color: white !important;
+}
+/* Force modal to always stay perfectly centered */
+.centered-modal-wrapper {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ensure modal doesn't exceed viewport height */
+.centered-modal-wrapper .ant-modal {
+  top: auto !important;
+  transform: none !important;
+  margin: 0 !important;
+  max-height: 90vh;
+  overflow: hidden;
+}
+
+/* Responsive modal width */
+@media (max-width: 768px) {
+  .centered-modal-wrapper .ant-modal {
+    width: 100vw !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .centered-modal-wrapper .ant-modal {
+    width: 90vw !important;
+  }
+}
+
+
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

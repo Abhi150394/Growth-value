@@ -8,7 +8,7 @@ const LanguageContext = createContext();
 export const useLanguage = () => useContext(LanguageContext);
 
 export const LanguageProvider = ({ children }) => {
-    const [language, setLanguage] = useState('en');
+    const [language, setLanguage] = useState(localStorage.getItem('preferredLanguage') || 'en');
     const [translations, setTranslations] = useState({});
 
     const translate = async (text, targetLanguage) => {
@@ -48,7 +48,7 @@ export const LanguageProvider = ({ children }) => {
     };
 
     return (
-        <LanguageContext.Provider value={{ language, changeLanguage, translate }}>
+        <LanguageContext.Provider value={{ language, changeLanguage, translate, translations }}>
             {children}
         </LanguageContext.Provider>
     );
